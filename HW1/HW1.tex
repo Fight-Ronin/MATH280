@@ -111,6 +111,45 @@ error of $f(h(x))$ near zero.
 \end{proof}
 
 \section*{Question 3}
+Given, $P(t)$ s.t. $P(1) = 4, P'(t) = tP(t)^2$
 
+\subsection*{(a) Quadratic Approximation}
+\begin{proof}
+    Given,
+    \[ P'(1) = 4, P'(t) = tP(t)^2 \]
+    For $P^{'}(t)$ and $P^{''}(t)$, we can get (using the product rule):
+    \\
+    \[ P'(1) = 1 \times 4^2 = 16 \]
+    \[ P^{''}(t) = \frac{d}{dt}[tP(t)^2] = P(t)^2 + 2tP(t)P^{'}(t)\]
+    \\
+    Sub $t = 1$ into $P^{''}(t)$:
+    \[ P^{''}(t) = 4^2 + 2 \times 1 \times 4 \times 16 = 16 + 128 = 144 \]
+    \\
+    Then we can apply the Taylor Expansion around $t = 1$, include the small error term $E(t-1)$ s.t. $E(t-1) << t-1$:
+    \[ P(t) \approx P(1) + P'(1)(t - 1) + \frac{1}{2}P^{''}(1)(t - 1)^2 + E(t - 1) \]
+    \[ P(t) \approx 4 + 16(t - 1) + 72(t - 1)^2 + E(t - 1) \]
+    \\
+    Then, we can estimate $P(0)$ and $P(-1)$. Subsitute $t = 0$ and $t = -1$, we can get:
+    \[ P(0) = 4 + 16(-1) + 72(1)^2 = 4 - 16 + 72 = 60 \]
+    \[ P(-1) = 4 + 16(-2) + 72(4) = 4 - 32 + 288 = 260 \]
+    \\
+    Noting that $E(t - 1)$ is negligible near $t = 1$.
+\end{proof}
+
+\subsection*{(b) Analysis Critical Point at $t = 0$}
+Noting that in here we can apply the 2nd derivative test.
+\begin{proof}
+    From (a), we know that,
+    \[ P^{''}(0) = P(0)^2 \approx 60^2 = 3600 \]
+    \\
+    Since $P^{''}(t) > 0$ for $t = 0$, critical point at $t = 0$ is a local minimum point.
+\end{proof}
+
+\subsection*{(c)}
+I think in this case the estimation using quadratic approximation for $P(0)$ and $P(-1)$ might likely underestimate the exact values. Such phenomenon aries is 
+because of the quadratic model might not fully capture the exponential growth.
+Specifically, since $P'(t) = tP(t)^2$, the rate of change of $P(t)$ depends on the product of $t$ and $P(t)^2$. This might lead to rapid changes in the function's value, 
+particularly when $t \& P(t)$ are significantly large.
+Hence, such quadratic approximation might fails to accurately predict the behavior of the function $P(t)$ and underestimate its actual value.
 
 \end{document}
