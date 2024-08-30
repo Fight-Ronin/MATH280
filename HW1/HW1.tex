@@ -80,11 +80,37 @@ Given,
     As $E_f(x)$ is much smaller $(x - 3)$, and given $|E_f(x)| < 1: |E_{f \circ g}| \leq 4$.
 \end{proof}
 
+\newpage
+
 \subsection*{(b)}
-Given $h(x)$ is differentiable at $x = 0$ and $h(0) = 3$, WTS whether the bound the
+Given $h(x)$ is differentiable at $x = 0$ and $h(0) = 3$, WTS       the bound the
 error of $f(h(x))$ near zero.
 \\
+\begin{proof}
+    To precisely bound the error of $f(h(x))$ near zero, we need two more information:
+    \begin{itemize}
+        \item Explicit form of $E_f(x)$
+        \item Rate of Change of $h(x)$
+    \end{itemize}
 
+    By knowing these two conditions, we can bound $E_f(h(x))$ by the following approach:
+    \\
+    By definition of Taylor Expansion, we can subsitute
+    \[ h(x) = 3 + h'(0)x + o(x) \]
+    \\
+    Where $o(x)$ is the higher order terms that become negligibly small faster than linear.
+    \\
+    Then, suppose $E_f(x) = k(x - 3)^n$, then:
+    \[ E_f(h(x)) = k(h(x) - 3)^n = k(h'(0)x + o(x))^n \]
+    \\
+    For evaluation we will only focus on how the ``linear'' terms in $x$ contribute to $E_f(h(x))$.
+    \\
+    Assume $E_f(x) \sim (x - 3)^n$ and $h(x) = 3 + h'(0)x + o(x)$, the bound of $E_f(h(x))$ when $x = 0$ can be written in the form:
+    \[ |E_f(h(x))| \leq |k| \cdot |h'(0)x + o(x)|^n \]
+
+\end{proof}
+
+\section*{Question 3}
 
 
 \end{document}
