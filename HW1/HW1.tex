@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{amssymb}
+\newcommand*{\twoheadrightarrowtail}{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
+% Alternative which doesn't look as good using the normal size, but might work better with smaller sizes too:
+%\newcommand*{\twoheadrightarrowtail}{\mathrel{\rlap{$\rightarrowtail$}\twoheadrightarrow}}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\newcolumntype{2}{D{.}{}{2.0}}
+
+\title{MATH 280 HW1}
+\author{Hanzhang Yin}
+\date{Aug/29/2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1}
+
+\begin{proof}
+    Define the function $h(x) = \frac{f(x)}{g(x)}$, by the def. of the derivative with limit process:
+    \[ h'(a) = \lim_{x \rightarrow a} = \frac{h(x) - h(a)}{x - a} \]
+    \\
+    Expanding $h(x)$ and $h(a)$:
+    \[ h'(a) =  \lim_{x \rightarrow a} = \frac{\frac{f(x)}{g(x)} - \frac{f(a)}{g(a)}}{x - a} \]
+    \[ \Rightarrow h'(a) = \lim_{x \rightarrow a} \frac{f(x)g(a) - f(a)g(x)}{g(x)g(a)(x - a)} \]
+    \\
+    Applying $f(x) \approx f(a) + f'(a)(x - a) + E_f(x)$ and $g(x) \approx g(a) + g'(a)(x - a) + E_g(x)$, we can rearrange numerator as:
+    \[ f(x)g(a) - f(a)g(x) \approx (f(a) + f'(a)(x - a) + E_f(x))g(a) + f(a)(g(a) + g'(a)(x - a) + E_g(x)) \]
+    \[ = f(a)g(a) + f'(a)g(a)(x - a) + E_f(x)g(a) - f(a)g(a) - f(a)g'(a)(x - a) - f(a)E_g(x) \]
+    \[ = f'(a)g(a)(x - a) - f(a)g'(a)(x - a) + E_f(x)g(a) - f(a)E_g(x) \]
+    \\
+    Applying the definition of $E_f(x)$ and $E_g(x)$:
+    \[ \lim_{x \rightarrow a} \frac{E_f(x)g(a) - f(a)E_g(x)}{g(x)g(a)g(x - a)} = 0 \]
+    \\
+    we can get overall:
+    \[ h'(a) = \lim_{x \rightarrow a} \frac{f'(a)g(a)(x - a) - f(a)g'(a)(x - a) + E_f(x)g(a) - f(a)E_g(x)}{g(x)g(a)g(x - a)} \]
+    \\
+    Since $g(x) \approx g(a)$ when $x = a$:
+    \[ \Rightarrow \left( \frac{f}{g} \right)^{'}  = h'(a) = \lim_{x \rightarrow a} \frac{f'(a)g(a) - f(a)g'(a)}{g(a)^2} \]
+\end{proof}
+
+\section*{Question 2}
+
+\subsection*{(a)}
+Given,
+\begin{itemize}
+    \item $f(x) = 2 - (x - 3) + E_f(x)$, near $x = 3$, with $|E_f(x) < 1|$ one the interval $[2,4]$.
+    \item $g(x) = x^3 - 2x^2 + 3$; $g(2) = 8 - 4(2) + 3 = 3, g'(2) = 12 - 8 = 4$.
+\end{itemize}
+
+\begin{proof}
+    From the initial assumptions, here is the approximation of $f(x)$ near $x = 3$: 
+    \[f(x) = 2 - (x - 3) + E_f(x)\]
+    \\
+    Value of $g$ at $f(3)$:
+    \[ f(3) = 2 - (x3- 3) + E_f(3) = 2 + E_f(3) \]
+    \\
+    Noticing that $|E_f(x)| < 1$, then
+    \[ g(f(3)) = g(2 + E_f(3)) = g(2) = 3 \]
+    \\
+    Then, we can use the Taylor Expansion around $f(3) = 2$. 
+    The first order Taylor expansion for $g(f(x))$ around $x = 3$ would be:
+    \[ g(f(x)) \approx g(2) + g'(2) \cdot (f(x) - 2) \]
+    Then we can sub $f(x)$ in:
+    \[ g(f(x)) \approx 3 + 4(2 + E_f(x) - (x - 3) - 2) \]
+    \[ = 3 + 4(-x + 3 + E_f(x)) \]
+    \[ = 3 + 4(-x + 3) + 4E_f(x) \]
+    \[ = 15 - 4x + 4E_f(x) \]
+    \\
+    Given $E(x) << (x - a)$  and considering the linearity of \( g'(x): E_{f \circ g} = 4E_f(x) \).
+    As $E_f(x)$ is much smaller $(x - 3)$, and given $|E_f(x)| < 1: |E_{f \circ g}| \leq 4$.
+\end{proof}
+
+\subsection*{(b)}
+Given $h(x)$ is differentiable at $x = 0$ and $h(0) = 3$, WTS whether the bound the
+error of $f(h(x))$ near zero.
+\\
+
+
+
+
+\end{document}
