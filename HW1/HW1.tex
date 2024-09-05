@@ -93,7 +93,7 @@ error of $f(h(x))$ near zero.
     To precisely bound the error of $f(h(x))$ near zero, we need two more information:
     \begin{itemize}
         \item Explicit form of $E_f(x)$
-        \item Rate of Change of $h(x)$
+        \item Rate of Change of $h(x)$ (i.e. $h'(x)$)
     \end{itemize}
     \\
     By knowing these two conditions, we can bound $E_f(h(x))$ by the following approach:
@@ -128,7 +128,7 @@ Given, $P(t)$ s.t. $P(1) = 4, P'(t) = tP(t)^2$
     Sub $t = 1$ into $P^{''}(t)$:
     \[ P^{''}(t) = 4^2 + 2 \times 1 \times 4 \times 16 = 16 + 128 = 144 \]
     \\
-    Then we can apply the Taylor Expansion around $t = 1$, include the small error term $E(t-1)$ s.t. $E(t-1) << t-1$:
+    Then we can apply the best quadratic approximation around $t = 1$, include the small error term $E(t-1)$ s.t. $E(t-1) << t-1$:
     \[ P(t) \approx P(1) + P'(1)(t - 1) + \frac{1}{2}P^{''}(1)(t - 1)^2 + E(t - 1) \]
     \[ P(t) \approx 4 + 16(t - 1) + 72(t - 1)^2 + E(t - 1) \]
     \\
@@ -145,7 +145,7 @@ Noting that in here we can apply the 2nd derivative test.
     From (a), we know that,
     \[ P^{''}(0) = P(0)^2 \approx 60^2 = 3600 \]
     \\
-    Since $P^{''}(t) > 0$ for $t = 0$, critical point at $t = 0$ is a local minimum point.
+    Since $P^{''}(t) > 0$ for $t = 0$, critical point at $t = 0$ is a local minimum point by second order derivative test.
 \end{proof}
 
 \subsection*{(c) Reasonings: }
