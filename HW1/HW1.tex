@@ -17,7 +17,7 @@
 
 \title{MATH 280 HW1}
 \author{Hanzhang Yin}
-\date{Aug/29/2024}
+\date{Sep/5/2024}
 
 \begin{document}
 
@@ -26,26 +26,29 @@
 \section*{Question 1}
 
 \begin{proof}
-    Define the function $h(x) = \frac{f(x)}{g(x)}$, by the def. of the derivative with limit process:
-    \[ h'(a) = \lim_{x \rightarrow a} = \frac{h(x) - h(a)}{x - a} \]
+    We are given two functions \( f \) and \( g \) that are differentiable at \( x = a \) and \( g(a) \neq 0 \). We need to verify that the derivative of the function \( h(x) = \frac{f(x)}{g(x)} \) at \( x = a \) is given by:
+    \[ h'(a) = \frac{f'(a)g(a) - f(a)g'(a)}{g(a)^2} \]
     \\
-    Expanding $h(x)$ and $h(a)$:
-    \[ h'(a) =  \lim_{x \rightarrow a} = \frac{\frac{f(x)}{g(x)} - \frac{f(a)}{g(a)}}{x - a} \]
-    \[ \Rightarrow h'(a) = \lim_{x \rightarrow a} \frac{f(x)g(a) - f(a)g(x)}{g(x)g(a)(x - a)} \]
+    First lets define $h(x)$ to be:
+    Let \( h(x) = \frac{f(x)}{g(x)} \). Our goal is to find \( h'(a) \).
     \\
-    Applying $f(x) \approx f(a) + f'(a)(x - a) + E_f(x)$ and $g(x) \approx g(a) + g'(a)(x - a) + E_g(x)$, we can rearrange numerator as:
-    \[ f(x)g(a) - f(a)g(x) \approx (f(a) + f'(a)(x - a) + E_f(x))g(a) + f(a)(g(a) + g'(a)(x - a) + E_g(x)) \]
-    \[ = f(a)g(a) + f'(a)g(a)(x - a) + E_f(x)g(a) - f(a)g(a) - f(a)g'(a)(x - a) - f(a)E_g(x) \]
-    \[ = f'(a)g(a)(x - a) - f(a)g'(a)(x - a) + E_f(x)g(a) - f(a)E_g(x) \]
+    Then, base on the given hint, we can use the product rule states:
+    \[ (h(x)k(x))' = h'(x)k(x) + h(x)k'(x) \]
     \\
-    Applying the definition of $E_f(x)$ and $E_g(x)$:
-    \[ \lim_{x \rightarrow a} \frac{E_f(x)g(a) - f(a)E_g(x)}{g(x)g(a)g(x - a)} = 0 \]
+    For our construction, let \( h(x) = f(x) \) and \( k(x) = \frac{1}{g(x)} \), s.t. \( h(x)k(x) = \frac{f(x)}{g(x)} \).
     \\
-    we can get overall:
-    \[ h'(a) = \lim_{x \rightarrow a} \frac{f'(a)g(a)(x - a) - f(a)g'(a)(x - a) + E_f(x)g(a) - f(a)E_g(x)}{g(x)g(a)g(x - a)} \]
+    Then, follow the hint, we calculate the derivative of $\frac{1}{g(x)}$, using the hint, differentiating the identity \( g(x) \cdot \frac{1}{g(x)} = 1 \), we have:
+    \[ (g(x) \cdot \frac{1}{g(x)})' = 0 = g'(x) \cdot \frac{1}{g(x)} + g(x) \cdot (\frac{1}{g(x)})' \]
     \\
-    Since $g(x) \approx g(a)$ when $x = a$:
-    \[ \Rightarrow \left( \frac{f}{g} \right)^{'}  = h'(a) = \lim_{x \rightarrow a} \frac{f'(a)g(a) - f(a)g'(a)}{g(a)^2} \]
+    Solving for \( (\frac{1}{g(x)})' \), we find:
+    \[ (\frac{1}{g(x)})' = -\frac{g'(x)}{g(x)^2} \]
+    \\
+    Using the product rule, we find:
+    \[ h'(x) = f'(x) \cdot \frac{1}{g(x)} + f(x) \cdot \left(-\frac{g'(x)}{g(x)^2}\right) \]
+    \\
+    Thus, at \( x = a \), we have:
+    \[ h'(a) = f'(a) \cdot \frac{1}{g(a)} - f(a) \cdot \frac{g'(a)}{g(a)^2} = \frac{f'(a)g(a) - f(a)g'(a)}{g(a)^2} \]
+
 \end{proof}
 
 \section*{Question 2}
@@ -62,10 +65,10 @@ Given,
     \[f(x) = 2 - (x - 3) + E_f(x)\]
     \\
     Value of $g$ at $f(3)$:
-    \[ f(3) = 2 - (x3- 3) + E_f(3) = 2 + E_f(3) \]
+    \[ f(3) = 2 - (3- 3) + E_f(3) = 2 + E_f(3) \]
     \\
     Noticing that $|E_f(x)| < 1$, then
-    \[ g(f(3)) = g(2 + E_f(3)) = g(2) = 3 \]
+    \[ g(f(3)) = g(2 + E_f(3)) \approx g(2) = 3 \]
     \\
     Then, we can use the Taylor Expansion around $f(3) = 2$. 
     The first order Taylor expansion for $g(f(x))$ around $x = 3$ would be:
@@ -92,7 +95,7 @@ error of $f(h(x))$ near zero.
         \item Explicit form of $E_f(x)$
         \item Rate of Change of $h(x)$
     \end{itemize}
-
+    \\
     By knowing these two conditions, we can bound $E_f(h(x))$ by the following approach:
     \\
     By definition of Taylor Expansion, we can subsitute
