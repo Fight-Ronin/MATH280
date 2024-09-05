@@ -1,0 +1,20 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[backend=biber]{biblatex}
+\usepackage{amsmath}
+\bibliography{app_log.bib}
+
+\newcounter{entry}
+\newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
+
+\title{\vspace{-2cm}Application Log 2}
+\author{Hanzhang Yin}
+
+
+\begin{document}
+\maketitle
+\ALEntry{}
+
+\subsection*{Background Summary}
+
+\end{document} 

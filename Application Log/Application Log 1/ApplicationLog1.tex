@@ -1,65 +1,57 @@
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage[utf8]{inputenc}
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[backend=biber]{biblatex}
 \usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{array}
-\usepackage{amssymb}
-\newcommand*{\twoheadrightarrowtail}{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
-% Alternative which doesn't look as good using the normal size, but might work better with smaller sizes too:
-%\newcommand*{\twoheadrightarrowtail}{\mathrel{\rlap{$\rightarrowtail$}\twoheadrightarrow}}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{multirow}
-\usepackage{dcolumn}
-\newcolumntype{2}{D{.}{}{2.0}}
+\bibliography{app_log.bib}
 
-\title{MATH 280 Application Log 1 - Diffusion Posterior Sampling For General Noisy Inverse Problem}
+\newcounter{entry}
+\newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
+
+\title{\vspace{-2cm}Application Log 1}
 \author{Hanzhang Yin}
-\date{Aug/29/2024}
+
 
 \begin{document}
-
 \maketitle
+\ALEntry{chung2024diffusionposteriorsamplinggeneral}
 
 \subsection*{Background Summary}
 Note that Diffusion models have recently emerged as effective generative solvers for inverse problems, used in high-quality image reconstruction (i.e. image super-resolution tasks). This work extends diffusion models to solve general noisy (non)linear inverse problems by approximating posterior sampling. This results in a more effective generative path integrating noise statistics like Gaussian and Poisson. The approach efficiently handles complex issues, such as Fourier phase retrieval and non-uniform deblurring, surpassing previous methods in noisy settings.
 
 \subsection*{Mathematical Content}
+MACHINE LEARNING MODEL (SCORE-BASED DIFFUSION MODELS):
+Diffusion models define the generative process as the reverse of the noising process. It Contains the forward and reverse (backward) diffusion process (NOTE: diffusion model aims to solve an ill-posed Inverse Problems):
 \begin{itemize}
-    \item MACHINE LEARNING MODEL (SCORE-BASED DIFFUSION MODELS):
-    Diffusion models define the generative process as the reverse of the noising process. It Contains the forward and reverse (backward) diffusion process (NOTE: diffusion model aim to solve an ill-Posed Inverse Problems):
-    \begin{itemize}
-        \item In forward diffusion process, a data glitch is gradually preturbed by adding Gaussian noise over a sequence of time slices. This process transform original data distribution to Gaussian like distribution.
-        \[ x_t = \sqrt{\Bar{a}(t)}x_0 + \sqrt{1 - \Bar{a}(t)}z, z \sim N(0, I) \]
-        (NOTE: $x_0$ is the original data, $x_t$ is the perturbed data at time $t$, and $z$ is the Gaussian noise. The term $\Bar{a}(t)$ controls the amount of noise added at each time slices.
-        \item In reverse diffusion process, the goal of the scored-based diffusion model is to learn how to reverse the forward diffusion process to generate new data samples from noise. This reverse diffusion process is a SDE or a discrete-time Markov chain. The model learns the score function at each time step:
-        \[ \nabla_{x_t} \log p(x_t) \approx s_{\theta}^*(x_t, t) \]
-    \end{itemize}
-    \item APPROXIMATION OF THE LIKELIHOOD:
-    The approximation technique in here are basically utilized ``Beyesian Net‘’ and ``Monte-Carlo'' random process. Noting that approximation are make to simplify calculations:
-    \[ p(y|x_t) \approx p(y|\hat{x}_0), \quad \text{where} \quad \hat{x}_0 := \mathbb{E}[x_0 | x_t] \]
-    The expectation $\hat{x}_0$ is the proxy for most likely original data given the moisy observation. 
-    \\
-    In further mathematical proof, the diffusion model applied ``Jensen's Inequality'' and ``Jensen gap'' to quantify the approximation value for validity and higher accuracy.
-    \item OPTIMIZATION ALGORITHM:
-    For score-based model training, article is aimed by minimizing a score-matching loss function that encourages the NNs to learn the true score function \( \nabla_{x_t} \log p(x_t) \) of the data distribution at each time step. 
-    \\
-    \[ \theta^* = \arg\min_{\theta} \mathbb{E}_{t, x(t), x(0)} \left[ \left\| s_{\theta}(x(t), t) - \nabla_{x_t} \log p(x(t) | x(0)) \right\|_2^2 \right] \]
+    \item In the forward diffusion process, a data glitch is gradually perturbed by adding Gaussian noise over a sequence of time slices. This process transforms the original data distribution to a Gaussian-like distribution.
+    \[ x_t = \sqrt{\Bar{a}(t)}x_0 + \sqrt{1 - \Bar{a}(t)}z, z \sim N(0, I) \]
+    (NOTE: $x_0$ is the original data, $x_t$ is the perturbed data at time $t$, and $z$ is the Gaussian noise. The term $\Bar{a}(t)$ controls the amount of noise added at each time slice.)
+    \item In the reverse diffusion process, the goal of the scored-based diffusion model is to learn how to reverse the forward diffusion process to generate new data samples from noise. This reverse diffusion process is an SDE or a discrete-time Markov chain. The model learns the score function at each time step:
+    \[ \nabla_{x_t} \log p(x_t) \approx s_{\theta}^*(x_t, t) \]
 \end{itemize}
+\\
+APPROXIMATION OF THE LIKELIHOOD:
+The approximation technique here utilizes ``Bayesian Net‘’ and ``Monte-Carlo'' random process. Noting that approximations are made to simplify calculations:
+\[ p(y|x_t) \approx p(y|\hat{x}_0), \quad \text{where} \quad \hat{x}_0 := \mathbb{E}[x_0 | x_t] \]
+The expectation $\hat{x}_0$ is the proxy for most likely original data given the noisy observation. 
+\\
+In further mathematical proof, the diffusion model applied ``Jensen's Inequality'' and ``Jensen gap'' to quantify the approximation value for validity and higher accuracy.
+\\
+OPTIMIZATION ALGORITHM:
+For score-based model training, the article is aimed at minimizing a score-matching loss function that encourages the NNs to learn the true score function \( \nabla_{x_t} \log p(x_t) \) of the data distribution at each time step. 
+\\
+\[ \theta^* = \arg\min_{\theta} \mathbb{E}_{t, x(t), x(0)} \left[ \left\| s_{\theta}(x(t), t) - \nabla_{x_t} \log p(x(t) | x(0)) \right\|_2^2 \right] \]
+\\
+The article aims to minimize the expectation of differences based on the random variables on the set parameters $\theta$: $t$ (time from a certain distribution), $x(t)$ (The noisy data sample at time $t$, generated by the forward diffusion process), $x(0)$ (The original clean data sample at time before any noise is added). 
+\\
+The differences is calculated between $s_{\theta}(x(t),t)$, the neural network parameterized by $\theta$ to approximate the score function (i.e. ``true distribution''); and $\nabla_{x_t} \log p(x(t) | x(0))$, the score function aims to approximate)
 
 \subsection*{Suggested In-Course Beneficial Mathematical Content}
-\begin{itemize}
-    \item \textbf{Partial Derivatives, Differential Equation, $\cdots$: } Might be beneficial for diffusion model and optimization algorithm understanding.
-    \item \textbf{Matrix Operations, Eigenvalues and Eigenvectors, Taylor Expansions, gra: } Might be useful to understand the TensorFlow after linear transformation of the data and analyzing the convergence path for the iterative model behind the suggested score-based diffusion model.
-    \item \textbf{Gaussian and Poisson Distribution, Posterior Distribution: } Might be crucial to understand such probabilistic reasoning and proofs behind the diffusion model.
-    \item \textbf{Monte Carlo Methods: } Might be important to understand the sampling configurations on dataset (e.g. ImageNet). In some respect, they can be combined with ``Molecular Dynamics'' simulations to enhance sampling efficiency.
-\end{itemize}
+\textbf{Partial Derivatives, Differential Equation, $\cdots$: } Might be beneficial for diffusion model and optimization algorithm understanding.
+\\
+\textbf{Matrix Operations, Eigenvalues, and Eigenvectors, Taylor Expansions, gra: } Might be useful to understand the TensorFlow after linear transformation of the data and analyzing the convergence path for the iterative model behind the suggested score-based diffusion model.
+\\
+\textbf{Gaussian and Poisson Distribution, Posterior Distribution: } Might be crucial to understanding such probabilistic reasoning and proofs behind the diffusion model.
+\\
+\textbf{Monte Carlo Methods: } Might be important to understand the sampling configurations on the dataset (e.g. ImageNet). In some respect, they can be combined with ``Molecular Dynamics'' simulations to enhance sampling efficiency.
 
-\subsection*{Citation}
-\begin{enumerate}
-    \item [1] H. Chung, J. Kim, M. T. Mccann, M. L. Klasky and. C. Ye, ''Diffusion Posterior Sampling for General Noisy Inverse Problems'', 5/20/2024, arXiv: arXiv:2209.14687. doi: 10.48550/arXiv.2209.14687.
-\end{enumerate}
-
-\end{document}
+\end{document} 
