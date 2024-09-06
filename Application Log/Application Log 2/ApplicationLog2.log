@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.8)  4 SEP 2024 23:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.8)  6 SEP 2024 00:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,45 +428,81 @@ Package biblatex Info: ... file 'ApplicationLog2.bbl' found.
  (./ApplicationLog2.bbl)
 Package biblatex Info: Reference section=0 on input line 14.
 Package biblatex Info: Reference segment=0 on input line 14.
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 16.
- (c:/texlive/2023/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <12> not available
-(Font)              Font shape `OML/cmm/b/it' tried instead on input line 16.
 
 
-LaTeX Warning: Citation '' on page 1 undefined on input line 16.
+LaTeX Warning: Citation 'zhang2023addingconditionalcontroltexttoimage' on page 1 undefined on input line 16.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--17
 
  []
 
+
+c:/Users/yinha/Documents/MATH280-1/Application Log/Application Log 2/ApplicationLog2.tex:31: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 ...on model with parameters $\theta$; \item $
+                                                  x$ is the input image; $t$...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 [1
 
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./ApplicationLog2.aux)
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+c:/Users/yinha/Documents/MATH280-1/Application Log/Application Log 2/ApplicationLog2.tex:76: Undefined control sequence.
+l.76 \mathcal{L}_\theta(x, t, c, c') = \mathbb
+                                              {E}_{x \sim p(x)} \left[ \left...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/yinha/Documents/MATH280-1/Application Log/Application Log 2/ApplicationLog2.tex:81: Undefined control sequence.
+<recently read> \mathbb 
+                        
+l.81     \item $\mathbb
+                       {E}$ denotes the expected value over the data distrib...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[2{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./ApplicationLog2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                ApplicationLog2
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'ApplicationLog2.run.xml'.
 \openout1 = `ApplicationLog2.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 9730 strings out of 474222
- 183662 string characters out of 5750210
- 1924978 words of memory out of 5000000
- 31941 multiletter control sequences out of 15000+600000
- 561002 words of font info for 46 fonts, out of 8000000 for 9000
+ 9736 strings out of 474222
+ 183692 string characters out of 5750210
+ 1931978 words of memory out of 5000000
+ 31942 multiletter control sequences out of 15000+600000
+ 564093 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,759b,803s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on ApplicationLog2.pdf (1 page, 42428 bytes).
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on ApplicationLog2.pdf (2 pages, 125327 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
