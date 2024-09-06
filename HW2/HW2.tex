@@ -59,7 +59,60 @@ These bounds confirm that the fifth-order Taylor series provides an excellent ap
 
 \subsection*{(a)}
 \[ f(X) = \begin{bmatrix} 3 & 4 \\ 1 & 2 \end{bmatrix} X + \begin{bmatrix} 1 \\ 1 \end{bmatrix} \]
+\\
+Given $Y = (1,3)$, and $\sum_y = \begin{bmatrix} 0.2 & 1 \\ 1 & 0.3 \end{bmatrix}$.
+\\
+For linear function of the form $f(X) = AX + b$, the Jacobian $J_f$ is simply $A$, hence:
+\[ \sum_{f(y)} = \begin{bmatrix} 3 & 4 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 0.2 & 1 \\ 1 & 0.3 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 4 & 2 \end{bmatrix} \]
+\[ = \begin{bmatrix} 4.6 & 4.2 \\ 2.2 & 1.6 \end{bmatrix} \begin{bmatrix} 3 & 1 \\ 4 & 2 \end{bmatrix} = \begin{bmatrix} 30.6 & 13 \\ 13 & 5.4 \end{bmatrix} \]
 
 \subsection*{(b)}
 \[ f(X) = \begin{bmatrix} X_1^2 + 3X_1X_2 - 5 \\ X_2 - X_1 \end{bmatrix} \]
+\\
+Given $Y = (2,1)$, and $\sum_y = \begin{bmatrix} 0.2 & 1 \\ 1 & 0.3 \end{bmatrix}$.
+\\
+For Jacobian Matrix calculation, here is the requried partial derivatives:
+\[ \frac{\partial}{\partial X_1} (X_1^2 + 3X_1X_2 - 5) = 2X_1 + 3X_2 \]
+\[ \frac{\partial}{\partial X_2} (X_1^2 + 3X_1X_2 - 5) = 3X_1 \]
+\[ \frac{\partial}{\partial X_1} (X_2 - X_1) = -1 \]
+\[ \frac{\partial}{\partial X_2} (X_2 - X_1) = 1 \]
+\\
+At $Y = (2,1)$, we have:
+\[ J_f= \begin{bmatrix} 2(2) + 3(1) & 3(2) \\ -1 & 1 \end{bmatrix} = \begin{bmatrix} 7 & 6 \\ -1 & 1 \end{bmatrix} \]
+\\
+Hence,
+\[ \sum_{f(y)} = \begin{bmatrix} 7 & 6 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 0.2 & 1 \\ 1 & 0.3 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} \]
+\[ = \begin{bmatrix} 7.4 & 8.8 \\ 0.8 & -0.7 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} = \begin{bmatrix} 194.6 & 1.4 \\ 1.4 & -1.5 \end{bmatrix} \]
+
+\section*{Question 3}
+Given, $\sum_{x,y} = \begin{bmatrix} \sigma^2_X & 0 \\ 0 & \sigma^2_Y \end{bmatrix}$.
+\subsection*{(a)}
+\[ f(X, Y) = X + Y \]
+\\
+The Jacobian matrix of $f$ w.r.t. $X$ and $Y$ is:
+\[ J_f = [1, 1] \]
+\\
+Thus, covariance matrix $\sum_{f(x,y)}$ is:
+\[ \sum_{f(x,y)} =   \begin{bmatrix} 1 & 1 \end{bmatrix} \begin{bmatrix} \sigma^2_X & 0 \\ 0 & \sigma^2_Y \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \sigma^2_X + \sigma^2_Y \]
+
+\subsection*{(b)}
+\[ f(X, Y) = XY \]
+\\
+The Jacobian matrix of $f$ w.r.t. $X$ and $Y$ is:
+\[ J_f = [Y, X] \]
+\\
+Thus, covariance matrix $\sum_{f(x,y)}$ is:
+\[ \sum_{f(x,y)} =   \begin{bmatrix} Y & X \end{bmatrix} \begin{bmatrix} \sigma^2_X & 0 \\ 0 & \sigma^2_Y \end{bmatrix} \begin{bmatrix} Y \\ X \end{bmatrix} = Y^2 \sigma^2_X + X^2 \sigma^2_Y \]
+
+\subsection*{(c)}
+\[ f(X, Y) = \frac{X}{Y} \]
+\\
+The Jacobian matrix of $f$ w.r.t. $X$ and $Y$ is:
+\[ J_f = [\frac{1}{Y}, -\frac{X}{Y^2}] \]
+\\
+Thus, covariance matrix $\sum_{f(x,y)}$ is:
+\[ \sum_{f(x,y)} = \begin{bmatrix} \frac{1}{Y} & -\frac{X}{Y^2} \end{bmatrix} \begin{bmatrix} \sigma^2_X & 0 \\ 0 & \sigma^2_Y \end{bmatrix} \begin{bmatrix} \frac{1}{Y} \\ -\frac{X}{Y^2} \end{bmatrix} = \frac{\sigma^2_X}{Y^2} + \frac{X^2 \sigma^2_Y}{Y^4} \]
+
+\section*{Bonus Question}
+
 \end{document}
