@@ -125,29 +125,33 @@ In non-ideal gas case, we might introduce compressibility factors $Z_{i, mix}$ f
 \textbf{Virial Equation for a Single Component Gas: }
 \\
 The virial equation of state for a single component gas expands the ideal gas law to account for interactions between molecules. It is expressed as:
-\[ P = \frac{nRT}{V} \left(1 + \frac{B_2(T)}{V} + \frac{B_3(T)}{V^2} + \cdots \right) \]
+\[ PV = nRT \left(1 + B_2(T) \frac{n}{V} + B_3(T) \left(\frac{n}{V}\right)^2 + \cdots \right)
+\]
 \\
 where \( B_2(T), B_3(T), \ldots \) are the virial coefficients that depend on temperature and represent interactions among molecules.
 \\
 \textbf{Extension to Two-Component Mixtures: }
 \\
 For a mixture of gases, the virial equation can be generalized as:
-\[ P = \frac{(n_1+n_2)RT}{V} \left(1 + \frac{B_{12}(T)}{V} + \frac{C_{123}(T)}{V^2} + \cdots \right) \]
+\[ PV = nRT \left(1 + \left(B_{11} \frac{n_1}{V} + B_{22} \frac{n_2}{V} + 2B_{12} \frac{n_1n_2}{V^2} \right) + \cdots \right) \]
 \\
-Here, \( B_{12}(T) \) is the second virial coefficient that considers cross-interactions between different gas species and is approximated as:
-\[ B_{12}(T) = x_1^2 B_{11}(T) + 2x_1x_2 B_{12}(T) + x_2^2 B_{22}(T) \]
+Here, \( B_{11}(T) \), \( B_{22}(T) \) are virial coefficients correspond to the interactions within the same type of molecules; \( B_{12}(T) \) is the virial coefficient that considers cross-interactions between two gas species.
 \\
-where \( x_1 \) and \( x_2 \) are the mole fractions of gas 1 and gas 2, respectively.
-
+Note that \( x_1 \) and \( x_2 \) are the mole fractions of gas 1 and gas 2, and $n = n_1 + n_2$ is the total number of moles in the mixture.
 \subsection*{Simplification Under Ideal Conditions}
 If both gases are ideal:
 \begin{itemize}
-    \item Interactions between molecules and between different species are negligible.
-    \item This implies \( B_2 = B_3 = \ldots = 0 \).
+    \item Interactions between molecules in their own gas species are negligible. Only cross-interactions
+    between different gas species are left.
+    \item This implies \( B_{11} = B_{22} = \ldots = 0 \).
 \end{itemize}
-
-Thus, the virial equation reduces to:
-\[ P = \frac{nRT}{V} \]
-where \( n = n_1 + n_2 \), indicating that the pressure is determined purely by the ideal gas contributions of both components, unaffected by intermolecular interactions.
+\\
+Following the same definition previously, the virial equation reduces to:
+\[ PV = nRT \left( 1 + 2B_{12} \frac{n_1n_2}{V^2} + O(n_1, n_2) \right) \]
+NOTE: $O(n_1, n_2)$: Higher order polynomial terms.
+\\
+For simplicity, since higher order terms from the generalized viral equation does not contribute significant impact to the calculation, it is 
+sufficient to consider the equation as:
+\[  PV \approx nRT \left( 1 + 2B_{12} \frac{n_1n_2}{V^2} \right)\]
 
 \end{document}
