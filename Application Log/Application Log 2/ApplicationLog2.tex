@@ -39,6 +39,8 @@ After integrating ControlNet, the image generation process becomes:
 \]
 \\
 where: $c'$ is the additional control condition (e.g., edge map, depth map), $\mathcal{T}_\phi$ represents the zero convolution modules with parameters $\phi$; $c''$ is the transformed control condition in the latent space.
+\\
+The error approximation we've been taught in class might help quantify the sensitivity of the model and hence help us to do such accurate model evaluations.
 
 \subsubsection*{Zero Convolution Modules Initialization}
 
@@ -68,7 +70,7 @@ where:
     \item $\frac{\partial \mathcal{L}}{\partial w_{\text{zero}}}$ is the gradient of the loss with respect to the zero convolution weights.
 \end{itemize}
 
-\subsection*{5. Joint Modeling of ControlNet}
+\subsubsection*{Joint Modeling of ControlNet}
 
 ControlNet jointly models the image and pixel-level conditions by modifying the loss function:
 
@@ -81,5 +83,11 @@ where:
     \item $\mathbb{E}$ denotes the expected value over the data distribution $p(x)$.
     \item The loss function $\mathcal{L}_\theta$ aims to minimize the difference between the generated image and the target image.
 \end{itemize}
+\\
+In here, Taylor expansion might help approximating how small the changes in the weights affect the loss. As an example, we can apply Hessian matrix of second derivaties to retrieved the following formula:
+\[
+    \mathcal{L}(\theta + \delta \theta) \approx \mathcal{L}(\theta) + \nabla_\theta \mathcal{L} \cdot \delta \theta + \frac{1}{2} \delta \theta^\top H \delta \theta
+\]
+
 
 \end{document} 
