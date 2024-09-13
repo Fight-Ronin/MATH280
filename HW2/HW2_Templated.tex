@@ -1,29 +1,29 @@
 \documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{array}
-\usepackage{amssymb}
-\newcommand*{\twoheadrightarrowtail}{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
-% Alternative which doesn't look as good using the normal size, but might work better with smaller sizes too:
-%\newcommand*{\twoheadrightarrowtail}{\mathrel{\rlap{$\rightarrowtail$}\twoheadrightarrow}}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{multirow}
-\usepackage{dcolumn}
-\newcolumntype{2}{D{.}{}{2.0}}
-
-\title{MATH 280 HW2}
-\author{Hanzhang Yin}
-\date{Sep/9/2024}
-
+\usepackage{xcolor}
+\usepackage{enumerate}
+\newcounter{pnum}
+\newcommand\problem[1]{\stepcounter{pnum}\begin{center}\fbox{\begin{minipage}{0.95\linewidth}
+\textbf{\thepnum.} #1
+\end{minipage}}\end{center}}
+\newcommand\solution{\vspace{0.4em}\textbf{Solution.}}
+\title{Homework 2 (power series, VES, error propagation)}
+\author{name}
 \begin{document}
 
 \maketitle
 
-\section*{Question 1}
+\problem{Taylor's theorem and remainder.
+\begin{enumerate}[\indent\indent a)]
+    \item Write the degree \(5\) power series approximation for \(\sin x\) at \(x=\pi/4\). Also state the integral form of the remainder
+    (Section 1.1, Theorem 5).
+    \item Use your approximation to estimate \(\sin(0)\), \(\sin\pi/2\) and \(\sin 1\).
+    item Use your remainder to bound the error on your estimates. What do you think about the bounds?
+\end{enumerate}
+}
+\solution
 
 \subsection*{(a)}
 The degree 5 Taylor series approximation for $\sin x$ around $x = \frac{\pi}{4}$ is:
@@ -40,7 +40,7 @@ The integral form of the remainder for the Taylor series of $\sin x$ around $x =
 \[ \sin(\frac{\pi}{2}) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(\frac{\pi}{2} - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^4 = 0.9984927\]
 \[ \sin(1) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(1 - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(1 - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(1 - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(1 - \frac{\pi}{4}\right)^4 = 0.84146840 \]
 
-\subsection*{(c)}
+\subsection*{(b*)}
 \[ R_5(0) = \int_{\frac{\pi}{4}}^{0} \frac{\sin(t)}{120} (0 - t)^5 \, dt = 0.00020235 \]
 \[ R_5(\frac{\pi}{2}) = \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \frac{\sin(t)}{120} (\frac{\pi}{2} - t)^5 \, dt = 0.000243632 \]
 \[ R_5(1) = \int_{\frac{\pi}{4}}^{1} \frac{\sin(t)}{120} (1 - t)^5 \, dt = 9.879 \times 10^{-8} \]
@@ -55,8 +55,23 @@ These values indicate extremely small errors, showcasing the high accuracy of th
 \\
 These bounds confirm that the fifth-order Taylor series provides an excellent approximation for \(\sin x\) around \(x = \frac{\pi}{4}\), particularly near this point and at commonly evaluated points within the function's periodic range. 
 
-\section*{Question 2}
-
+\problem{Suppose we have measured \(Y=(2,1)\) with some error described by the covariance matrix \(\Sigma_Y = \begin{bmatrix}
+    0.2 & 1\\
+    1 & 0.3\\
+\end{bmatrix}\). Use the error propagation equation to calculate or estimate \(\Sigma_{f(Y)}\) for each of the following:
+\begin{enumerate}[\indent\indent a)]
+    \item \(f(X) = \begin{bmatrix}
+    3 & 4 \\ 1 & 2
+    \end{bmatrix}X + \begin{bmatrix}
+    1 \\ 1
+    \end{bmatrix}\)
+    \item \(f(X) = \begin{bmatrix}
+    X_1 ^2 + 3X_1 X_2 - 5\\
+    X_2 - X_1
+    \end{bmatrix}\)
+\end{enumerate}
+}
+\solution
 \subsection*{(a)}
 \[ f(X) = \begin{bmatrix} 3 & 4 \\ 1 & 2 \end{bmatrix} X + \begin{bmatrix} 1 \\ 1 \end{bmatrix} \]
 \\
@@ -84,8 +99,17 @@ Hence,
 \[ \sum_{f(y)} = \begin{bmatrix} 7 & 6 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 0.2 & 1 \\ 1 & 0.3 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} \]
 \[ = \begin{bmatrix} 7.4 & 8.8 \\ 0.8 & -0.7 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} = \begin{bmatrix} 194.6 & 1.4 \\ 1.4 & -1.5 \end{bmatrix} \]
 
-\section*{Question 3}
-Given, $\sum_{x,y} = \begin{bmatrix} \sigma^2_X & 0 \\ 0 & \sigma^2_Y \end{bmatrix}$.
+\problem{Use the error propagation equation to give general expressions for \(\Sigma_{f(x,y)}\) when \(x\) and \(y\) are uncorrelated, meaning
+\(\Sigma_{x,y} = \begin{bmatrix}
+\sigma_x^2 & 0 \\0&\sigma_y^2
+\end{bmatrix}\), in terms of \(X,Y,\sigma_x,\sigma_y\).
+\begin{enumerate}[\indent\indent a)]
+\item \(f(X,Y) = X+Y\).
+\item \(f(X,Y) = XY\).
+\item \(f(X,Y) = X/Y\).
+\end{enumerate}
+}
+\solution
 \subsection*{(a)}
 \[ f(X, Y) = X + Y \]
 \\
@@ -113,15 +137,22 @@ The Jacobian matrix of $f$ w.r.t. $X$ and $Y$ is:
 Thus, covariance matrix $\sum_{f(x,y)}$ is:
 \[ \sum_{f(x,y)} = \begin{bmatrix} \frac{1}{Y} & -\frac{X}{Y^2} \end{bmatrix} \begin{bmatrix} \sigma^2_X & 0 \\ 0 & \sigma^2_Y \end{bmatrix} \begin{bmatrix} \frac{1}{Y} \\ -\frac{X}{Y^2} \end{bmatrix} = \frac{\sigma^2_X}{Y^2} + \frac{X^2 \sigma^2_Y}{Y^4} \]
 
-\section*{Bonus Question}
-Given the viral equation in ideal gas:
-\[ P_i V = n_i R T \]
+\problem{(bonus) The virial equation of state is for single-component gases, not mixtures. For an ideal mixture of ideal gases, one can break
+up the ideal gas law using partial pressures:
+\[P_i V = n_i RT\]
+where \(n_i\) is the number of molecules of the \(i\)th constituent and \(P_i\) is the partial pressure of the \(i\)th consitutent (its molar
+proportion times total pressure). These sum to the ideal gas law.
+For example, if there are two components,
+\[P_1 V = n_1 RT\]
+\[P_2 V = n_2 RT\]
+and \(P_1 + P_2 = P\), the total pressure, and \(n_1 + n_2 = n\), the total number of molecules.
+In the non-ideal case, one might be inclined to introduce compressibility factors \(Z_{i,mix}\) for each gas (depending on the mixture),
+\[P_i V = n_i RT Z_{i,mix}.\]
+\((*)\) Propose a generalization of the virial equation of state to a two-component mixture. In other words, a power series expression for the
+\(Z_1, Z_2\) with physical interpretations of their coefficients.
+\((**)\) Assuming the gases are individually ideal, how could you simplify your equation of state?}
+\solution
 \\
-In non-ideal gas case, we might introduce compressibility factors $Z_{i, mix}$ for each gas:
-\[ P_i V = n_i R T Z_{i, mix} \]
-
-\subsection*{Propose a generalization of the virial equation of state to a two-component mixture}
-
 \textbf{Virial Equation for a Single Component Gas: }
 \\
 The virial equation of state for a single component gas expands the ideal gas law to account for interactions between molecules. It is expressed as:
