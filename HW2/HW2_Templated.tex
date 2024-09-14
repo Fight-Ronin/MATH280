@@ -26,34 +26,37 @@
 \solution
 
 \subsection*{(a)}
+For $sinx$, the derivatives for constructing degree 5 power series approximation and error bound are:
+\[ f'(x) = cosx, f''(x) = -sinx, f^{(3)}(x) = -cosx, f^{(4)}(x) = sinx, f^{(5)}(x) = cosx, f^{(6)}(x) = -sinx \]
 The degree 5 Taylor series approximation for $\sin x$ around $x = \frac{\pi}{4}$ is:
-\[ \sin(x) \approx \sin\left(\frac{\pi}{4}\right) + \cos\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right) - \frac{1}{2}\sin\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^2 - \frac{1}{6}\cos\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^3 + \frac{1}{24}\sin\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^4 \]  
+\[ \sin(x) \approx \sin\left(\frac{\pi}{4}\right) + \cos\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right) - \frac{1}{2}\sin\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^2 - \frac{1}{6}\cos\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^3 \]
+\[ + \frac{1}{24}\sin\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^4 + \frac{1}{120}\cos\left(\frac{\pi}{4}\right)\left(x - \frac{\pi}{4}\right)^5 + R_n(x) \]  
 \\
 Substituting the values for  $\sin\left(\frac{\pi}{4}\right)$ and $\cos\left(\frac{\pi}{4}\right)$ both as $\frac{\sqrt{2}}{2}$, we get:
-\[ \sin(x) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(x - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(x - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(x - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(x - \frac{\pi}{4}\right)^4 \]
+\[ \sin(x) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(x - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(x - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(x - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(x - \frac{\pi}{4}\right)^4 + \frac{\sqrt{2}}{240}\left(x - \frac{\pi}{4}\right)^5 \]
 \\
-The integral form of the remainder for the Taylor series of $\sin x$ around $x = \frac{\pi}{4}$ and truncated after the fifth degree is:
-\[ R_5(x) = \int_{\frac{\pi}{4}}^x \frac{\sin(t)}{120} (x - t)^5 \, dt \]
+The integral form of the remainder for the Taylor series of $\sin x$ around $x = \frac{\pi}{4}$ of the fifth degree by definition is:
+\[ R_5(x) = \int_{\frac{\pi}{4}}^x \frac{f^{(6)}}{120} (x - t)^5 \ dt = -\int_{\frac{\pi}{4}}^x \frac{\sin(t)}{120} (x - t)^5 \ dt \]
 
 \subsection*{(b)}
-\[ \sin(0) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(0 - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(0 - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(0 - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(0 - \frac{\pi}{4}\right)^4 = 0.001963321 \]\
-\[ \sin(\frac{\pi}{2}) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(\frac{\pi}{2} - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^4 = 0.9984927\]
-\[ \sin(1) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(1 - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(1 - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(1 - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(1 - \frac{\pi}{4}\right)^4 = 0.84146840 \]
+\[ \sin(0) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(0 - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(0 - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(0 - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(0 - \frac{\pi}{4}\right)^4 + \frac{\sqrt{2}}{240}\left(0 - \frac{\pi}{4}\right)^5 = 0.000202341 \]\
+\[ \sin(\frac{\pi}{2}) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(\frac{\pi}{2} - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^4 + \frac{\sqrt{2}}{240}\left(\frac{\pi}{2} - \frac{\pi}{4}\right)^5 = 1.000252 \]
+\[ \sin(1) \approx \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\left(1 - \frac{\pi}{4}\right) - \frac{\sqrt{2}}{4}\left(1 - \frac{\pi}{4}\right)^2 - \frac{\sqrt{2}}{12}\left(1 - \frac{\pi}{4}\right)^3 + \frac{\sqrt{2}}{48}\left(1 - \frac{\pi}{4}\right)^4 + \frac{\sqrt{2}}{240}\left(1 - \frac{\pi}{4}\right)^5 = 0.84147 \]
 
-\subsection*{(b*)}
-\[ R_5(0) = \int_{\frac{\pi}{4}}^{0} \frac{\sin(t)}{120} (0 - t)^5 \, dt = 0.00020235 \]
-\[ R_5(\frac{\pi}{2}) = \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \frac{\sin(t)}{120} (\frac{\pi}{2} - t)^5 \, dt = 0.000243632 \]
-\[ R_5(1) = \int_{\frac{\pi}{4}}^{1} \frac{\sin(t)}{120} (1 - t)^5 \, dt = 9.879 \times 10^{-8} \]
-\\
-These values indicate extremely small errors, showcasing the high accuracy of the Taylor series approximation when truncated at the fifth degree.
+\subsection*{(c)}
+To bound the error in our estimates, we consider the remainder term \( R_5(x) \), defined as:
 
-\begin{itemize}
-    \item \textbf{At \(x = 0\)}: The error bound of \(0.00020235\) indicates that the approximation is nearly exact.
-    \item \textbf{At \(x = \frac{\pi}{2}\)}: An error bound of \(0.00024362\) suggests that the approximation is extremely close to the actual value \(1\).
-    \item \textbf{At \(x = 1\)}: The error bound of \(9.879 \times 10^{-8}\) indicates the approximation is indistinguishable from the true value \(\sin(1)\).
-\end{itemize}
-\\
-These bounds confirm that the fifth-order Taylor series provides an excellent approximation for \(\sin x\) around \(x = \frac{\pi}{4}\), particularly near this point and at commonly evaluated points within the function's periodic range. 
+\[
+    |R_5(x)| = \int_{\frac{\pi}{4}}^x \frac{\sin(t)}{120} (x - t)^5 \ dt
+\]
+Note that for \( \sin t \), the range of $|\sin t| \leq 1$. We can simplify error bound to:
+
+\[
+    |R_5(x)| \leq \frac{1}{5!} \int_{\pi/4}^{x} (x - t)^5 \, dt = \frac{(\frac{\pi}{4} - x)^6}{6!}
+\]
+This bound is small for \( x \rightarrow \frac{\pi}{4} \). A small number raised to the sixth power is tiny, and dividing by \( 6! \) further reduces it. Thus, the Taylor series approximation is highly accurate with such small error bound.
+
+
 
 \problem{Suppose we have measured \(Y=(2,1)\) with some error described by the covariance matrix \(\Sigma_Y = \begin{bmatrix}
     0.2 & 1\\
@@ -97,7 +100,7 @@ At $Y = (2,1)$, we have:
 \\
 Hence,
 \[ \sum_{f(y)} = \begin{bmatrix} 7 & 6 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 0.2 & 1 \\ 1 & 0.3 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} \]
-\[ = \begin{bmatrix} 7.4 & 8.8 \\ 0.8 & -0.7 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} = \begin{bmatrix} 194.6 & 1.4 \\ 1.4 & -1.5 \end{bmatrix} \]
+\[ = \begin{bmatrix} 7.4 & 8.8 \\ 0.8 & -0.7 \end{bmatrix} \begin{bmatrix} 7 & -1 \\ 6 & 1 \end{bmatrix} = \begin{bmatrix} 104.6 & 1.4 \\ 1.4 & -1.5 \end{bmatrix} \]
 
 \problem{Use the error propagation equation to give general expressions for \(\Sigma_{f(x,y)}\) when \(x\) and \(y\) are uncorrelated, meaning
 \(\Sigma_{x,y} = \begin{bmatrix}
@@ -169,7 +172,7 @@ For a mixture of gases, the virial equation can be generalized as:
 Here, \( B_{11}(T) \), \( B_{22}(T) \) are virial coefficients correspond to the interactions within the same type of molecules; \( B_{12}(T) \) is the virial coefficient that considers cross-interactions between two gas species.
 \\
 Note that \( x_1 \) and \( x_2 \) are the mole fractions of gas 1 and gas 2, and $n = n_1 + n_2$ is the total number of moles in the mixture.
-\subsection*{Simplification Under Ideal Conditions}
+\textbf{Simplification Under Ideal Conditions: }
 If both gases are ideal:
 \begin{itemize}
     \item Interactions between molecules in their own gas species are negligible. Only cross-interactions
