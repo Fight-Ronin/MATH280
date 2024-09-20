@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\newcommand\problem[1]{\stepcounter{pnum}\begin{center}\fbox{\begin{minipage}{0.95\linewidth}
+\textbf{\thepnum.} #1
+\end{minipage}}\end{center}}
+
+\newcommand\solution{\vspace{0.4em}\textbf{Solution.}}
+
+\title{Homework 3 (error and iterative methods, markov chains)}
+\author{name}
+\begin{document}
+
+\maketitle
+
+Recall that a Markov matrix is an \(n\times n\) matrix whose \textit{columns} represent the probabilities of transitioning between \(n\) states: the columns sum to \(1\) and entry \(M_{ij}\) is the probability of transitioning from state \(j\) to state \(i\). Some sources use the transpose of this matrix.
+
+\problem{Apply iterative methods (our generalized Jacobi method) to estimate a solution to
+    \[\begin{bmatrix}
+        4 & 5 \\ 3 & 5
+    \end{bmatrix}
+    x =
+    \begin{bmatrix}
+       2\\3 
+    \end{bmatrix}\]
+
+     \begin{enumerate}[a)]
+         \item Pick any splitting matrix besides \(A\inv\), and any initial guess besides the actual solution, and determine the result after two iterations.
+         \item Determine the quantity \(\delta = ||I-Q\inv A||\) (notation from class/book; \(Q\) is the splitting matrix).
+         \item Determine the actual solution by inverting the matrix.
+         \item Compare the actual solution to your approximate solution from (a) using the \(\infty\) norm. Then, compare to the error estimate theorem from class. What do you notice?
+     \end{enumerate}
+     }
+\solution
+
+
+
+\problem{In our steady-state calculation for a Markov matrix \(M\), we determined that all Markov matrices have \(1\) as an eigenvalue by iterative methods. Iterative methods requires some technical assumptions that we did not discuss. This problem walks you through verifying this fact without without them.
+\begin{enumerate}[a)]
+    \item Show that a Markov matrix \(M\) has \(1\) as a left eigenvalue (i.e. an eigenvalue of \(M^T\)). Hint: the sum of the rows is \(1\) in a Markov matrix -- what left vector multiplication would produce such a row sum? Is it an eigenvector?
+    \item Show that \(A\) and \(A^T\) have the same minimal polynomial. Hint: check that \(p(A)^T = p(A^T)\) for any polynomial \(p\).
+    \item Combine the previous two facts to conclude that \(A\) has an eigenvector with eigenvalue \(1\).
+\end{enumerate}
+}
+\solution
+
+
+\problem{Recall that we assumed a matrix has a full-rank eigenspace and a unique largest eigenvalue in order to locate its largest eigenvalue (and associated eigenvector) by iterative methods.
+
+ We saw above that every Markov matrix \(M\) has \(1\) as an eigenvalue. 
+\begin{enumerate}
+    \item Prove every eigenvalue of \(M\) has norm at most \(1\). Hint: use (2b) and the \(\infty\) norm, or, equivalently, the Gershgorin circle theorem.
+    \item Suppose that \(M\) is \(2\times 2\) with full rank eigenspace, but \(1\) is a repeated eigenvalue. What does this mean for the original  matrix?
+    \item Suppose that \(M\) is \(2\times 2\) and has \(1\) as its only eigenvalue, but its eigenspace is not full rank. What can you say about this situation? Hint: use the \(\infty\)-norm and examine the left hand side of \(|Mv| \leq ||M|||v| = |v|\) more carefully.
+\end{enumerate}}
+\solution
+
+\problem{(bonus) Generalize (3c) to show that a Markov matrix with no zeros has a \textit{unique} eigenvector whose associated eigenvalue has norm \(1\).}
+\solution
+
+
+\problem{(ungraded bonus) If you know some graph theory, discuss the implications for a Markov matrix whose state diagram, like the weather one we drew in class, is (directed) connected and such that each state has a nonzero probability of remaining the same. Hint: could the fact above apply to a large power of \(M\)?}
+\solution
+
+\end{document}
