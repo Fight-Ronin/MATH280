@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\newcommand\problem[1]{\stepcounter{pnum}\begin{center}\fbox{\begin{minipage}{0.95\linewidth}
+\textbf{\thepnum.} #1
+\end{minipage}}\end{center}}
+
+\newcommand\solution{\vspace{0.4em}\textbf{Solution.}}
+
+\title{Reflection for Guest Speaker}
+\author{Hanzhang Yin}
+\begin{document}
+
+\maketitle
+
+First of all, it is really interesting to know how they use adaptive mesh refinement (AMR) they used to solve PDE among data to retrieve high resolutiuon numeric results 
+to evaluate blackhole's merging effect. The speaker used different metrics within AMR to magnify the resolution around interesting numerical patterns of the detective data. 
+One of the work that the presenter currently diving in is the come up with a new adaptive mesh refinement method to lower computation loss while maintain a resonable numeric accuracy.
+They come up with a relatively new approach of modifying the newly embedded tolerance function to refine the coeffcient calculation of PDE. 
+It was a little confusing for me of how such introduction of the tolerance speed up the computation process from hardware theoratically, my guess is by limiting the range of the tolerance coeffcient
+the mesh optimization might decrease the range needed for PDE calculation on data. To me, I would like to ask further questions on how the PDE evaluator and coarse to fine predertermined mesh been 
+implemented in C++, devlving deeper from theory to implementation.
+To me, every physics related content in this talk is new to me, and I really enjoy learning such astronomical concepts since I was used to be a physics student 3 years ago!
+
+
+
+\end{document}
