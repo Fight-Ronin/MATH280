@@ -206,6 +206,24 @@ by the given hint, we will show that for any matrix $A$, \( p(A)^T = p(A^T) \) h
 \problem{(bonus) Generalize (3c) to show that a Markov matrix with no zeros has a \textit{unique} eigenvector whose associated eigenvalue has norm \(1\).}
 \solution
 
+\begin{proof}
+    Let $M$ be an $n \times n$ Markov matrix with $M_{ij} > 0$ for all $i,j$. Each row sums to $1$:
+    \[ \sum_{j=1}^{n} M_{ij} = 1, \forall i \]
+    \\
+    By the Gershgorin Circle Theorem, every eigenvalue $\lambda$ of $M$ satisties:
+    \[ |\lambda - M_{ii}| \leq \sum_{j \neq i}|M_{ij}| \]
+    Because $\sum_{j=1}^{n} M_{ij} = 1$, each row sum implies $M_{ii} + \sum_{j \neq i} |M_{ij}| = 1$. Hence,
+    \[ |\lambda| \leq 1 \]
+    The eigenvalue $\lambda = 1$ always exists for a Markov matrix because $M \cdot 1 = 1$, where 1  is the vector with all entires = 1.
+    \\
+    To show $\lambda = 1$ is the only eigenvalue, we can consider the \textbf{subdominant eigenvalues} of $M$. If $M$ has no zero entries, then $M$ is
+    irreducible and aperiodic, which implies that all other eigenvalues have strictly smaller modulus (i.e., $|\lambda| < 1$ for $\lambda \neq 1$).
+    \\
+    Since $\lambda = 1$ is the only eigenvalue with modulus 1 and with multiplicity 1, it has a unique correspdoning eigenvector, which represents the unique stationary distribution of Markov Chain.
+    \\
+    Thus, for Markov matrix $M$ with no entries, the only eigenvalue with modulus $1$ is $\lambda = 1$, and it has a unique corresponding eigenvector.
+
+\end{proof}
 
 \problem{(ungraded bonus) If you know some graph theory, discuss the implications for a Markov matrix whose state diagram, like the weather one we drew in class, is (directed) connected and such that each state has a nonzero probability of remaining the same. Hint: could the fact above apply to a large power of \(M\)?}
 \solution
