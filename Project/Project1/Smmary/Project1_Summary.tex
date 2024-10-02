@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage[margin=1in]{geometry}
 \usepackage[backend=biber]{biblatex}
 \bibliography{app_log.bib}
@@ -13,5 +14,30 @@
 \begin{document}
 \maketitle
 
+The Project focusing on using Markov models to analyze the tonal patterns in classical Chinese poetry, paticularly examining whether sequences of tones align with the strict metrical rules of 
+(lv shī). These rules dictate specific tonal arragnements between \textit{even tone} and \textit{oblique tones} within each line of a poem, similar to the stressed and unstressed syllables arranged in metered English
+poetry. The goal of this project is to construct a Markov matrix to capture the probabilities of transition between different tones, find the equilibrium distribution, and use it to gain 
+insights into whether the observed tonal patterns match the expected ones.
+
+The tonal pattern in (lv shī) have a direct analogy to metrical patterns in English poetry, such as iamic penameter, trochaic tetrameter, and other structured forms where syllable stress plays a defining role.
+In classical Chinese poetry, each character (or syllable) is categorized intor either even (stable tone), or oblique (rising / falling tone). This binary cateogization resembles the \textit{stressed} and \textit{unstressed} syllables 
+in English Prosody.
+
+In English poetry, the one of the most famous example is iambic pentameter, which consists of five pairs of alternating unstressed-stressed syllables (da-DUM, da-DUM, etc.). 
+This regular pattern creates a rhythmic flow, which poets can manipulate for emphasis, tension, or variation.
+Similarly, deviations from the expected even/oblique patterns in "lv shi" can indicate emphasis, emotion, or a deliberate break from tradition.
+
+Markov matrices are tools used to model transitions between states, where each element \( M_{ij} \) represents the probability of moving from state \( i \) to state \( j \). In the context of English poetry meters, we can define states as **stressed** (S) or **unstressed** (U) syllables, or even larger metrical units like **iambs** (U-S) and **trochees** (S-U). For instance, an iambic pentameter line alternates between U and S, which can be represented by a simple Markov matrix: 
+\[
+    M = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+\]
+Indicating that U is always followed by S, and vice versa. By expanding the matrix to allow for deviations (e.g., occasional trochees or spondees), we can analyze the stylistic flexibility of a poem.
+Computing the **equilibrium distribution** of the matrix reveals the long-term proportion of different metrical units, which helps identify dominant rhythmic patterns.
+
+Moreover, here are some additional linguistic features that might be interesting using Markov methods:
+\begin{itemize}
+    \item Rhyme Schemes: Could applied to different poetry under different ``Dynasty'' to study how rhymes evolve and how certain poets deviate from common schemes.
+    \item Sentence Length and Complexity: Study transitions between short and long sentences, or simple vs. complex clauses, especially in prose or in political speeches, to identify style...
+\end{itemize}
 
 \end{document} 
