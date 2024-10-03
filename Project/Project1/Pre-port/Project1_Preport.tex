@@ -16,7 +16,7 @@
 
 The project aims to distinguish the styles of Zhu Shuzhen and Du Fu using Markov matrices by modeling the tonal patterns in their poetry. Each poem is encoded as a sequence of \textit{even} or \textit{oblique} tonal states, with transition probabilities captured in a matrix $M$, where $M_{ij}$ denotes the probability of transitioning from state $i$ to state $j$.
 \\
-\textbf{Using Markov Matrices to Distinguish Authors}
+\textbf{Using Markov Matrices to Distinguish Authors: }
 \\
 For each poet, we construct a separate Markov matrix $M_{\text{Zhu}}$ and $M_{\text{Du}}$ from their corpus, defined as:
 
@@ -25,7 +25,7 @@ For each poet, we construct a separate Markov matrix $M_{\text{Zhu}}$ and $M_{\t
 \]
 where $p_{ij}$ and $q_{ij}$ are the probabilities of transitioning from tone $i$ to tone $j$ for Zhu Shuzhen and Du Fu, respectively. These matrices are expected to differ due to each poet's stylistic choices in adhering to classical tonal rules. The equilibrium vector $\mathbf{v}$ for each matrix, satisfying $M \mathbf{v} = \mathbf{v}$, represents the long-term distribution of tonal states.
 \\
-\textbf{Validation and Classification}
+\textbf{Validation and Classification: }
 \\
 Given a test poem's tonal sequence $x = (x_1, x_2, \ldots, x_n)$, we compute the \textit{log-likelihood} under each author's matrix:
 
@@ -34,7 +34,7 @@ Given a test poem's tonal sequence $x = (x_1, x_2, \ldots, x_n)$, we compute the
 \]
 If $\mathcal{L}_{\text{Zhu}} > \mathcal{L}_{\text{Du}}$, we classify the poem as Zhu Shuzhen's. Alternatively, we can compare the test poem’s equilibrium vector $\mathbf{v}_{\text{test}}$ with $\mathbf{v}_{\text{Zhu}}$ and $\mathbf{v}_{\text{Du}}$ using similarity measures such as \textit{cosine similarity} or \textit{Euclidean distance}.
 \\
-\textbf{Identifying Authors or Genres}
+\textbf{Identifying Authors or Genres: }
 \\
 To identify an author, we compute the Euclidean distance:
 
@@ -43,7 +43,7 @@ To identify an author, we compute the Euclidean distance:
 \]
 The author is identified as the one corresponding to the minimum distance. Moreover, differences in matrix structure or equilibrium distributions may also indicate genre differences, as classical genres often impose distinct tonal patterns.
 \\
-\textbf{Expectations}
+\textbf{Expectations: }
 \\
 Given the strict tonal constraints in classical poetry and known stylistic differences, we expect to distinguish Du Fu and Zhu Shuzhen with reasonable accuracy. 
 Referencing on their own style of writing, Du Fu's matrix should show a more balanced equilibrium, reflecting stricter adherence to tonal rules,
