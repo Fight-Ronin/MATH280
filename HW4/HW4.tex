@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\newcommand\problem[1]{\stepcounter{pnum}\begin{center}\fbox{\begin{minipage}{0.95\linewidth}
+\textbf{\thepnum.} #1
+\end{minipage}}\end{center}}
+
+\newcommand\solution{\vspace{0.4em}\textbf{Solution.}}
+
+\title{Homework 4 (interpolation)}
+\author{name}
+\begin{document}
+
+\maketitle
+
+
+\problem{Let \(M\) be a Markov matrix (sum of entries in a column is 1) with all diagonal entries nonzero. Show that the only possible eigenvalue with norm \(1\) is \(1\), and that any other eigenvalue has strictly smaller norm. Hint: apply the gershgorin circle theorem to \(M^T\).}
+\solution
+
+\problem{[Book 6.4.14] Determine whether the following is a natural cubic spline:
+\[f(x) = \begin{cases}
+    2(x+1)^3 + (x+1)^3 & x \in [-1,0]\\
+    3 + 5x + 3x^2 & x \in [0,1]\\
+    11 + 11(x-1) + 3(x-1)^2 - (x-1)^3 & x \in [1,2]
+\end{cases}\]}
+\solution
+
+
+
+\problem{[Book 6.4.25] Determine coefficients \(a,b,c,d\), which make the following a cubic spline:
+\[f(x) = \begin{cases}
+    x^3 & -1\leq x \leq 0\\
+    a+bx+cx^2 + dx^3 & 0\leq x \leq 1
+\end{cases}\]}
+\solution
+
+\problem{Let \(f(x) = \arctan(x)\) 
+\begin{enumerate}[a)]
+    \item Suppose you interpolated \(f(x)\) by a degree \(3\) polynomial using the Chebyshev nodes as \(x\) values [you do not need to calculate the interpolating polynomial]. Estimate the error associated to this interpolation.
+    \item Using a taylor series around \(0\), write down a degree \(5\) approximation to \(f(x)\).
+    \item With Taylor's form of the remainder, estimate the error associated to the interpolation in (b). (you may use a computer to calculate the 6th derivative, but you must bound it on your own, explaining your work carefully)
+    \item Compare your error estimates (a) and (c). Which seems better, and why do you think this might be the case? Hint: taylor series are a little like interpolating just at a single point, using derivatives at just that point to provide extra constraints.
+\end{enumerate}
+}
+\solution
+
+\problem{Determine a quadratic spline approximation \(S(x)\) to \(f(x) = \arctan(x)\) with nodes \(-1,0,1\).}
+
+\problem{Let \(f(x) = 4x^2 - 4^{x}\).
+\begin{enumerate}
+    \item Using the intermediate value theorem, show that \(f(x)\) has at least one root in \([-1,0]\) and another in \([0,1.5]\).
+    \item Interpolate \(f(x)\) by a degree \(3\) polynomial using nodes \(x=-1/2,0,1/2\).
+    \item Use the interpolation to estimate the roots of \(f(x)\) in those intervals.
+\end{enumerate}}
+\solution
+
+
+\end{document}
