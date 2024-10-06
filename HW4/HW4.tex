@@ -15,7 +15,7 @@
 \newcommand\solution{\vspace{0.4em}\textbf{Solution.}}
 
 \title{Homework 4 (interpolation)}
-\author{name}
+\author{Hanzhang Yin}
 \begin{document}
 
 \maketitle
@@ -148,6 +148,48 @@ Therefore, \( 1 \) is the sole eigenvalue of \( M \) with absolute value \( 1 \)
 \end{cases}\]}
 \solution
 
+\begin{proof}
+    Define $f(x)$ and its derivatives:
+    \\
+    For $x \in [-1, 0]$:
+    \[ f(x) = x^3, f^{'}(x) = 3x^2, f^{''}(x) = 6x \]
+    \\
+    For $x \in [0,1]$:
+    \[ f(x) = a + bx + cx^2 + dx^3, f^{'}(x) = b + 2cx + 3dx^2, f^{''}(x) = 2c + 6dx \]
+    Continuity at $x = 0$:
+    \\
+    By definition, function countinuity means: $f(0^{-}) = f(0^{+})$:
+    \\
+    Calculate each side:
+    \[ f(0^{-}) = (0)^3 = 0, f(0^{+}) = a + b(0) + c(0)^2 + d(0)^3 = a \]
+    Set them equal so that $a = 0$.
+    \\
+    By definition, first derivative countinuity countinuity means: $f{'}(0^{-}) = f{'}(0^{+})$:
+    Calculate each side:
+    \[ f(0^{-}) = 3(0)^2 = 0, f(0^{+}) = b + 2c(0) + 3d(0)^2 = b \]
+    Set them equal so that $b = 0$.
+    \\
+    By definition, second derivative countinuity countinuity means: $f{''}(0^{-}) = f{''}(0^{+})$:
+    \\
+    Calculate each side:
+    \[ f(0^{-}) = 6(0)^3 = 0, f(0^{+}) = 2c + 6d(0) = 2c \]
+    Set them equal so that $2c = 0 \Rightarrow c = 0$.
+    \\
+    Now we need to determine $d$ using the spline's definition:
+    \\
+    Since $a = b = c = 0$, the functiona for $x \in [0,1]$ simplifies to:
+    \[ f(x) = dx^3 \]
+    Ensure Smoothness at $x = 1$:
+    Eventhough the function is not defined beyond $x = 1$, we typically ant to the spline to be as smooth as possible. 
+    In general, $d$ can be any real number.
+    \\
+    Assuming we want $f(x)$ to be continuous at $x = 1$, and since $f(x) = x^3$ on $[-1, 0]$, it is reasonable to extern this to $[0,1]$ by let $d = 1$.
+    \\
+    Therefore, the coefficients are:
+    \[ a = 0, b = 0, c = 0, d = 1 \]
+    This makes $f(x) = x^3$ on both intervals, ensuring that the function and its derivatives are continuous across the entire domain $[-1, 1]$.
+\end{proof}
+
 \problem{Let \(f(x) = \arctan(x)\) 
 \begin{enumerate}[a)]
     \item Suppose you interpolated \(f(x)\) by a degree \(3\) polynomial using the Chebyshev nodes as \(x\) values [you do not need to calculate the interpolating polynomial]. Estimate the error associated to this interpolation.
@@ -157,8 +199,222 @@ Therefore, \( 1 \) is the sole eigenvalue of \( M \) with absolute value \( 1 \)
 \end{enumerate}
 }
 \solution
+\\
+\textbf{(a): }
+\begin{proof}
+    By definition, for poly. interpolation, the error at a point $x$ is given by: 
+    \[ \left| f(x) - P_n(x) \right| = \left| \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i=0}^{n} (x - x_i) \right| \]
+    Using the Chebyshev nodes, for $n = 3$ (degree of 3 polynomial), the Chebyshev nodes on the interval $[-1,1]$ are:
+    \[ x_k = \cos \left( \frac{2k + 1}{2(n + 1) \pi} \right), \ k = 0,1,2,3 \] 
+    Computerd nodes:
+    \[ x_0 = \cos(\frac{\pi}{8}) \approx 0.924 \]
+    \[ x_1 = \cos(\frac{3\pi}{8}) \approx 0.383 \]
+    \[ x_2 = \cos(\frac{5\pi}{8}) \approx -0.383 \]
+    \[ x_2 = \cos(\frac{7\pi}{8}) \approx -0.924 \]
+    For Chebyshev nodes on $[-1, 1]$, the term $\prod_{i=0}^{n} |x - x_i|$ is bounded by:
+    \[ \prod_{i = 0}^{n} |x - x_i| \leq \frac{1}{2^n} \]
+    Now we need to find an upper bound $M$ for $|f^{(4)}(x)|$ on $[-1, 1]$.
+    \\
+    Compute $f^{(4)}(x)$:
+    \\
+    First derivative:
+    \[ f^{(1)}(x) = \frac{1}{1 - x^2} \]
+    Second derivative:
+    \[ f^{(2)}(x) = \frac{d}{dx} (\frac{1}{1 - x^2}) = - \frac{2x}{(1 + x^2)^2} \]
+    Third derivative:
+    \[ f^{(3)}(x) = \frac{d}{dx} (- \frac{2x}{(1 + x^2)^2}) = -\frac{2(1 + x^2)^2 - 8x^2(1 + x^2)}{(1 + x^2)^4} = -\frac{2(1 - 3x^2)}{(1 + x^2)^3} \]
+    Fourth derivative:
+    \[ f^{(4)}(x) = \frac{d}{dx} (-\frac{2(1 - 3x^2)}{(1 + x^2)^3}) = \frac{2(6x(1+x^2)^3 - 3(1-3x^2)(3)(1 + x^2)^2(2x))}{(1 + x^2)^6} \]
+    Thus, the absolute value of the fourth derivative is:
+
+    \[
+        |f^{(4)}(x)| = \left| \frac{24x(x^2 - 1)}{(1 + x^2)^4} \right|
+    \]
+    To find an upper bound \( M \) for \( |f^{(4)}(x)| \) on \([-1, 1]\), we analyze the numerator and the denominator separately:
+
+    \begin{itemize}
+        \item \textbf{Numerator Analysis:} 
+        \\
+        - For \( x \in [-1, 1] \), \( |x| \leq 1 \). 
+        - Also, \( |x^2 - 1| \leq 1 \), because \( x^2 \leq 1 \), which implies \( |x^2 - 1| \leq 1 \).
+
+        \item \textbf{Denominator Analysis:} 
+        \\
+        - For \( x \in [-1, 1] \), \( 1 + x^2 \geq 1 \).
+        - Therefore, \( (1 + x^2)^4 \geq 1^4 = 1 \).
+    \end{itemize}
+    \\
+    Combining these results, we have:
+    \[
+        |f^{(4)}(x)| = \left| \frac{24x(x^2 - 1)}{(1 + x^2)^4} \right| \leq \frac{24 \cdot 1 \cdot 1}{1} = 24
+    \]
+    Thus, the maximum value of \( |f^{(4)}(x)| \) on \( [-1, 1] \) is:
+    \[
+        M = 24.
+    \]
+    Lastly, we can apply the error formula:
+    \[ |f(x) - P_3(x) \leq \frac{M}{4!} \cdot \prod_{k=0}^{3}|x - x_k| \leq \frac{24}{24} \cdot \frac{1}{8} = \frac{1}{8} = 0.125 \]
+    The maximum interpolation error when approximating $f(x) = arctan(x)$ on $[-1,1]$ using a degree 3 polynomial with Chebyshev nodes is bounded by 0.125.
+\end{proof}
+
+\textbf{(b): }
+\\
+\begin{proof}
+    Recall that Taylor Series expansion of $arctan(x)$ around $x = 0$ is:
+    \[ arctan(x) = \sum_{n = 0}^{\infty} (-1)^n \frac{x^{2n + 1}}{2n + 1}, \ |x| \leq 1 \]
+    For Degree of 5 polynomial approximation, we can have:
+    \[ f(x) \approx x - \frac{x^3}{3} + \frac{x^5}{5} + O(x^6) \]
+\end{proof}
+
+\textbf{(c): }
+\\
+\begin{proof}
+By Taylor Remainder Theorem, the remainder $R_{5}(x)$ for a degree $5$ Taylor polynomial is:
+\[ R_5 = \frac{f^{(6)}(\xi)}{6!} \ x^6 \]
+By calculator, $f^{(6)}(x)$ is:
+\[ f^{(6)}(x) = -\frac{240x(3x^4 -10x^2 + 3)}{(x^2 + 1)^6} \]
+To apply the theorem, we need to find an upper bound $M$ $|f^{(6)}(x)|$ on $[-1, 1]$.
+\[ |f^{(6)}(x)| = \left|-\frac{240x(3x^4 -10x^2 + 3)}{(x^2 + 1)^6} \right| = \frac{240|x||3x^4 -10x^2 + 3|}{(x^2 + 1)^6} \]
+Bounding $|x|$: 
+\[ |x| \leq 1 \ for \ x \in [-1, 1] \]
+Bounding $|3x^4 -10x^2 + 3|$: 
+\\
+Let $g(x) = 3x^4 - 10x^2 + 3$. To find the maximum of $|g(x)|$ on $[-1,1]$, we analyze its critical points and endpoints.
+\\
+1. Find critical points:
+\[ g'(x) = 12x^3 - 20x = 4x(3x^2 - 5) = 0 \]
+\[ \Rightarrow x = 0 \ or \ x = \pm \sqrt{\frac{5}{3}} \approx \pm 1.291 \]
+Only $x = 0$ lies within $[-1, 1]$.
+\\
+2. Evaluate $g(x)$ at critical and end points:
+\[ g(0) = 3(0)^4 - 10(0)^2 + 3 = 3 \]
+\[ g(1) = 3(1)^4 - 10(1)^2 + 3 = 3 - 10 + 3 = -4 \Rightarrow |g(1)| = 4 \]
+\[ g(-1) = 3(-1)^4 - 10(-1)^2 + 3 = 3 - 10 + 3 = -4 \Rightarrow |g(1)| = 4 \]
+Thus, \( |g(x)| \leq 4 \ for \ x \in [-1, 1] \)
+\\
+Bounding the denominator $(x^2 + 1)^6$:
+On \([-1,1]\):
+\[
+1 \leq x^2 + 1 \leq 2 \quad \Rightarrow \quad 1^6 \leq (x^2 + 1)^6 \leq 2^6 = 64
+\]
+Lastly, we combine the bounds:
+\[
+|f^{(6)}(x)| = \frac{240|x||3x^4 -10x^2 + 3|}{(x^2 + 1)^6} \leq \frac{240 \times 1 \times 4}{1} = 960 \quad \text{at } x = \pm1
+\]
+However, evaluating at \( x = \pm1 \):
+\[
+|f^{(6)}(\pm1)| = \frac{240 \times 1 \times 4}{(1 + 1)^6} = \frac{960}{64} = 15
+\]
+Since \( |f^{(6)}(x)| \) attains its maximum at \( x = \pm1 \), we set:
+\[
+M = 15
+\]
+Substituting \( M = 15 \) and \( 6! = 720 \) into the remainder formula:
+\[
+|R_5(x)| \leq \frac{15}{720} |x|^6 = \frac{1}{48} |x|^6 \approx 0.0208 |x|^6
+\]
+Since \( |x| \leq 1 \) on \([-1,1]\):
+\[
+    |R_5(x)| \leq \frac{1}{48} \approx 0.0208
+\]
+\end{proof}
+
+\textbf{(d): }
+\\
+In comparing the error estimates from parts (a) and (c), the Taylor series approximation (part~c) yields a significantly smaller error bound of \( |R_5(x)| \leq 0.0208 \) over the interval \([-1, 1]\), 
+compared to the Chebyshev interpolation (part a) which has an error bound of \( |f(x) - P_3(x)| \leq 0.125 \). 
+This superior accuracy of the Taylor approximation arises because it utilizes a higher-degree polynomial (degree~5 versus degree~3) and incorporates derivative information at a single point (\(x=0\)), allowing for a more precise local fit. 
+In contrast, Chebyshev interpolation distributes interpolation nodes across the entire interval to minimize the maximum error uniformly but does not exploit derivative information, resulting in a larger overall error bound. 
+Therefore, the Taylor series provides a better error estimate in this case due to its enhanced local accuracy near the expansion point.
 
 \problem{Determine a quadratic spline approximation \(S(x)\) to \(f(x) = \arctan(x)\) with nodes \(-1,0,1\).}
+\solution
+\begin{proof}
+    First we need to define $S(x)$ as a peicewise quadratic function:
+    \[ S(x)
+        \begin{cases}
+            S_1(x) = a_1x^2 + b_1x + c_1, \ for \ x \in [-1, 0], \\
+            S_2(x) = a_2x^2 + b_2x + c_2, \ for \ x \in [0, 1], \\
+        \end{cases}
+    \]
+    Then we apply the interpolation conditions, computing the function vlaues at the nodes:
+    \[ f(-1) = arctan(-1) = -\frac{\pi}{4} \]
+    \[ f(0) = arctan(0) = 0 \]
+    \[ f(1) = arctan(1) = \frac{\pi}{4} \]
+    interpolation at $x = -1$:
+    \[ S_1(-1) = a_1(-1)^2 + b_1(-1) + c_1 = -\frac{\pi}{4} \] 
+    interpolation at $x = 0$:
+    For both $S_1(x)$ and $S_2(x)$: 
+    \[ S_1(0) = c_1 = 0, \ S_2(0) = c_2 = 0 \]
+    interpolation at $x = 1$:
+    \[ S_2(-1) = a_2(1)^2 + b_2(1) + c_2 = \frac{\pi}{4} \] 
+    Then, we apply continuity conditions at $x = 0$,
+    \\
+    Continuity of the function at $x = 0$:
+    \[ S_1(0) = S_2(0) \Longrightarrow c_1 = c_2 = 0 \]
+    Continuity of the First Derivative at $x = 0$:
+    \\
+    \[ S_1'(x) = 2a_1x + b_1 \]
+    \[ S_2'(x) = 2a_2x + b_2 \]
+    At $x = 0$:
+    \[ S_1'(x) = b_1, \ S_2'(x) = b_2 \]
+    Set them equal:
+    \[ b_1 = b_2 = b \]
+    After that, we apply second continuity conditions at endpoints,
+    \\
+    Compute the function's second derivatives at the endpoints:
+    \[ f'(x) = \frac{1}{1 + x^2} \]
+    \[ f''(x) = -\frac{2x}{(1 + x^2)^2} \]
+    At $x = -1$:
+    \[ f''(-1) = -\frac{2(-1)}{(1 + (-1)^2)^2} = \frac{2}{4} \frac{1}{2} \]
+    Set:
+    \[ S_1''(x) = 2a_1 = f''(-1) \Longrightarrow a_1 = \frac{1}{4} \]
+    At $x = 1$:
+    \[ f''(1) = - \frac{2(1)}{(1 + 1^2)^2} = - \frac{2}{4} = - \frac{1}{2} \]
+    Set:
+    \[  S_2''(x) = 2a_2 = f''(1) \Longrightarrow a_2 = - \frac{1}{4} \]
+    Now we can solve for the remaining coefficients,
+    \\
+    Equation from $x = -1$:
+    \[ S_1(-1) = a_1(-1)^2 + b_1(-1) + c_1 = \frac{1}{4}(1) - b_1 + 0 = -\frac{\pi}{4} \]
+    \[ \Rightarrow \frac{1}{4} - b_1 = -\frac{\pi}{4} \Longrightarrow b_1 = \frac{1}{4} + \frac{\pi}{4} = \frac{1 + \pi}{4} \]
+    Equation from $x = 1$:
+    \[ S_2(-1) = a_2(-1)^2 + b_2(-1) + c_2 = \frac{1}{4}(1) - b_2 + 0 = \frac{\pi}{4} \]
+    \[ \Rightarrow -\frac{1}{4} - b_2 = \frac{\pi}{4} \Longrightarrow b_2 = \frac{1}{4} + \frac{\pi}{4} = \frac{1 + \pi}{4} \]
+    Since $b_1 = b_2 = b$, this is consistent.
+    \\
+    Now, we can Substituting the coefficients into $S_1(x)$ and $S_2(x)$:
+    For $x \in [-1, 0]$:
+    \[ S_1(x) = a_1x^2 + bx + c_1 = \frac{1}{4}x^2 + \frac{1 + \pi}{4}x + 0 \]
+    \[ S_2(x) = a_2x^2 + bx + c_2 = -\frac{1}{4}x^2 + \frac{1 + \pi}{4}x + 0 \]
+    Lastly, to ensure the validity of the approximation, we need to do some verification:
+    \\
+    At $x = -1$:
+    \[ S_1(-1) = \frac{1}{4}(-1)^2 + \frac{1 + \pi}{4}(-1) = \frac{1}{4} - \frac{1 + \pi}{4} = -\frac{\pi}{4} \]
+    which matches $f(-1) = -\frac{\pi}{4}$
+    \\
+    At $x = 0$:
+    \[ S_1(0) = S_2(0) = 0 \]
+    Matches $f(0) = 0$
+    \\
+    At $x = 1$:
+    \[ S_2(1) = -\frac{1}{4}(1)^2 + \frac{1 + \pi}{4}(1) = -\frac{1}{4} + \frac{1 + \pi}{4} = \frac{\pi}{4} \]
+    Matches $f(1) = \frac{\pi}{4}$
+    \\
+    And for checking the first derivative continuity at $x = 0$;:
+    \[ S'_1(x) = 2a_1x + b = \frac{1}{2}x + \frac{1 + \pi}{4}, \ S'_1(0) = \frac{1 + \pi}{4} \]
+    \[ S'_2(x) = 2a_2x + b = -\frac{1}{2}x + \frac{1 + \pi}{4}, \ S'_2(0) = \frac{1 + \pi}{4} \]
+    $ S'_1(x) = S'_2(x) $, which ensures the validity.
+    \\
+    The quadratic spline approximation $S(x)$ is:
+    \[ 
+        S(x) = 
+        \begin{cases} 
+        \frac{1}{4}x^2 + \frac{1+\pi}{4}x, & \text{for } x \in [-1, 0], \\ 
+        -\frac{1}{4}x^2 + \frac{1+\pi}{4}x, & \text{for } x \in [0, 1]. 
+        \end{cases}
+    \]
+\end{proof}
 
 \problem{Let \(f(x) = 4x^2 - 4^{x}\).
 \begin{enumerate}
@@ -168,5 +424,145 @@ Therefore, \( 1 \) is the sole eigenvalue of \( M \) with absolute value \( 1 \)
 \end{enumerate}}
 \solution
 
+\textbf{(1): }
+\\
+\begin{proof}
+    For interval $[-1, 0]$, compute $f(-1)$ and $f(0)$.
+    \\
+    At $x = -1$:
+    \[ f(-1) = 4(-1)^2 - 4^{-1} = 4(1) - \frac{1}{4} = 4 - \frac{1}{4} = \frac{15}{4} > 0 \]
+    At $x = 0$:
+    \[ f(0) = 4(0)^2 - 4^{0} = 0 - 1 = -1 < 0 \]
+    Since $f(-1) > 0$ and $f(0) < 0$, and $f(x)$ is continuous on $[-1, 0]$, by IVT, there is at least one root in $[-1, 0]$.
+    \\
+    For interval $[0, 1.5]$, compute $f(0)$ and $f(1.5)$.
+    \\
+    At $x = 0$:
+    \[ f(0) = -1 < 0 \]
+    At $x = 1.5$:
+    \[ f(1.5) = 4(1.5)^2 - 4^{1.5} = 4(2.25) - 4^{1.5} = 9 - 4^{1.5} = 9 - 8 = 1 > 0 \]
+    Since $f(0) < 0$ and $f(1.5) > 0$, and $f(x)$ is continuous on $[0, 1.5]$, by IVT, there is at least one root in $[0, 1.5]$.
+\end{proof}
+
+\textbf{(2): }
+\begin{proof}
+As an additional condition for interpolation, we use the derivative at \( x = 0 \):
+\[ f'(0) = 8x - 4^x \ln(4) = -\ln 4 \]
+Now, we need to compute \( f(x) \) at the nodes:
+\[ f\left( -\dfrac{1}{2} \right) = 1 - \dfrac{1}{2} = \dfrac{1}{2} \]
+\[ f(0) = -1 \]
+\[ f\left( \dfrac{1}{2} \right) = 1 - 2 = -1 \]
+After that, we can set up the interpolation conditions:
+\[ P\left( -\dfrac{1}{2} \right) = \dfrac{1}{2}, \ P(0) = -1 \]
+\[ P\left( \dfrac{1}{2} \right) = -1, P'(0) = -\ln 4 \]
+Now we can write the equations to solve for coefficients
+\[ -\dfrac{a}{8} + \dfrac{b}{4} - \dfrac{c}{2} + d = \dfrac{1}{2} \].
+\[ \dfrac{a}{8} + \dfrac{b}{4} + \dfrac{c}{2} -1 = -1 \Rightarrow \dfrac{a}{8} + \dfrac{b}{4} + \dfrac{c}{2} = 0 \]
+\[ d = -1, c = -\ln 4 \]
+Simplify equations:
+\\
+Equation (1):
+\[
+-\dfrac{a}{8} + \dfrac{b}{4} + \dfrac{\ln 4}{2} -1 = \dfrac{1}{2}.
+\]
+Multiply both sides by 8:
+\[
+- a + 2b + 4 \ln 4 -8 = 4.
+\]
+Simplify:
+\[
+- a + 2b + 4 \ln 4 = 12. \quad (1a)
+\]
+Equation (3):
+\[
+\dfrac{a}{8} + \dfrac{b}{4} - \dfrac{\ln 4}{2} = 0.
+\]
+Multiply both sides by 8:
+\[
+a + 2b - 4 \ln 4 = 0. \quad (3a)
+\]
+Then, we can solve for \( a \) and \( b \):
+\\
+Add equations (1a) and (3a):
+\[
+(-a + a) + (2b + 2b) + (4 \ln 4 - 4 \ln 4) = 12 + 0 \implies 4b = 12 \implies b = 3.
+\]
+Substitute \( b = 3 \) into (3a):
+\[
+a + 2(3) - 4 \ln 4 = 0 \implies a = 4 \ln 4 -6.
+\]
+Since \( \ln 4 = 2 \ln 2 \), we have:
+\[
+a = 8 \ln 2 -6, \quad c = -2 \ln 2, \quad d = -1.
+\]
+Lastly, the Final Interpolating Polynomial will be
+\[
+    P(x) = (8 \ln 2 -6) x^3 + 3 x^2 - 2 \ln 2 \, x -1.
+\]
+\end{proof}
+
+\textbf{(3): }
+\\
+From Part 2, the interpolating polynomial is:
+\[
+P(x) = (8 \ln 2 - 6) x^3 + 3 x^2 - 2 \ln 2 \, x - 1.
+\]
+Using \( \ln 2 \approx 0.6931 \), the polynomial becomes:
+\[
+P(x) = -0.4552\, x^3 + 3 x^2 - 1.3862\, x - 1.
+\]
+Estimating the Root in \([-1, 0]\)
+\\
+Evaluate \( P(x) \) at the endpoints:
+\[
+\begin{cases}
+P(-1) = -0.4552(-1)^3 + 3(-1)^2 - 1.3862(-1) - 1 \approx 3.8414 > 0, \\
+P(0) = -1 < 0.
+\end{cases}
+\]
+Since \( P(-1) > 0 \) and \( P(0) < 0 \), by the Intermediate Value Theorem, there is a root \( x_1 \) in \([-1, 0]\).
+Using the Bisection Method:
+\begin{enumerate}
+    \item First midpoint: \( x_{\text{mid}} = -0.5 \Rightarrow P(-0.5) \approx 0.5 > 0 \Rightarrow \) root is in \([-0.5, 0]\).
+    \item Second midpoint: \( x_{\text{mid}} = -0.25 \Rightarrow P(-0.25) \approx -0.46 < 0 \Rightarrow \) root is in \([-0.5, -0.25]\).
+    \item Third midpoint: \( x_{\text{mid}} = -0.375 \Rightarrow P(-0.375) \approx -0.034 < 0 \Rightarrow \) root is in \([-0.5, -0.375]\).
+    \item Fourth midpoint: \( x_{\text{mid}} = -0.4375 \Rightarrow P(-0.4375) \approx 0.22 > 0 \Rightarrow \) root is in \([-0.4375, -0.375]\).
+\end{enumerate}
+By continuing this process, we estimate:
+\[
+    x_1 \approx -0.41.
+\]
+Estimating the Root in \([0, 1.5]\):
+\\
+Evaluate \( P(x) \) at \( x = 0 \) and \( x = 1 \):
+\[
+\begin{cases}
+P(0) = -1 < 0, \\
+P(1) \approx 0.1586 > 0.
+\end{cases}
+\]
+There is a root \( x_2 \) in \([0, 1]\).
+\\
+Using the Bisection Method:
+\begin{enumerate}
+    \item First midpoint: \( x_{\text{mid}} = 0.5 \Rightarrow P(0.5) \approx -1 < 0 \Rightarrow \) root is in \([0.5, 1]\).
+    \item Second midpoint: \( x_{\text{mid}} = 0.75 \Rightarrow P(0.75) \approx -0.544 < 0 \Rightarrow \) root is in \([0.75, 1]\).
+    \item Third midpoint: \( x_{\text{mid}} = 0.875 \Rightarrow P(0.875) \approx -0.151 < 0 \Rightarrow \) root is in \([0.875, 1]\).
+    \item Fourth midpoint: \( x_{\text{mid}} = 0.9375 \Rightarrow P(0.9375) \approx 0.0025 > 0 \Rightarrow \) root is in \([0.875, 0.9375]\).
+\end{enumerate}
+\\
+By continuing this process, we estimate:
+\[
+x_2 \approx 0.93.
+\]
+Conclusion:
+\\
+Using the interpolating polynomial \( P(x) \), we estimate the roots of \( f(x) \) in the specified intervals:
+\[
+\begin{cases}
+\text{Root in } [-1, 0]: & x_1 \approx -0.41, \\
+\text{Root in } [0, 1.5]: & x_2 \approx 0.93.
+\end{cases}
+\]
 
 \end{document}
