@@ -84,12 +84,10 @@
     \[
        f(x) = 2(x + 1)^3 + (x + 1)^3 = 3(x + 1)^3.
     \]
-    
     2. For \( x \in [0, 1] \):
     \[
        f(x) = 3 + 5x + 3x^2.
     \]
-    
     3. For \( x \in [1, 2] \):
        \begin{align*}
             f(x) &= 11 + 11(x - 1) + 3(x - 1)^2 - (x - 1)^3 \\
@@ -122,12 +120,10 @@
        \[
        f'(x) = 3 \cdot 3(x + 1)^2 = 9(x + 1)^2.
        \]
-    
     2. For \( x \in [0, 1] \):
        \[
        f'(x) = 5 + 6x.
        \]
-    
     3. For \( x \in [1, 2] \):
        \[
        f'(x) = 11 + 6(x - 1) - 3(x - 1)^2.
@@ -174,7 +170,7 @@
     \[ f(0^{-}) = (0)^3 = 0, f(0^{+}) = a + b(0) + c(0)^2 + d(0)^3 = a \]
     Set them equal so that $a = 0$.
     \\
-    By definition, first derivative countinuity countinuity means: $f{'}(0^{-}) = f{'}(0^{+})$:
+    By definition, first derivative countinuity means: $f{'}(0^{-}) = f{'}(0^{+})$:
     Calculate each side:
     \[ f(0^{-}) = 3(0)^2 = 0, f(0^{+}) = b + 2c(0) + 3d(0)^2 = b \]
     Set them equal so that $b = 0$.
@@ -190,10 +186,10 @@
     Since $a = b = c = 0$, the functiona for $x \in [0,1]$ simplifies to:
     \[ f(x) = dx^3 \]
     Ensure Smoothness at $x = 1$:
-    Eventhough the function is not defined beyond $x = 1$, we typically ant to the spline to be as smooth as possible. 
+    Eventhough the function is not defined beyond $x = 1$, we want to ensure the Smoothness of the pline. 
     In general, $d$ can be any real number.
     \\
-    Assuming we want $f(x)$ to be continuous at $x = 1$, and since $f(x) = x^3$ on $[-1, 0]$, it is reasonable to extern this to $[0,1]$ by let $d = 1$.
+    Assuming we want $f(x)$ to be continuous at $x = 1$, and since $f(x) = x^3$ on $[-1, 0]$, it is reasonable externing this to $[0,1]$ by letting $d = 1$.
     \\
     Therefore, the coefficients are:
     \[ a = 0, b = 0, c = 0, d = 1 \]
@@ -234,23 +230,25 @@
     Third derivative:
     \[ f^{(3)}(x) = \frac{d}{dx} (- \frac{2x}{(1 + x^2)^2}) = -\frac{2(1 + x^2)^2 - 8x^2(1 + x^2)}{(1 + x^2)^4} = -\frac{2(1 - 3x^2)}{(1 + x^2)^3} \]
     Fourth derivative:
-    \[ f^{(4)}(x) = \frac{d}{dx} (-\frac{2(1 - 3x^2)}{(1 + x^2)^3}) = \frac{2(6x(1+x^2)^3 - 3(1-3x^2)(3)(1 + x^2)^2(2x))}{(1 + x^2)^6} \]
+    \[ f^{(4)}(x) = \frac{d}{dx} (-\frac{2(1 - 3x^2)}{(1 + x^2)^3}) = \frac{2(6x(1+x^2)^3 - 3(1-3x^2)(3)(1 + x^2)^2(2x))}{(1 + x^2)^6} = -\frac{24x(x^2 - 1)}{(1 + x^2)^4} \]
     Thus, the absolute value of the fourth derivative is:
 
     \[
-        |f^{(4)}(x)| = \left| \frac{24x(x^2 - 1)}{(1 + x^2)^4} \right|
+        |f^{(4)}(x)| = \left| -\frac{24x(x^2 - 1)}{(1 + x^2)^4} \right|
     \]
     To find an upper bound \( M \) for \( |f^{(4)}(x)| \) on \([-1, 1]\), we analyze the numerator and the denominator separately:
 
     \begin{itemize}
-        \item \textbf{Numerator Analysis:} 
+        \item \textbf{Numerator Bounding Analysis:} 
         \\
         - For \( x \in [-1, 1] \), \( |x| \leq 1 \). 
+        \\
         - Also, \( |x^2 - 1| \leq 1 \), because \( x^2 \leq 1 \), which implies \( |x^2 - 1| \leq 1 \).
 
-        \item \textbf{Denominator Analysis:} 
+        \item \textbf{Denominator Bounding Analysis:} 
         \\
         - For \( x \in [-1, 1] \), \( 1 + x^2 \geq 1 \).
+        \\
         - Therefore, \( (1 + x^2)^4 \geq 1^4 = 1 \).
     \end{itemize}
     \\
@@ -262,8 +260,8 @@
     \[
         M = 24.
     \]
-    Lastly, we can apply the error formula:
-    \[ |f(x) - P_3(x) \leq \frac{M}{4!} \cdot \prod_{k=0}^{3}|x - x_k| \leq \frac{24}{24} \cdot \frac{1}{8} = \frac{1}{8} = 0.125 \]
+    Lastly, we apply the error formula:
+    \[ |f(x) - P_3(x)| \leq \frac{M}{4!} \cdot \prod_{k=0}^{3}|x - x_k| \leq \frac{24}{24} \cdot \frac{1}{8} = \frac{1}{8} = 0.125 \]
     The maximum interpolation error when approximating $f(x) = arctan(x)$ on $[-1,1]$ using a degree 3 polynomial with Chebyshev nodes is bounded by 0.125.
 \end{proof}
 
@@ -274,6 +272,7 @@
     \[ arctan(x) = \sum_{n = 0}^{\infty} (-1)^n \frac{x^{2n + 1}}{2n + 1}, \ |x| \leq 1 \]
     For Degree of 5 polynomial approximation, we can have:
     \[ f(x) \approx x - \frac{x^3}{3} + \frac{x^5}{5} + O(x^6) \]
+    NOTE: $O(x^6)$ is the remaining higher order term of the expansion that can be ignored in our calculation.
 \end{proof}
 
 \textbf{(c): }
@@ -333,8 +332,8 @@ Since \( |x| \leq 1 \) on \([-1,1]\):
 \\
 In comparing the error estimates from parts (a) and (c), the Taylor series approximation (part~c) yields a significantly smaller error bound of \( |R_5(x)| \leq 0.0208 \) over the interval \([-1, 1]\), 
 compared to the Chebyshev interpolation (part a) which has an error bound of \( |f(x) - P_3(x)| \leq 0.125 \). 
-This superior accuracy of the Taylor approximation arises because it utilizes a higher-degree polynomial (degree~5 versus degree~3) and incorporates derivative information at a single point (\(x=0\)), allowing for a more precise local fit. 
-In contrast, Chebyshev interpolation distributes interpolation nodes across the entire interval to minimize the maximum error uniformly but does not exploit derivative information, resulting in a larger overall error bound. 
+This higher accuracy of the Taylor approximation arises because it utilizes a higher-degree polynomial (degree~5 versus degree~3) and incorporates derivative information at a extra critica point (\(x=0\)), allowing for a more precise local fit. 
+In contrast, Chebyshev interpolation distributes interpolation nodes across the entire interval to minimize the maximum error uniformly but does not use information from function's derivative, resulting a larger overall error bound. 
 Therefore, the Taylor series provides a better error estimate in this case due to its enhanced local accuracy near the expansion point.
 
 \problem{Determine a quadratic spline approximation \(S(x)\) to \(f(x) = \arctan(x)\) with nodes \(-1,0,1\).}
@@ -358,7 +357,7 @@ Therefore, the Taylor series provides a better error estimate in this case due t
     \[ S_1(0) = c_1 = 0, \ S_2(0) = c_2 = 0 \]
     interpolation at $x = 1$:
     \[ S_2(-1) = a_2(1)^2 + b_2(1) + c_2 = \frac{\pi}{4} \] 
-    Then, we apply continuity conditions at $x = 0$,
+    To solve for the needed coefficients, we first apply the continuity conditions at $x = 0$,
     \\
     Continuity of the function at $x = 0$:
     \[ S_1(0) = S_2(0) \Longrightarrow c_1 = c_2 = 0 \]
