@@ -65,7 +65,7 @@
 
 \problem{[Book 6.4.14] Determine whether the following is a natural cubic spline:
 \[f(x) = \begin{cases}
-    2(x+1)^3 + (x+1)^3 & x \in [-1,0]\\
+    2(x+1) + (x+1)^3 & x \in [-1,0]\\
     3 + 5x + 3x^2 & x \in [0,1]\\
     11 + 11(x-1) + 3(x-1)^2 - (x-1)^3 & x \in [1,2]
 \end{cases}\]}
@@ -82,7 +82,7 @@
     \\
     1. For \( x \in [-1, 0] \):
     \[
-       f(x) = 2(x + 1)^3 + (x + 1)^3 = 3(x + 1)^3.
+       f(x) = 2(x + 1) + (x + 1)^3
     \]
     2. For \( x \in [0, 1] \):
     \[
@@ -98,7 +98,7 @@
     \\
     - At \( x = 0 \):
     \[
-        \lim_{x \to 0^-} f(x) = 3(0 + 1)^3 = 3(1)^3 = 3,
+        \lim_{x \to 0^-} f(x) = 2(0 + 1) + (0 + 1)^3 = 2 + 1 = 3,
     \]
     \[
         \lim_{x \to 0^+} f(x) = 3 + 5(0) + 3(0)^2 = 3.
@@ -118,7 +118,7 @@
     \\
     For \( x \in [-1, 0] \):
        \[
-       f'(x) = 3 \cdot 3(x + 1)^2 = 9(x + 1)^2.
+       f'(x) = 3 \cdot 3(x + 1)^2 = 3(x + 1)^2 + 2
        \]
     2. For \( x \in [0, 1] \):
        \[
@@ -128,24 +128,29 @@
        \[
        f'(x) = 11 + 6(x - 1) - 3(x - 1)^2.
     \]
-    \\
-    Then, check the continuity of the first derivative at \( x = 0 \):
+    Then, check the continuity of the first derivative at \( x = 10\):
     \\
     - From the left:
     \[
-        \lim_{x \to 0^-} f'(x) = 9(0 + 1)^2 = 9(1)^2 = 9.
+        \lim_{x \to 0^-} f'(x) = 3(0 + 1)^2 + 2 = 5
     \]
     - From the right:
     \[
         \lim_{x \to 0^+} f'(x) = 5 + 6(0) = 5.
     \]
-    Since \( \lim_{x \to 0^-} f'(x) \ne \lim_{x \to 0^+} f'(x) \), the first derivative \( f'(x) \) is not continuous at \( x = 0 \).
+    Lastly, check the continuity of the first derivative at \( x = 1 \):
     \\
-    Conclusion:
-    \\
-    Because \( f'(x) \) is not continuous at \( x = 0 \), \( f(x) \) is not once continuously differentiable on \([-1, 2] \). A natural cubic spline requires the function to be twice continuously differentiable on the interval and to satisfy the natural boundary conditions. Therefore, \( f(x) \) is \textbf{not} a natural cubic spline.
+    - From the left:
+    \[
+        \lim_{x \to 1^-} f'(x) = 5 + 6(1) = 11.
+    \]
+    - From the right:
+    \[
+        \lim_{x \to 1^+} f'(x) = 11 + 6(1 - 1) - 3(x - 1)^2 = 11
+    \]
+    By cubic spline's definition, the function is twice continuously differentiable on the interval, statisfying natural boundart conditions.
+    Therefore, $f(x)$ is a cubic spline.
 \end{proof}
-
 
 \problem{[Book 6.4.25] Determine coefficients \(a,b,c,d\), which make the following a cubic spline:
 \[f(x) = \begin{cases}
@@ -171,6 +176,7 @@
     Set them equal so that $a = 0$.
     \\
     By definition, first derivative countinuity means: $f{'}(0^{-}) = f{'}(0^{+})$:
+    \\
     Calculate each side:
     \[ f(0^{-}) = 3(0)^2 = 0, f(0^{+}) = b + 2c(0) + 3d(0)^2 = b \]
     Set them equal so that $b = 0$.
@@ -185,15 +191,19 @@
     \\
     Since $a = b = c = 0$, the functiona for $x \in [0,1]$ simplifies to:
     \[ f(x) = dx^3 \]
-    Ensure Smoothness at $x = 1$:
-    Eventhough the function is not defined beyond $x = 1$, we want to ensure the Smoothness of the pline. 
-    In general, $d$ can be any real number.
+    Eventhough the function is not defined beyond $x = 1$, we want to ensure the Smoothness of the spline. 
+    In general, $d$ can be any real number, since the question is lack of boundness conditions.
     \\
     Assuming we want $f(x)$ to be continuous at $x = 1$, and since $f(x) = x^3$ on $[-1, 0]$, it is reasonable externing this to $[0,1]$ by letting $d = 1$.
     \\
     Therefore, the coefficients are:
     \[ a = 0, b = 0, c = 0, d = 1 \]
     This makes $f(x) = x^3$ on both intervals, ensuring that the function and its derivatives are continuous across the entire domain $[-1, 1]$.
+    Overall, the answer will be:
+    \[f(x) = \begin{cases}
+        x^3 & -1 \leq x \leq 0 \\
+        x^3 & 0 \leq x \leq 1
+    \end{cases}\]
 \end{proof}
 
 \problem{Let \(f(x) = \arctan(x)\) 
@@ -264,7 +274,7 @@
     \[ |f(x) - P_3(x)| \leq \frac{M}{4!} \cdot \prod_{k=0}^{3}|x - x_k| \leq \frac{24}{24} \cdot \frac{1}{8} = \frac{1}{8} = 0.125 \]
     The maximum interpolation error when approximating $f(x) = arctan(x)$ on $[-1,1]$ using a degree 3 polynomial with Chebyshev nodes is bounded by 0.125.
 \end{proof}
-
+\\
 \textbf{(b): }
 \\
 \begin{proof}
@@ -274,7 +284,7 @@
     \[ f(x) \approx x - \frac{x^3}{3} + \frac{x^5}{5} + O(x^6) \]
     NOTE: $O(x^6)$ is the remaining higher order term of the expansion that can be ignored in our calculation.
 \end{proof}
-
+\\
 \textbf{(c): }
 \\
 \begin{proof}
@@ -327,7 +337,7 @@ Since \( |x| \leq 1 \) on \([-1,1]\):
     |R_5(x)| \leq \frac{1}{48} \approx 0.0208
 \]
 \end{proof}
-
+\\
 \textbf{(d): }
 \\
 In comparing the error estimates from parts (a) and (c), the Taylor series approximation (part~c) yields a significantly smaller error bound of \( |R_5(x)| \leq 0.0208 \) over the interval \([-1, 1]\), 
@@ -375,7 +385,7 @@ Therefore, the Taylor series provides a better error estimate in this case due t
     \[ f'(x) = \frac{1}{1 + x^2} \]
     \[ f''(x) = -\frac{2x}{(1 + x^2)^2} \]
     At $x = -1$:
-    \[ f''(-1) = -\frac{2(-1)}{(1 + (-1)^2)^2} = \frac{2}{4} \frac{1}{2} \]
+    \[ f''(-1) = -\frac{2(-1)}{(1 + (-1)^2)^2} = \frac{2}{4} = \frac{1}{2} \]
     Set:
     \[ S_1''(x) = 2a_1 = f''(-1) \Longrightarrow a_1 = \frac{1}{4} \]
     At $x = 1$:
@@ -432,7 +442,7 @@ Therefore, the Taylor series provides a better error estimate in this case due t
     \item Use the interpolation to estimate the roots of \(f(x)\) in those intervals.
 \end{enumerate}}
 \solution
-
+\\
 \textbf{(1): }
 \\
 \begin{proof}
@@ -452,8 +462,9 @@ Therefore, the Taylor series provides a better error estimate in this case due t
     \[ f(1.5) = 4(1.5)^2 - 4^{1.5} = 4(2.25) - 4^{1.5} = 9 - 4^{1.5} = 9 - 8 = 1 > 0 \]
     Since $f(0) < 0$ and $f(1.5) > 0$, and $f(x)$ is continuous on $[0, 1.5]$, by IVT, there is at least one root in $[0, 1.5]$.
 \end{proof}
-
+\\
 \textbf{(2): }
+\\
 \begin{proof}
 As an additional condition for interpolation, we use the derivative at \( x = 0 \):
 \[ f'(0) = 8x - 4^x \ln(4) = -\ln 4 \]
@@ -509,7 +520,7 @@ Lastly, the Final Interpolating Polynomial will be
     P(x) = (8 \ln 2 -6) x^3 + 3 x^2 - 2 \ln 2 \, x -1.
 \]
 \end{proof}
-
+\\
 \textbf{(3): }
 \\
 From Part 2, the interpolating polynomial is:
