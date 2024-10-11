@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{environ}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\NewEnviron{problem}{
+    \stepcounter{pnum}
+    \begin{center}
+        \fbox{
+        \begin{minipage}{0.95\linewidth}
+            \textbf{\thepnum.} \BODY
+        \end{minipage}}
+    \end{center}
+
+    \textbf{Solution. }
+}
+
+\title{\vspace{-5em}Homework 5 (root finding)}
+\author{name}
+\begin{document}
+
+\maketitle
+
+
+\begin{problem}
+    Based on a steady-state calculation, you know that the production feed \(P\) from a reactor depends on an input feed \(F\) as follows:
+    \[P(F) = 5F^2 + 2F\]
+
+    On the other hand, this input feed comes from a different stead-state calculation, and you know that it is a positive root of the function
+    \[Q(F) = -2F^2 + F + 8.\]
+
+    \begin{enumerate}[a)]
+        \item Show that \(Q\) has a positive root by applying the IVT to an interval of the form \([0,M]\)
+        \item Using error propagation, estimate how the error for \(P(F)\) depends on the error in \(F\). Your answer will be a function of both \(F\) and \(\sigma_F\).
+        \item Combine your \(M\) from part \((a)\) with your answer to \((b)\) to bound the error in terms of \(M\) and \(\sigma_F\) only. 
+        \item Determine how many steps of the bisection method, applied to your interval \([0,M]\), are necessary to obtain an error less than \(10^{-8}\) in \(P(F)\).
+        \item Explain why the calculation in (c) was necessary for (d). Propose a way to sharpen the bound (c) at each step of the bisection method. Hint: the bound depends on \(M\); can you improve it along the way? Even better, could you improve it by changing the left endpoint of the starting interval?
+        \item Determine the better error bound for the estimated \(P(F)\) based on your proposal in (e). It should depend only on \(M\), the step number \(k\), and the approximate root \(F_k\).
+        \item Explain why using the error estimate (f) is almost certainly not worth the extra complexity.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    Write a small computer program implementing the bisection method. Use it to estimate a root of
+    \[x^3-4x^3-8x+30\]
+    on the interval \([2,4]\) to an accuracy of \(10^{-6}\). Your program should produce a fraction of the form \(\dfrac {N}{2^k}\). You do not need to include the program with your homework. Just report:
+    \begin{enumerate}[a)]
+        \item The number of steps you used, with justification.
+        \item The fraction \(\frac{N}{2^k}\).
+    \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+    Determine a polynomial \(f(x)\) of degree \(3\) such that Newton's method applied to it with an initial guess of \(x=2\) fails to converge because the iterates alternates between \(2\) and another value.
+    
+    Hint: draw a picture.
+    
+    Hint: there are a lot of free parameters -- you can pick the other value \(x\) in the NM sequence, as well as \(f(2)\) and \(f(x)\), after which Newton's method forces two constraints on \(f'\) -- what is it, and why? In total, you will have a system of four linear equations in four variables to solve.
+\end{problem}
+
+\begin{problem}
+    Generalize (3) as follows. Let \(f(x) = ax^3 + bx^2 + cx +d\) be a cubic polynomial and \(x\neq y\) two points.
+    \begin{enumerate}
+        \item Given two points \((x,f(x))\) and \((y,f(y))\), determine the NM constraints on \(f'(x)\) and \(f'(y)\) that ensure the NM sequence is \(x,y,x,y,...\).
+        \item Observe that you have \(4\) linear constraints on \(f\). Summarize them in matrix form.
+        \item Using a computer algebra system, calculate the determinant (as a polynomial in \(x\) and \(y\). Then, show that it is nonzero.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    Using Newton's method, determine an efficient and accurate method for estimating the unique positive \(6\)th root of a positive real number.
+\end{problem}
+
+\begin{problem}
+    [hard problem] Assume \(f\) is continuously twice differentiable, that \(f'' >C>0\), and that our sequence converges to some \(x\) which is a double root of \(f\), so both \(f(x)\) and \(f'(x)\) are zero. Establish an error bound of the form
+    \[|e_n| \leq (constant) |e_{n-1}|.\]
+    Hint: we saw an example of this with \(f(x) = x^2\). Hint: at Eqn 2 pg 84, develop the denominator by using the mean value theorem on \(f'\) on \([x_n,x]\), i.e. write the difference quotion as
+    \[\frac{f'(x_n) - f'(x)}{x_n-x} = f''(*)\]
+    (what is \(*\)?). Simplify and rearrange, then combine with the application of the MVT to the numerator from the error analysis in class, further simplify, and conclude.
+\end{problem}
+
+\begin{problem}
+    Suppose you're in a Question 6 situation:
+    \begin{enumerate}
+        \item If the Q6 constant is \(0.8\), would you rather use Newton's method or bisection? Justify your answer.
+        \item If the Q6 constant is \(0.5\), would you rather use Newton's method or bisection? Justify your answer.
+        \item If the Q6 constant is \(0.0001\), would you rather use Newton's method or bisection? Justify your answer.
+        \item Explain why the choice of Newton vs bisection might not be clear-cut if the Q6 constant is something like \(0.45\). What factors might you consider to make your decision?
+    \end{enumerate}
+
+
+    
+\end{problem}
+\end{document}
