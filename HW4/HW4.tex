@@ -318,11 +318,7 @@ On \([-1,1]\):
 \]
 Lastly, we combine the bounds:
 \[
-|f^{(6)}(x)| = \frac{240|x||3x^4 -10x^2 + 3|}{(x^2 + 1)^6} \leq \frac{240 \times 1 \times 4}{1} = 960 \quad \text{at } x = \pm1
-\]
-However, evaluating at \( x = \pm1 \):
-\[
-|f^{(6)}(\pm1)| = \frac{240 \times 1 \times 4}{(1 + 1)^6} = \frac{960}{64} = 15
+|f^{(6)}(x)| = \frac{240|x||3x^4 -10x^2 + 3|}{(x^2 + 1)^6} \leq \frac{240 \times 1 \times 4}{64} = 15 \quad \text{at } x = \pm1
 \]
 Since \( |f^{(6)}(x)| \) attains its maximum at \( x = \pm1 \), we set:
 \[
@@ -356,7 +352,7 @@ Therefore, the Taylor series provides a better error estimate in this case due t
             S_2(x) = a_2x^2 + b_2x + c_2, \ for \ x \in [0, 1], \\
         \end{cases}
     \]
-    Then we apply the interpolation conditions, computing the function vlaues at the nodes:
+    Then we apply the interpolation conditions, computing the function values at the nodes:
     \[ f(-1) = arctan(-1) = -\frac{\pi}{4} \]
     \[ f(0) = arctan(0) = 0 \]
     \[ f(1) = arctan(1) = \frac{\pi}{4} \]
@@ -573,7 +569,7 @@ Using the Bisection Method:
 \\
 By continuing this process, we estimate:
 \[
-x_2 \approx 0.93.
+    x_2 \approx 0.93.
 \]
 Conclusion:
 \\
