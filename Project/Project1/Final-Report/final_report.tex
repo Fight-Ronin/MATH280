@@ -1,0 +1,243 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage[backend=biber]{biblatex}
+\bibliography{app_log.bib}
+
+\newcounter{entry}
+\newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
+
+\title{\vspace{-2cm}Project 1 Post-port}
+\author{Hanzhang Yin}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Summary}
+
+The Project focusing on using Markov models to analyze the tonal patterns in classical Chinese poetry, paticularly examining whether sequences of tones align with the strict metrical rules of 
+(lv shī). These rules dictate specific tonal arragnements between \textit{even tone} and \textit{oblique tones} within each line of a poem, similar to the stressed and unstressed syllables arranged in metered English
+poetry. The goal of this project is to construct a Markov matrix to capture the probabilities of transition between different tones, find the equilibrium distribution, and use it to gain 
+insights into whether the observed tonal patterns match the expected ones.
+
+The tonal pattern in (lv shī) have a direct analogy to metrical patterns in English poetry, such as iamic penameter, trochaic tetrameter, and other structured forms where syllable stress plays a defining role.
+In classical Chinese poetry, each character (or syllable) is categorized intor either even (stable tone), or oblique (rising / falling tone). This binary cateogization resembles the \textit{stressed} and \textit{unstressed} syllables 
+in English Prosody.
+
+% For example, in English poetry, one of the most famous example is iambic pentameter, which consists of five pairs of alternating unstressed-stressed syllables (da-DUM, da-DUM, etc.). 
+% This regular pattern creates a rhythmic flow, which poets can manipulate for emphasis, tension, or variation.
+% Similarly, deviations from the expected even/oblique patterns in "lv shi" can indicate emphasis, emotion, or a deliberate break from tradition.
+
+Markov matrices are tools used to model transitions between states, where each element \( M_{ij} \) represents the probability of moving from state \( i \) to state \( j \). 
+In the context of English poetry meters, we can define states as \textit{stressed} (S) or \textit{unstressed} (U) syllables, or even larger metrical units like \textit{iambs} (U-S) and \textit{trochees} (S-U). 
+For instance, an iambic pentameter line alternates between U and S, which can be represented by a simple Markov matrix: 
+
+\[
+    M = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+\]
+Indicating that U is always followed by S, and vice versa. By expanding the matrix to allow for deviations (e.g., occasional trochees or spondees), we can analyze the stylistic flexibility of a poem.
+Furthermore, computing the \textit{equilibrium distribution} of the matrix reveals the long-term proportion of different metrical units, which helps identify dominant rhythmic patterns.
+
+Lastly, here are some additional linguistic features that might be interesting using Markov methods to analyze under the hood:
+\begin{itemize}
+    \item Rhyme Schemes: Could applied to different poetry under different ``Dynasty'' to study how rhymes evolve and how certain poets deviate from common schemes.
+    \item Sentence Length and Complexity: Study transitions between short and long sentences, or simple vs. complex clauses, especially in prose or in political speeches, to identify style...
+\end{itemize}
+
+\section{Pre-port}
+The project aims to distinguish the styles of Zhu Shuzhen and Du Fu using Markov matrices by modeling the tonal patterns in their poetry. Each poem is encoded as a sequence of \textit{even} or \textit{oblique} tonal states, with transition probabilities captured in a matrix $M$, where $M_{ij}$ denotes the probability of transitioning from state $i$ to state $j$.
+\\
+\textbf{Using Markov Matrices to Distinguish Authors: }
+\\
+For each poet, we construct a separate Markov matrix $M_{\text{Zhu}}$ and $M_{\text{Du}}$ from their corpus, defined as:
+
+\[
+    M_{\text{Zhu}} = \begin{bmatrix} p_{UU} & p_{UZ} \\ p_{ZU} & p_{ZZ} \end{bmatrix}, \quad M_{\text{Du}} = \begin{bmatrix} q_{UU} & q_{UZ} \\ q_{ZU} & q_{ZZ} \end{bmatrix}
+\]
+where $p_{ij}$ and $q_{ij}$ are the probabilities of transitioning from tone $i$ to tone $j$ for Zhu Shuzhen and Du Fu, respectively. These matrices are expected to differ due to each poet's stylistic choices in adhering to classical tonal rules. The equilibrium vector $\mathbf{v}$ for each matrix, satisfying $M \mathbf{v} = \mathbf{v}$, represents the long-term distribution of tonal states.
+\\
+\textbf{Validation and Classification: }
+\\
+Given a test poem's tonal sequence $x = (x_1, x_2, \ldots, x_n)$, we compute the \textit{log-likelihood} under each author's matrix:
+
+\[
+    \mathcal{L}_{\text{Zhu}} = \sum_{i=1}^{n-1} \log M_{\text{Zhu}}[x_i, x_{i+1}], \quad \mathcal{L}_{\text{Du}} = \sum_{i=1}^{n-1} \log M_{\text{Du}}[x_i, x_{i+1}]
+\]
+If $\mathcal{L}_{\text{Zhu}} > \mathcal{L}_{\text{Du}}$, we classify the poem as Zhu Shuzhen's. Alternatively, we can compare the test poem’s equilibrium vector $\mathbf{v}_{\text{test}}$ with $\mathbf{v}_{\text{Zhu}}$ and $\mathbf{v}_{\text{Du}}$ using similarity measures such as \textit{cosine similarity} or \textit{Euclidean distance}.
+\\
+\textbf{Identifying Authors or Genres: }
+\\
+To identify an author, we compute the Euclidean distance:
+
+\[
+    d_{\text{Zhu}} = \|\mathbf{v}_{\text{test}} - \mathbf{v}_{\text{Zhu}}\|, \quad d_{\text{Du}} = \|\mathbf{v}_{\text{test}} - \mathbf{v}_{\text{Du}}\|
+\]
+The author is identified as the one corresponding to the minimum distance. Moreover, differences in matrix structure or equilibrium distributions may also indicate genre differences, as classical genres often impose distinct tonal patterns.
+\\
+\textbf{Expectations: }
+\\
+Given the strict tonal constraints in classical poetry and known stylistic differences, we expect to distinguish Du Fu and Zhu Shuzhen with reasonable accuracy. 
+Referencing on their own style of writing, Du Fu's matrix should show a more balanced equilibrium, reflecting stricter adherence to tonal rules,
+while Zhu Shuzhen's may exhibit greater flexibility, creating distinct equilibrium patterns.
+
+\newpage
+
+\section{calculation Result: }
+\noindent For my implementation, I used two different strategy to address the author prediction task.
+
+\section*{Log-likelihood Calculation: }
+
+\subsection*{Zhu Shuzhen's Markov Matrix:}
+
+\[
+\begin{bmatrix}
+\frac{3}{10} & \frac{47}{190} & \frac{29}{190} & \frac{3}{10} \\
+\frac{53}{156} & \frac{1}{4} & \frac{11}{78} & \frac{7}{26} \\
+\frac{35}{103} & \frac{27}{103} & \frac{15}{103} & \frac{26}{103} \\
+\frac{55}{199} & \frac{56}{199} & \frac{27}{199} & \frac{61}{199}
+\end{bmatrix}
+\]
+
+\subsection*{Du Fu's Markov Matrix:}
+
+\[
+\begin{bmatrix}
+\frac{1}{3} & \frac{29}{103} & \frac{46}{309} & \frac{73}{309} \\
+\frac{88}{279} & \frac{73}{279} & \frac{49}{279} & \frac{23}{93} \\
+\frac{27}{80} & \frac{41}{160} & \frac{1}{10} & \frac{49}{160} \\
+\frac{69}{236} & \frac{37}{118} & \frac{21}{118} & \frac{51}{236}
+\end{bmatrix}
+\]
+
+\subsection*{Test Case for Zhu Shuzhen: }
+
+\subsubsection*{Total Log-Likelihood for Zhu Shuzhen:}
+
+\begin{align*}
+& 3 \log\left(\frac{35}{103}\right) + 5 \log\left(\frac{53}{156}\right) + 4 \log\left(\frac{61}{199}\right) + 3 \log\left(\frac{3}{10}\right) \\
+& + 6 \log\left(\frac{56}{199}\right) + 3 \log\left(\frac{55}{199}\right) + 2 \log\left(\frac{7}{26}\right) + 5 \log\left(\frac{26}{103}\right) \\
+& + 5 \log\left(\frac{1}{4}\right) + 3 \log\left(\frac{47}{190}\right) + 4 \log\left(\frac{29}{190}\right) + 2 \log\left(\frac{15}{103}\right) \\
+& + 2 \log\left(\frac{11}{78}\right) + \log\left(\frac{27}{199}\right)
+\end{align*}
+
+\subsection*{Total Log-Likelihood for Du Fu:}
+
+\begin{align*}
+& 3 \log\left(\frac{27}{80}\right) + \log\left(\frac{1}{3}\right) + 5 \log\left(\frac{88}{279}\right) + 6 \log\left(\frac{37}{118}\right) \\
+& + 5 \log\left(\frac{49}{160}\right) + 3 \log\left(\frac{69}{236}\right) + 3 \log\left(\frac{29}{103}\right) + 5 \log\left(\frac{73}{279}\right) \\
+& + 2 \log\left(\frac{23}{93}\right) + 2 \log\left(\frac{73}{309}\right) + 4 \log\left(\frac{51}{236}\right) + \log\left(\frac{21}{118}\right) \\
+& + 2 \log\left(\frac{49}{279}\right) + 4 \log\left(\frac{46}{309}\right) + 2 \log\left(\frac{1}{10}\right)
+\end{align*}
+
+\subsubsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
+Zhu Shuzhen
+
+\subsection*{Test Case for Zhu Shuzhen: }
+
+\subsubsection*{Total Log-Likelihood for Zhu Shuzhen:}
+
+\begin{align*}
+& 10 \log\left(\frac{35}{103}\right) + 9 \log\left(\frac{53}{156}\right) + 5 \log\left(\frac{61}{199}\right) + 19 \log\left(\frac{3}{10}\right) \\
+& + 6 \log\left(\frac{56}{199}\right) + 7 \log\left(\frac{55}{199}\right) + 9 \log\left(\frac{7}{26}\right) + 4 \log\left(\frac{27}{103}\right) \\
+& + 3 \log\left(\frac{26}{103}\right) + 3 \log\left(\frac{1}{4}\right) + 18 \log\left(\frac{47}{190}\right) + 2 \log\left(\frac{29}{190}\right) \\
+& + \log\left(\frac{15}{103}\right) + 7 \log\left(\frac{11}{78}\right) + 5 \log\left(\frac{27}{199}\right)
+\end{align*}
+
+\subsubsection*{Total Log-Likelihood for Du Fu:}
+
+\begin{align*}
+& 10 \log\left(\frac{27}{80}\right) + 11 \log\left(\frac{1}{3}\right) + 9 \log\left(\frac{88}{279}\right) + 6 \log\left(\frac{37}{118}\right) \\
+& + 3 \log\left(\frac{49}{160}\right) + 7 \log\left(\frac{69}{236}\right) + 18 \log\left(\frac{29}{103}\right) + 3 \log\left(\frac{73}{279}\right) \\
+& + 4 \log\left(\frac{41}{160}\right) + 9 \log\left(\frac{23}{93}\right) + 8 \log\left(\frac{73}{309}\right) + 5 \log\left(\frac{51}{236}\right) \\
+& + 5 \log\left(\frac{21}{118}\right) + 7 \log\left(\frac{49}{279}\right) + 2 \log\left(\frac{46}{309}\right) + \log\left(\frac{1}{10}\right)
+\end{align*}
+
+\subsubsection*{Predicted Author for Du Fu's Test Tones: }
+Du Fu
+
+\section*{Euclidean Distance and Consine Similarity Calculation: }
+
+\subsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
+
+\begin{itemize}
+    \item Cosine Similarity with Zhu Shuzhen: 0.9789041921911098
+    \item Cosine Similarity with Du Fu: 0.9729092716043023
+    \item Euclidean Distance to Zhu Shuzhen: 0.10495126147082444
+    \item Euclidean Distance to Du Fu: 0.11872876556336236
+    \item Cosine Similarity Prediction: Zhu Shuzhen
+    \item Euclidean Distance Prediction: Zhu Shuzhen
+\end{itemize}
+
+\subsection*{Predicted Author for Du Fu's Test Tones:}
+
+\begin{itemize}
+    \item Cosine Similarity with Zhu Shuzhen: 0.9598323728518315
+    \item Cosine Similarity with Du Fu: 0.9755859048660054
+    \item Euclidean Distance to Zhu Shuzhen: 0.1482684467244978
+    \item Euclidean Distance to Du Fu: 0.11595078252667476
+    \item Cosine Similarity Prediction: Du Fu
+    \item Euclidean Distance Prediction: Du Fu
+\end{itemize}
+
+\section*{Baseline Method - Infinity Vector Norm Calculation: }
+
+\subsection*{Baseline Infinity Norm Prediction for Zhu Shuzhen's test tones:}
+
+\begin{itemize}
+    \item Infinity Norm Difference with Zhu Shuzhen: 0.07692068226362686
+    \item Infinity Norm Difference with Du Fu: 0.09668192553969868
+    \item Baseline Infinity Norm Prediction: Zhu Shuzhen
+\end{itemize}
+
+\subsection*{Baseline Infinity Norm Prediction for Du Fu's test tones:}
+
+
+\begin{itemize}
+    \item Infinity Norm Difference with Zhu Shuzhen: 0.12762972269326903
+    \item Infinity Norm Difference with Du Fu: 0.08415719396641286
+    \item Baseline Infinity Norm Prediction: Du Fu
+\end{itemize}
+
+\newpage
+
+\section{Post-port}
+This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the log-likelihood method, equilibrium vector comparison via cosine similarity and Euclidean distance, as well as a baseline approach using the infinity norm.
+
+\subsection*{Log-Likelihood Method}
+
+The log-likelihood method correctly predicted Zhu Shuzhen as the author of the test tones.
+\\
+\noindent With a higher total log-likelihood for Zhu Shuzhen, this method accurately captured the tonal transitions characteristic of her style. 
+\\
+The reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. 
+This approach is particularly robust when dealing with small datasets, as it inherently accounts for the probabilities of each transition in a cumulative manner.
+
+
+\subsection*{Cosine Similarity and Euclidean Distance Methods}
+The equilibrium vector comparison using cosine similarity and Euclidean distance also predicted the correct authorship for both test cases. 
+The cosine similarity values for Zhu Shuzhen's test tones were higher when compared to her own matrix (0.9789) versus Du Fu’s (0.9729), and the Euclidean distance was lower for Zhu Shuzhen (0.1049) than Du Fu (0.1187), leading to the correct prediction for Zhu Shuzhen. 
+Similarly, Du Fu's test tones showed higher cosine similarity with his own matrix (0.9756) than Zhu Shuzhen's (0.9598), and a lower Euclidean distance (0.1159) compared to Zhu Shuzhen (0.1483), resulting in the correct prediction for Du Fu.
+\\
+While these methods performed well, slight discrepancies in the similarity scores and distances suggest that vector-based methods may be less robust when dealing with small datasets.
+\\
+\noindent Here are several potential reasons that might render prediction inconsistency:
+\begin{itemize}
+    \item \textbf{Small Test Case Size:} The limited size of the test sequence means that the calculated Markov matrix and equilibrium vector do not fully capture the general stylistic information. This can lead to inaccurate comparisons when using vector-based methods like cosine similarity and Euclidean distance.
+    \item \textbf{Overfitting to Local Patterns:} The equilibrium vector derived from the small dataset may overemphasize specific transitions that are not representative of Zhu Shuzhen’s overall style, leading to closer matches with Du Fu's matrix.
+    \item \textbf{Sensitivity of Similarity Measures:} Cosine similarity and Euclidean distance are sensitive to the direction and magnitude of the vectors. Given the sparse data, these measures may incorrectly favor Du Fu's equilibrium vector.
+\end{itemize}
+
+\subsection*{Baseline Infinity Norm Method}
+The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu as the authors of their respective test tones. The infinity norm differences were smaller for the correct author in both test cases.
+\\
+The simplicity of this method may contribute to its success, as it captures the general tonal patterns when comparing equilibrium vectors to the test tones.
+
+\subsection*{Conclusion}
+The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
+\\
+Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood method stands out for its robustness. The vector-based methods, including cosine similarity, Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
+
+
+\end{document} 
