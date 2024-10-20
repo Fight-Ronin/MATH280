@@ -65,23 +65,26 @@ A baseline infinity norm method was also applied to compare the differences betw
 
 \textbf{Baseline Infinity Norm Prediction for Zhu Shuzhen's test tones:}
 \begin{itemize}
-    \item Infinity Norm Difference with Zhu Shuzhen: 0.2093
-    \item Infinity Norm Difference with Du Fu: 0.1896
-    \item Baseline Infinity Norm Prediction: Du Fu
+    \item Infinity Norm Difference with Zhu Shuzhen: 0.07692068
+    \item Infinity Norm Difference with Du Fu: 0.09668192553969868
+    \item Baseline Infinity Norm Prediction: Zhu Shuzhen
 \end{itemize}
 
 \textbf{Baseline Infinity Norm Prediction for Du Fu's test tones:}
 \begin{itemize}
-    \item Infinity Norm Difference with Zhu Shuzhen: 0.1967
-    \item Infinity Norm Difference with Du Fu: 0.1770
-    \item Baseline Infinity Norm Prediction: Du Fu
+    \item Infinity Norm Difference with Zhu Shuzhen:
+    \item Infinity Norm Difference with Du Fu: 
+    \item Baseline Infinity Norm Prediction: 
 \end{itemize}
 
-\noindent Similar to the cosine similarity and Euclidean distance methods, the baseline infinity norm method incorrectly predicted Du Fu as the author, suggesting that vector norm methods may not capture the nuances of Zhu Shuzhen's style from small test cases.
+\noindent The base line method provides correct prediction on Zhu Shuzhen's test tones
 
 \subsection*{Conclusion}
 
-The log-likelihood method provided accurate results due to its probabilistic nature, directly utilizing the transition probabilities from the Markov matrices, making it more reliable even with small datasets. In contrast, the cosine similarity, Euclidean distance, and baseline infinity norm methods all yielded incorrect predictions. Specifically, the cosine similarity values of 0.5729 with Zhu Shuzhen and 0.6121 with Du Fu, Euclidean distances of 0.8218 to Zhu Shuzhen and 0.7970 to Du Fu, and infinity norm differences of 0.2093 with Zhu Shuzhen and 0.1896 with Du Fu, highlight the difficulty in capturing Zhu Shuzhen's tonal patterns using these vector-based methods.
+The log-likelihood provided accurate results due to its probabilistic nature, directly utilizing the transition probabilities from the Markov matrices, making it more reliable even with small datasets.
+The vector-norm method provided accurate results as well, my intuition on this behavior is that the simplicity of the calcuation process captures the generic patterns of the provided tones when it compare to test tones.
+\\
+In contrast, the cosine similarity, Euclidean distance, and baseline infinity norm methods all yielded incorrect predictions. Specifically, the cosine similarity values of 0.5729 with Zhu Shuzhen and 0.6121 with Du Fu, Euclidean distances of 0.8218 to Zhu Shuzhen and 0.7970 to Du Fu, and infinity norm differences of 0.2093 with Zhu Shuzhen and 0.1896 with Du Fu, highlight the difficulty in capturing Zhu Shuzhen's tonal patterns using these vector-based methods.
 \\
 Overall, the results demonstrate the effectiveness of the log-likelihood method in authorship attribution tasks, especially when data is limited. The vector-based methods may require larger datasets or further refinement to better account for stylistic nuances in tonal transitions.
 
