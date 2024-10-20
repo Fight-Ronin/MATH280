@@ -17,42 +17,26 @@
 
 \section*{Summary of Results}
 
-This project aimed to distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices and various computational methods. The test sequence was analyzed using two approaches: the log-likelihood method and a comparison of equilibrium vectors using cosine similarity and Euclidean distance.
+This project aimed to distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices and various computational methods. The test sequence was analyzed using the log-likelihood method, equilibrium vector comparison via cosine similarity and Euclidean distance, as well as a baseline approach using the infinity norm.
 
 \subsection*{Log-Likelihood Method}
 
-The log-likelihood method correctly predicted Zhu Shuzhen as the author of the test tones. The total log-likelihoods were computed as follows:
-
-\[
-L_{Zhu} = 3 \log\left( \frac{35}{103} \right) + 5 \log\left( \frac{53}{156} \right) + 4 \log\left( \frac{61}{199} \right) + \ldots = \text{(summed result)}
-\]
-\[
-L_{Du} = 3 \log\left( \frac{27}{80} \right) + \log\left( \frac{1}{3} \right) + 5 \log\left( \frac{88}{279} \right) + \ldots = \text{(summed result)}
-\]
-
+The log-likelihood method correctly predicted Zhu Shuzhen as the author of the test tones.
+\\
 \noindent With a higher total log-likelihood for Zhu Shuzhen, this method accurately captured the tonal transitions characteristic of her style. 
 \\
-The reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. This approach is particularly robust when dealing with small datasets, as it inherently accounts for the probabilities of each transition in a cumulative manner.
+The reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. 
+This approach is particularly robust when dealing with small datasets, as it inherently accounts for the probabilities of each transition in a cumulative manner.
 
 
 \subsection*{Cosine Similarity and Euclidean Distance Methods}
-
-An alternative method was employed, comparing the equilibrium vectors of the Markov matrices using cosine similarity and Euclidean distance. However, both methods incorrectly predicted Du Fu as the author. The detailed results were:
-
-\begin{itemize}
-    \item \textbf{Cosine Similarity:}
-    \begin{itemize}
-        \item With Zhu Shuzhen: 0.5729
-        \item With Du Fu: 0.6121
-    \end{itemize}
-    \item \textbf{Euclidean Distance:}
-    \begin{itemize}
-        \item To Zhu Shuzhen: 0.8218
-        \item To Du Fu: 0.7970
-    \end{itemize}
-\end{itemize}
-
-\noindent Both methods favored Du Fu based on these metrics, which may be due to the following reasons:
+The equilibrium vector comparison using cosine similarity and Euclidean distance also predicted the correct authorship for both test cases. 
+The cosine similarity values for Zhu Shuzhen's test tones were higher when compared to her own matrix (0.9789) versus Du Fu’s (0.9729), and the Euclidean distance was lower for Zhu Shuzhen (0.1049) than Du Fu (0.1187), leading to the correct prediction for Zhu Shuzhen. 
+Similarly, Du Fu's test tones showed higher cosine similarity with his own matrix (0.9756) than Zhu Shuzhen's (0.9598), and a lower Euclidean distance (0.1159) compared to Zhu Shuzhen (0.1483), resulting in the correct prediction for Du Fu.
+\\
+While these methods performed well, slight discrepancies in the similarity scores and distances suggest that vector-based methods may be less robust when dealing with small datasets.
+\\
+\noindent Here are several potential reasons that might render prediction inconsistency:
 \begin{itemize}
     \item \textbf{Small Test Case Size:} The limited size of the test sequence means that the calculated Markov matrix and equilibrium vector do not fully capture the general stylistic information. This can lead to inaccurate comparisons when using vector-based methods like cosine similarity and Euclidean distance.
     \item \textbf{Overfitting to Local Patterns:} The equilibrium vector derived from the small dataset may overemphasize specific transitions that are not representative of Zhu Shuzhen’s overall style, leading to closer matches with Du Fu's matrix.
@@ -60,32 +44,13 @@ An alternative method was employed, comparing the equilibrium vectors of the Mar
 \end{itemize}
 
 \subsection*{Baseline Infinity Norm Method}
-
-A baseline infinity norm method was also applied to compare the differences between the equilibrium vectors of the test tones and the known styles of Zhu Shuzhen and Du Fu. The results were as follows:
-
-\textbf{Baseline Infinity Norm Prediction for Zhu Shuzhen's test tones:}
-\begin{itemize}
-    \item Infinity Norm Difference with Zhu Shuzhen: 0.07692068
-    \item Infinity Norm Difference with Du Fu: 0.09668192553969868
-    \item Baseline Infinity Norm Prediction: Zhu Shuzhen
-\end{itemize}
-
-\textbf{Baseline Infinity Norm Prediction for Du Fu's test tones:}
-\begin{itemize}
-    \item Infinity Norm Difference with Zhu Shuzhen:
-    \item Infinity Norm Difference with Du Fu: 
-    \item Baseline Infinity Norm Prediction: 
-\end{itemize}
-
-\noindent The base line method provides correct prediction on Zhu Shuzhen's test tones
+The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu as the authors of their respective test tones. The infinity norm differences were smaller for the correct author in both test cases.
+\\
+The simplicity of this method may contribute to its success, as it captures the general tonal patterns when comparing equilibrium vectors to the test tones.
 
 \subsection*{Conclusion}
-
-The log-likelihood provided accurate results due to its probabilistic nature, directly utilizing the transition probabilities from the Markov matrices, making it more reliable even with small datasets.
-The vector-norm method provided accurate results as well, my intuition on this behavior is that the simplicity of the calcuation process captures the generic patterns of the provided tones when it compare to test tones.
+The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
 \\
-In contrast, the cosine similarity, Euclidean distance, and baseline infinity norm methods all yielded incorrect predictions. Specifically, the cosine similarity values of 0.5729 with Zhu Shuzhen and 0.6121 with Du Fu, Euclidean distances of 0.8218 to Zhu Shuzhen and 0.7970 to Du Fu, and infinity norm differences of 0.2093 with Zhu Shuzhen and 0.1896 with Du Fu, highlight the difficulty in capturing Zhu Shuzhen's tonal patterns using these vector-based methods.
-\\
-Overall, the results demonstrate the effectiveness of the log-likelihood method in authorship attribution tasks, especially when data is limited. The vector-based methods may require larger datasets or further refinement to better account for stylistic nuances in tonal transitions.
+Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood method stands out for its robustness. The vector-based methods, including cosine similarity, Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
 
 \end{document} 

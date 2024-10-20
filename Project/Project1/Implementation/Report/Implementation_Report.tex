@@ -18,103 +18,114 @@
 \section*{Log-likelihood Calculation: }
 
 \subsection*{Zhu Shuzhen's Markov Matrix:}
+
 \[
 \begin{bmatrix}
 \frac{3}{10} & \frac{47}{190} & \frac{29}{190} & \frac{3}{10} \\
 \frac{53}{156} & \frac{1}{4} & \frac{11}{78} & \frac{7}{26} \\
 \frac{35}{103} & \frac{27}{103} & \frac{15}{103} & \frac{26}{103} \\
-\frac{55}{199} & \frac{56}{199} & \frac{27}{199} & \frac{61}{199} \\
+\frac{55}{199} & \frac{56}{199} & \frac{27}{199} & \frac{61}{199}
 \end{bmatrix}
 \]
 
 \subsection*{Du Fu's Markov Matrix:}
+
 \[
 \begin{bmatrix}
 \frac{1}{3} & \frac{29}{103} & \frac{46}{309} & \frac{73}{309} \\
 \frac{88}{279} & \frac{73}{279} & \frac{49}{279} & \frac{23}{93} \\
 \frac{27}{80} & \frac{41}{160} & \frac{1}{10} & \frac{49}{160} \\
-\frac{69}{236} & \frac{37}{118} & \frac{21}{118} & \frac{51}{236} \\
+\frac{69}{236} & \frac{37}{118} & \frac{21}{118} & \frac{51}{236}
 \end{bmatrix}
 \]
 
-\subsection*{Total log-likelihood for Zhu Shuzhen:}
-\[
-\begin{aligned}
-    &3\log\left(\frac{35}{103}\right) + 5\log\left(\frac{53}{156}\right) + 4\log\left(\frac{61}{199}\right) + 3\log\left(\frac{3}{10}\right) + 6\log\left(\frac{56}{199}\right) \\
-    &+ 3\log\left(\frac{55}{199}\right) + 2\log\left(\frac{7}{26}\right) + 5\log\left(\frac{26}{103}\right) + 5\log\left(\frac{1}{4}\right) \\
-    &+ 3\log\left(\frac{47}{190}\right) + 4\log\left(\frac{29}{190}\right) + 2\log\left(\frac{15}{103}\right) + 2\log\left(\frac{11}{78}\right) \\
-    &+ \log\left(\frac{27}{199}\right)
-\end{aligned}
-\]
-\subsection*{Total log-likelihood for Du Fu:}
-\[
-\begin{aligned}
-    &3\log\left(\frac{27}{80}\right) + \log\left(\frac{1}{3}\right) + 5\log\left(\frac{88}{279}\right) + 6\log\left(\frac{37}{118}\right) + 5\log\left(\frac{49}{160}\right) \\
-    &+ 3\log\left(\frac{69}{236}\right) + 3\log\left(\frac{29}{103}\right) + 5\log\left(\frac{73}{279}\right) + 2\log\left(\frac{23}{93}\right) \\
-    &+ 2\log\left(\frac{73}{309}\right) + 4\log\left(\frac{51}{236}\right) + \log\left(\frac{21}{118}\right) + 2\log\left(\frac{49}{279}\right) \\
-    &+ 4\log\left(\frac{46}{309}\right) + 2\log\left(\frac{1}{10}\right)
-\end{aligned}
-\]
+\subsection*{Test Case for Zhu Shuzhen: }
 
-\subsection*{Zhu Shuzhen's Test Case Output: }
+\subsubsection*{Total Log-Likelihood for Zhu Shuzhen:}
+
+\begin{align*}
+& 3 \log\left(\frac{35}{103}\right) + 5 \log\left(\frac{53}{156}\right) + 4 \log\left(\frac{61}{199}\right) + 3 \log\left(\frac{3}{10}\right) \\
+& + 6 \log\left(\frac{56}{199}\right) + 3 \log\left(\frac{55}{199}\right) + 2 \log\left(\frac{7}{26}\right) + 5 \log\left(\frac{26}{103}\right) \\
+& + 5 \log\left(\frac{1}{4}\right) + 3 \log\left(\frac{47}{190}\right) + 4 \log\left(\frac{29}{190}\right) + 2 \log\left(\frac{15}{103}\right) \\
+& + 2 \log\left(\frac{11}{78}\right) + \log\left(\frac{27}{199}\right)
+\end{align*}
+
+\subsection*{Total Log-Likelihood for Du Fu:}
+
+\begin{align*}
+& 3 \log\left(\frac{27}{80}\right) + \log\left(\frac{1}{3}\right) + 5 \log\left(\frac{88}{279}\right) + 6 \log\left(\frac{37}{118}\right) \\
+& + 5 \log\left(\frac{49}{160}\right) + 3 \log\left(\frac{69}{236}\right) + 3 \log\left(\frac{29}{103}\right) + 5 \log\left(\frac{73}{279}\right) \\
+& + 2 \log\left(\frac{23}{93}\right) + 2 \log\left(\frac{73}{309}\right) + 4 \log\left(\frac{51}{236}\right) + \log\left(\frac{21}{118}\right) \\
+& + 2 \log\left(\frac{49}{279}\right) + 4 \log\left(\frac{46}{309}\right) + 2 \log\left(\frac{1}{10}\right)
+\end{align*}
+
+\subsubsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
 Zhu Shuzhen
 
-\subsection*{Zhu Shuzhen's \& Du Fu Test Case Output: }
+\subsection*{Test Case for Zhu Shuzhen: }
 
+\subsubsection*{Total Log-Likelihood for Zhu Shuzhen:}
+
+\begin{align*}
+& 10 \log\left(\frac{35}{103}\right) + 9 \log\left(\frac{53}{156}\right) + 5 \log\left(\frac{61}{199}\right) + 19 \log\left(\frac{3}{10}\right) \\
+& + 6 \log\left(\frac{56}{199}\right) + 7 \log\left(\frac{55}{199}\right) + 9 \log\left(\frac{7}{26}\right) + 4 \log\left(\frac{27}{103}\right) \\
+& + 3 \log\left(\frac{26}{103}\right) + 3 \log\left(\frac{1}{4}\right) + 18 \log\left(\frac{47}{190}\right) + 2 \log\left(\frac{29}{190}\right) \\
+& + \log\left(\frac{15}{103}\right) + 7 \log\left(\frac{11}{78}\right) + 5 \log\left(\frac{27}{199}\right)
+\end{align*}
+
+\subsubsection*{Total Log-Likelihood for Du Fu:}
+
+\begin{align*}
+& 10 \log\left(\frac{27}{80}\right) + 11 \log\left(\frac{1}{3}\right) + 9 \log\left(\frac{88}{279}\right) + 6 \log\left(\frac{37}{118}\right) \\
+& + 3 \log\left(\frac{49}{160}\right) + 7 \log\left(\frac{69}{236}\right) + 18 \log\left(\frac{29}{103}\right) + 3 \log\left(\frac{73}{279}\right) \\
+& + 4 \log\left(\frac{41}{160}\right) + 9 \log\left(\frac{23}{93}\right) + 8 \log\left(\frac{73}{309}\right) + 5 \log\left(\frac{51}{236}\right) \\
+& + 5 \log\left(\frac{21}{118}\right) + 7 \log\left(\frac{49}{279}\right) + 2 \log\left(\frac{46}{309}\right) + \log\left(\frac{1}{10}\right)
+\end{align*}
+
+\subsubsection*{Predicted Author for Du Fu's Test Tones: }
+Du Fu
 
 \section*{Euclidean Distance and Consine Similarity Calculation: }
 
-\subsection*{Zhu Shuzhen's Markov Matrix:}
-\[
-\begin{bmatrix}
-    \frac{57}{200} & \frac{47}{169} & \frac{29}{93} & \frac{19}{62} \\
-    \frac{53}{200} & \frac{3}{13} & \frac{22}{93} & \frac{7}{31} \\
-    \frac{7}{40} & \frac{27}{169} & \frac{5}{31} & \frac{13}{93} \\
-    \frac{11}{40} & \frac{56}{169} & \frac{9}{31} & \frac{61}{186} \\
-\end{bmatrix}
-\]
-\\
-\textbf{Column sums:} [1, 1, 1, 1, 0]
+\subsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
 
-\subsection*{Du Fu's Markov Matrix:}
-\[
-\begin{bmatrix}
-    \frac{103}{314} & \frac{87}{275} & \frac{46}{153} & \frac{73}{242} \\
-    \frac{44}{157} & \frac{73}{275} & \frac{49}{153} & \frac{69}{242} \\
-    \frac{27}{157} & \frac{41}{275} & \frac{16}{153} & \frac{49}{242}  \\
-    \frac{69}{314} & \frac{74}{275} & \frac{14}{51} & \frac{51}{242}  \\
-\end{bmatrix}
-\]
-\textbf{Column sums:} [1, 1, 1, 1, 0]
+\begin{itemize}
+    \item Cosine Similarity with Zhu Shuzhen: 0.9789041921911098
+    \item Cosine Similarity with Du Fu: 0.9729092716043023
+    \item Euclidean Distance to Zhu Shuzhen: 0.10495126147082444
+    \item Euclidean Distance to Du Fu: 0.11872876556336236
+    \item Cosine Similarity Prediction: Zhu Shuzhen
+    \item Euclidean Distance Prediction: Zhu Shuzhen
+\end{itemize}
 
-\subsection*{Predicted author for Zhu Shuzhen's test tones:}
-\textbf{Cosine Similarity with Zhu Shuzhen:} 0.5728528390325099
-\\
-\textbf{Cosine Similarity with Du Fu:} 0.612084042064026
-\\
-\textbf{Euclidean Distance to Zhu Shuzhen:} 0.8218014556290012
-\\
-\textbf{Euclidean Distance to Du Fu:} 0.7969871938136044
-\\
-\textbf{Cosine Similarity Prediction:} Du Fu
-\\
-\textbf{Euclidean Distance Prediction:} Du Fu
+\subsection*{Predicted Author for Du Fu's Test Tones:}
+
+\begin{itemize}
+    \item Cosine Similarity with Zhu Shuzhen: 0.9598323728518315
+    \item Cosine Similarity with Du Fu: 0.9755859048660054
+    \item Euclidean Distance to Zhu Shuzhen: 0.1482684467244978
+    \item Euclidean Distance to Du Fu: 0.11595078252667476
+    \item Cosine Similarity Prediction: Du Fu
+    \item Euclidean Distance Prediction: Du Fu
+\end{itemize}
 
 \section*{Baseline Method - Infinity Vector Norm Calculation: }
+
 \subsection*{Baseline Infinity Norm Prediction for Zhu Shuzhen's test tones:}
 
 \begin{itemize}
     \item Infinity Norm Difference with Zhu Shuzhen: 0.07692068226362686
-    \item Infinity Norm Difference with Du Fu:  0.09668192553969868
+    \item Infinity Norm Difference with Du Fu: 0.09668192553969868
     \item Baseline Infinity Norm Prediction: Zhu Shuzhen
 \end{itemize}
 
 \subsection*{Baseline Infinity Norm Prediction for Du Fu's test tones:}
 
+
 \begin{itemize}
-    \item Infinity Norm Difference with Zhu Shuzhen: 
-    \item Infinity Norm Difference with Du Fu: 
-    \item Baseline Infinity Norm Prediction: 
+    \item Infinity Norm Difference with Zhu Shuzhen: 0.12762972269326903
+    \item Infinity Norm Difference with Du Fu: 0.08415719396641286
+    \item Baseline Infinity Norm Prediction: Du Fu
 \end{itemize}
 
 \end{document}
