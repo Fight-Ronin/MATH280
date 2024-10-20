@@ -7,7 +7,7 @@
 \newcounter{entry}
 \newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
 
-\title{\vspace{-2cm}Project 1 Post-port}
+\title{\vspace{-2cm}Project 1 Post-port Draft}
 \author{Hanzhang Yin}
 
 
@@ -58,29 +58,32 @@ For each poet, we construct a separate Markov matrix $M_{\text{Zhu}}$ and $M_{\t
 \]
 where $p_{ij}$ and $q_{ij}$ are the probabilities of transitioning from tone $i$ to tone $j$ for Zhu Shuzhen and Du Fu, respectively. These matrices are expected to differ due to each poet's stylistic choices in adhering to classical tonal rules. The equilibrium vector $\mathbf{v}$ for each matrix, satisfying $M \mathbf{v} = \mathbf{v}$, represents the long-term distribution of tonal states.
 \\
-\textbf{Validation and Classification: }
+\textbf{Strategy 1: }
 \\
 Given a test poem's tonal sequence $x = (x_1, x_2, \ldots, x_n)$, we compute the \textit{log-likelihood} under each author's matrix:
 
 \[
     \mathcal{L}_{\text{Zhu}} = \sum_{i=1}^{n-1} \log M_{\text{Zhu}}[x_i, x_{i+1}], \quad \mathcal{L}_{\text{Du}} = \sum_{i=1}^{n-1} \log M_{\text{Du}}[x_i, x_{i+1}]
 \]
-If $\mathcal{L}_{\text{Zhu}} > \mathcal{L}_{\text{Du}}$, we classify the poem as Zhu Shuzhen's. Alternatively, we can compare the test poem’s equilibrium vector $\mathbf{v}_{\text{test}}$ with $\mathbf{v}_{\text{Zhu}}$ and $\mathbf{v}_{\text{Du}}$ using similarity measures such as \textit{cosine similarity} or \textit{Euclidean distance}.
+If $\mathcal{L}_{\text{Zhu}} > \mathcal{L}_{\text{Du}}$, we classify the poem as Zhu Shuzhen's.
 \\
-\textbf{Identifying Authors or Genres: }
+\textbf{Strategy 2: }
 \\
-To identify an author, we compute the Euclidean distance:
-
+Alternatively, we can compare the test poem’s equilibrium vector $\mathbf{v}_{\text{test}}$ with $\mathbf{v}_{\text{Zhu}}$ and $\mathbf{v}_{\text{Du}}$ using similarity measures such as \textit{cosine similarity} or \textit{Euclidean distance}.
 \[
     d_{\text{Zhu}} = \|\mathbf{v}_{\text{test}} - \mathbf{v}_{\text{Zhu}}\|, \quad d_{\text{Du}} = \|\mathbf{v}_{\text{test}} - \mathbf{v}_{\text{Du}}\|
 \]
-The author is identified as the one corresponding to the minimum distance. Moreover, differences in matrix structure or equilibrium distributions may also indicate genre differences, as classical genres often impose distinct tonal patterns.
+The author is identified as the one corresponding to the minimum distance and maximum similarity. Moreover, differences in matrix structure or equilibrium distributions may also indicate genre differences, as classical genres often impose distinct tonal patterns.
+\\
+\textbf{Baseline Strategy: }
+Lastly, we will introduce method using infinity vector norm to discern authorship. Leveraging the differences between equilibrium vectors between train and test data's markov matrices.
+\\
+The author is identified as the one corresponding to the minimum differences.
 \\
 \textbf{Expectations: }
 \\
 Given the strict tonal constraints in classical poetry and known stylistic differences, we expect to distinguish Du Fu and Zhu Shuzhen with reasonable accuracy. 
-Referencing on their own style of writing, Du Fu's matrix should show a more balanced equilibrium, reflecting stricter adherence to tonal rules,
-while Zhu Shuzhen's may exhibit greater flexibility, creating distinct equilibrium patterns.
+I think log-likelihood Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies.
 
 \newpage
 
@@ -230,10 +233,9 @@ While these methods performed well, slight discrepancies in the similarity score
 \end{itemize}
 
 \subsection*{Baseline Infinity Norm Method}
-The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu as the authors of their respective test tones. The infinity norm differences were smaller for the correct author in both test cases.
+The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu as the authors of their respective test tones. The infinity norm differences were smaller for the correct author in both test cases, with Zhu Shuzhen's test tones showing an infinity norm difference of 0.0769 versus 0.0967 for Du Fu, and Du Fu's test tones showing a difference of 0.0842 versus 0.1276 for Zhu Shuzhen.
 \\
-The simplicity of this method may contribute to its success, as it captures the general tonal patterns when comparing equilibrium vectors to the test tones.
-
+Similar to second strategy, while these ``distance'' methods performed well, slight discrepancies in the similarity scores and distances suggest they are sensitive to small test case.
 \subsection*{Conclusion}
 The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
 \\
