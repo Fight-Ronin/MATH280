@@ -77,13 +77,12 @@ The author is identified as the one corresponding to the minimum distance and ma
 \\
 \textbf{Baseline Strategy: }
 Lastly, we will introduce method using infinity vector norm to discern authorship. Leveraging the differences between equilibrium vectors between train and test data's markov matrices.
-\\
 The author is identified as the one corresponding to the minimum differences.
 \\
 \textbf{Expectations: }
 \\
 Given the strict tonal constraints in classical poetry and known stylistic differences, we expect to distinguish Du Fu and Zhu Shuzhen with reasonable accuracy. 
-I think log-likelihood Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies.
+I think log-likelihood Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies (Especially for euclidean distance and cosine similarity calculations).
 
 \newpage
 
@@ -125,7 +124,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
 & + 2 \log\left(\frac{11}{78}\right) + \log\left(\frac{27}{199}\right)
 \end{align*}
 
-\subsection*{Total Log-Likelihood for Du Fu:}
+\subsubsection*{Total Log-Likelihood for Du Fu:}
 
 \begin{align*}
 & 3 \log\left(\frac{27}{80}\right) + \log\left(\frac{1}{3}\right) + 5 \log\left(\frac{88}{279}\right) + 6 \log\left(\frac{37}{118}\right) \\
@@ -137,27 +136,58 @@ I think log-likelihood Strategy might provide robust result, while the other two
 \subsubsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
 Zhu Shuzhen
 
-\subsection*{Test Case for Zhu Shuzhen: }
+\subsection*{Test Case for Du Fu: }
 
 \subsubsection*{Total Log-Likelihood for Zhu Shuzhen:}
 
-\begin{align*}
-& 10 \log\left(\frac{35}{103}\right) + 9 \log\left(\frac{53}{156}\right) + 5 \log\left(\frac{61}{199}\right) + 19 \log\left(\frac{3}{10}\right) \\
-& + 6 \log\left(\frac{56}{199}\right) + 7 \log\left(\frac{55}{199}\right) + 9 \log\left(\frac{7}{26}\right) + 4 \log\left(\frac{27}{103}\right) \\
-& + 3 \log\left(\frac{26}{103}\right) + 3 \log\left(\frac{1}{4}\right) + 18 \log\left(\frac{47}{190}\right) + 2 \log\left(\frac{29}{190}\right) \\
-& + \log\left(\frac{15}{103}\right) + 7 \log\left(\frac{11}{78}\right) + 5 \log\left(\frac{27}{199}\right)
-\end{align*}
+\[
+\begin{aligned}
+    &3 \log\left(\frac{56}{169}\right) + 4 \log\left(\frac{61}{186}\right) + \log\left(\frac{29}{93}\right) + 3 \log\left(\frac{19}{62}\right) \\
+    &+ 3 \log\left(\frac{9}{31}\right) + 2 \log\left(\frac{57}{200}\right) + 5 \log\left(\frac{47}{169}\right) + 2 \log\left(\frac{11}{40}\right) \\
+    &+ 4 \log\left(\frac{53}{200}\right) + 2 \log\left(\frac{22}{93}\right) + 6 \log\left(\frac{3}{13}\right) + 5 \log\left(\frac{7}{31}\right) \\
+    &+ 6 \log\left(\frac{7}{40}\right) + \log\left(\frac{27}{169}\right)
+\end{aligned}
+\]
 
 \subsubsection*{Total Log-Likelihood for Du Fu:}
 
-\begin{align*}
-& 10 \log\left(\frac{27}{80}\right) + 11 \log\left(\frac{1}{3}\right) + 9 \log\left(\frac{88}{279}\right) + 6 \log\left(\frac{37}{118}\right) \\
-& + 3 \log\left(\frac{49}{160}\right) + 7 \log\left(\frac{69}{236}\right) + 18 \log\left(\frac{29}{103}\right) + 3 \log\left(\frac{73}{279}\right) \\
-& + 4 \log\left(\frac{41}{160}\right) + 9 \log\left(\frac{23}{93}\right) + 8 \log\left(\frac{73}{309}\right) + 5 \log\left(\frac{51}{236}\right) \\
-& + 5 \log\left(\frac{21}{118}\right) + 7 \log\left(\frac{49}{279}\right) + 2 \log\left(\frac{46}{309}\right) + \log\left(\frac{1}{10}\right)
-\end{align*}
+\[
+\begin{aligned}
+    &2 \log\left(\frac{103}{314}\right) + 2 \log\left(\frac{49}{153}\right) + 5 \log\left(\frac{87}{275}\right) + 3 \log\left(\frac{73}{242}\right) \\
+    &+ \log\left(\frac{46}{153}\right) + 5 \log\left(\frac{69}{242}\right) + 4 \log\left(\frac{44}{157}\right) + 3 \log\left(\frac{14}{51}\right) \\
+    &+ 3 \log\left(\frac{74}{275}\right) + 6 \log\left(\frac{73}{275}\right) + 2 \log\left(\frac{69}{314}\right) + 4 \log\left(\frac{51}{242}\right) \\
+    &+ 6 \log\left(\frac{27}{157}\right) + \log\left(\frac{41}{275}\right)
+\end{aligned}
+\]
 
 \subsubsection*{Predicted Author for Du Fu's Test Tones: }
+Du Fu
+
+\subsection*{Test Case for Mystery Test Tones: }
+
+\subsubsection*{Total Log-Likelihood for Zhu Shuzhen:}
+
+\[
+\begin{aligned}
+    &\log\left(\frac{56}{169}\right) + 3 \log\left(\frac{61}{186}\right) + 2 \log\left(\frac{29}{93}\right) + \log\left(\frac{19}{62}\right) \\
+    &+ 3 \log\left(\frac{9}{31}\right) + 3 \log\left(\frac{57}{200}\right) + 7 \log\left(\frac{47}{169}\right) + 7 \log\left(\frac{11}{40}\right) \\
+    &+ 2 \log\left(\frac{53}{200}\right) + \log\left(\frac{22}{93}\right) + 6 \log\left(\frac{3}{13}\right) + 6 \log\left(\frac{7}{31}\right) \\
+    &+ \log\left(\frac{27}{169}\right) + 5 \log\left(\frac{13}{93}\right)
+\end{aligned}
+\]
+
+\subsubsection*{Total Log-Likelihood for Du Fu:}
+
+\[
+\begin{aligned}
+    &3 \log\left(\frac{103}{314}\right) + \log\left(\frac{49}{153}\right) + 7 \log\left(\frac{87}{275}\right) + \log\left(\frac{73}{242}\right) \\
+    &+ 2 \log\left(\frac{46}{153}\right) + 6 \log\left(\frac{69}{242}\right) + 2 \log\left(\frac{44}{157}\right) + 3 \log\left(\frac{14}{51}\right) \\
+    &+ \log\left(\frac{74}{275}\right) + 6 \log\left(\frac{73}{275}\right) + 7 \log\left(\frac{69}{314}\right) + 3 \log\left(\frac{51}{242}\right) \\
+    &+ 5 \log\left(\frac{49}{242}\right) + \log\left(\frac{41}{275}\right)
+\end{aligned}
+\]
+
+\subsubsection*{Predicted Author for Mystery Test Tones: }
 Du Fu
 
 \section*{Euclidean Distance and Consine Similarity Calculation: }
@@ -184,6 +214,17 @@ Du Fu
     \item Euclidean Distance Prediction: Du Fu
 \end{itemize}
 
+\subsection*{Predicted Author for Mystery Test Tones:}
+
+\begin{itemize}
+    \item Cosine Similarity with Zhu Shuzhen: 0.9877493067500825
+    \item Cosine Similarity with Du Fu: 0.9860787754087518
+    \item Euclidean Distance to Zhu Shuzhen: 0.08160079380597142
+    \item Euclidean Distance to Du Fu: 0.08693730036230193
+    \item Cosine Similarity Prediction: Zhu Shuzhen
+    \item Euclidean Distance Prediction: Zhu Shuzhen
+\end{itemize}
+
 \section*{Baseline Method - Infinity Vector Norm Calculation: }
 
 \subsection*{Baseline Infinity Norm Prediction for Zhu Shuzhen's test tones:}
@@ -203,20 +244,28 @@ Du Fu
     \item Baseline Infinity Norm Prediction: Du Fu
 \end{itemize}
 
+\subsection*{Baseline Infinity Norm Prediction for Mystery test tones:}
+
+
+\begin{itemize}
+    \item Infinity Norm Difference with Zhu Shuzhen: 0.12762972269326903
+    \item Infinity Norm Difference with Du Fu: 0.08415719396641286
+    \item Baseline Infinity Norm Prediction: Du Fu
+\end{itemize}
+
 \newpage
 
 \section{Post-port}
-This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the log-likelihood method, equilibrium vector comparison via cosine similarity and Euclidean distance, as well as a baseline approach using the infinity norm.
+This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the \textbf{log-likelihood method}, equilibrium vector comparison via \textbf{Cosine Similarity} and \textbf{Euclidean Distance}, as well as a baseline approach using the \textbf{infinity norm}.
 
 \subsection*{Log-Likelihood Method}
 
-The log-likelihood method correctly predicted Zhu Shuzhen as the author of the test tones.
+The log-likelihood method correctly predicted the corresponding authors refer to two given test cases.
 \\
-\noindent With a higher total log-likelihood for Zhu Shuzhen, this method accurately captured the tonal transitions characteristic of her style. 
-\\
-The reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. 
+Supposingly, the reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. 
 This approach is particularly robust when dealing with small datasets, as it inherently accounts for the probabilities of each transition in a cumulative manner.
-
+\\
+Thus, for the additional Mystery Test Case, I will use its result as baseline to come up with potential reasoning.
 
 \subsection*{Cosine Similarity and Euclidean Distance Methods}
 The equilibrium vector comparison using cosine similarity and Euclidean distance also predicted the correct authorship for both test cases. 
@@ -224,22 +273,24 @@ The cosine similarity values for Zhu Shuzhen's test tones were higher when compa
 Similarly, Du Fu's test tones showed higher cosine similarity with his own matrix (0.9756) than Zhu Shuzhen's (0.9598), and a lower Euclidean distance (0.1159) compared to Zhu Shuzhen (0.1483), resulting in the correct prediction for Du Fu.
 \\
 While these methods performed well, slight discrepancies in the similarity scores and distances suggest that vector-based methods may be less robust when dealing with small datasets.
+Thus, such characteristics causes seemingly incorrect prediction in the additional Mystery Test Case.
 \\
 \noindent Here are several potential reasons that might render prediction inconsistency:
 \begin{itemize}
-    \item \textbf{Small Test Case Size:} The limited size of the test sequence means that the calculated Markov matrix and equilibrium vector do not fully capture the general stylistic information. This can lead to inaccurate comparisons when using vector-based methods like cosine similarity and Euclidean distance.
-    \item \textbf{Overfitting to Local Patterns:} The equilibrium vector derived from the small dataset may overemphasize specific transitions that are not representative of Zhu Shuzhen’s overall style, leading to closer matches with Du Fu's matrix.
-    \item \textbf{Sensitivity of Similarity Measures:} Cosine similarity and Euclidean distance are sensitive to the direction and magnitude of the vectors. Given the sparse data, these measures may incorrectly favor Du Fu's equilibrium vector.
+    \item \textbf{Small Test Case Size:} The limited size of the test sequence means that the calculated Markov matrix and equilibrium vector do not fully capture the general stylistic information. Base on my observation, the additional Mystery Test Case is smaller than the other two.
+    \item \textbf{Overfitting to Local Patterns:} The equilibrium vector derived from the small dataset may overemphasize specific transitions that are not representative, leading to closer matches incorrect author's matrix.
+    \item \textbf{Sensitivity of Similarity Measures:} Cosine similarity and Euclidean distance are sensitive to the direction and magnitude of the vectors. Given the sparse data, these measures may incorrectly favor the equilibrium vector.
 \end{itemize}
 
 \subsection*{Baseline Infinity Norm Method}
 The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu as the authors of their respective test tones. The infinity norm differences were smaller for the correct author in both test cases, with Zhu Shuzhen's test tones showing an infinity norm difference of 0.0769 versus 0.0967 for Du Fu, and Du Fu's test tones showing a difference of 0.0842 versus 0.1276 for Zhu Shuzhen.
 \\
 Similar to second strategy, while these ``distance'' methods performed well, slight discrepancies in the similarity scores and distances suggest they are sensitive to small test case.
+\\
+However, probably due to the simplicity within the caluclation, the baseline method ``captured'' somewhat partly of the generic tonal behavior of the Mystery Test Tone, giving out a correct prediction consistent with the log-likelihood method. (This is surprising!) 
 \subsection*{Conclusion}
 The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
 \\
 Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood method stands out for its robustness. The vector-based methods, including cosine similarity, Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
-
 
 \end{document} 
