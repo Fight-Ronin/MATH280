@@ -7,7 +7,7 @@
 \newcounter{entry}
 \newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
 
-\title{\vspace{-2cm}Project 1 Post-port Draft}
+\title{Project 1: Markov Chains Draft}
 \author{Hanzhang Yin}
 
 
@@ -46,7 +46,7 @@ Lastly, here are some additional linguistic features that might be interesting u
     \item Sentence Length and Complexity: Study transitions between short and long sentences, or simple vs. complex clauses, especially in prose or in political speeches, to identify style...
 \end{itemize}
 
-\section{Pre-port}
+\section{Introduction}
 The project aims to distinguish the styles of Zhu Shuzhen and Du Fu using Markov matrices by modeling the tonal patterns in their poetry. Each poem is encoded as a sequence of \textit{even} or \textit{oblique} tonal states, with transition probabilities captured in a matrix $M$, where $M_{ij}$ denotes the probability of transitioning from state $i$ to state $j$.
 \\
 \textbf{Using Markov Matrices to Distinguish Authors: }
@@ -84,9 +84,7 @@ The author is identified as the one corresponding to the minimum differences.
 Given the strict tonal constraints in classical poetry and known stylistic differences, we expect to distinguish Du Fu and Zhu Shuzhen with reasonable accuracy. 
 I think log-likelihood Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies (Especially for euclidean distance and cosine similarity calculations).
 
-\newpage
-
-\section{calculation Result: }
+\section{Implementation and Data}
 \noindent For my implementation, I used two different strategy to address the author prediction task.
 
 \section*{Log-likelihood Calculation: }
@@ -253,9 +251,7 @@ Du Fu
     \item Baseline Infinity Norm Prediction: Du Fu
 \end{itemize}
 
-\newpage
-
-\section{Post-port}
+\section{Analysis}
 This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the \textbf{log-likelihood method}, equilibrium vector comparison via \textbf{Cosine Similarity} and \textbf{Euclidean Distance}, as well as a baseline approach using the \textbf{infinity norm}.
 
 \subsection*{Log-Likelihood Method}
@@ -288,7 +284,8 @@ The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu
 Similar to second strategy, while these ``distance'' methods performed well, slight discrepancies in the similarity scores and distances suggest they are sensitive to small test case.
 \\
 However, probably due to the simplicity within the caluclation, the baseline method ``captured'' somewhat partly of the generic tonal behavior of the Mystery Test Tone, giving out a correct prediction consistent with the log-likelihood method. (This is surprising!) 
-\subsection*{Conclusion}
+
+\section{Conclusion}
 The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
 \\
 Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood method stands out for its robustness. The vector-based methods, including cosine similarity, Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
