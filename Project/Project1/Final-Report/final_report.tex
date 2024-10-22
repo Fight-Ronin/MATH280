@@ -93,14 +93,14 @@ I think log-likelihood Strategy might provide robust result, while the other two
 \begin{algorithm}
     \caption{construct\_markov\_matrix}
     \begin{algorithmic}[1]
-        \REQUIRE tones\_list: list of tone sequences, num\_states: number of possible states (default = 4)
+        \REQUIRE tones\_list: list of tone sequences, num\_states: number of possible states
         \ENSURE A normalized Markov transition matrix with columns summing to 1
     
         \STATE Initialize a matrix $transition\_counts$ of size $(num\_states, num\_states)$
     
         \FOR{each $tones$ in $tones\_list$}
             \FOR{$i = 0$ to $length(tones) - 2$}
-                \STATE $current\_tone \gets tones[i] - 1$ \COMMENT{Convert tone to zero-based index}
+                \STATE $current\_tone \gets tones[i] - 1$ 
                 \STATE $next\_tone \gets tones[i+1] - 1$
                 \STATE $transition\_counts[current\_tone, next\_tone] \gets$ 
                 \STATE $ \ \ transition\_counts[current\_tone, next\_tone] + 1$
@@ -111,7 +111,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
             \STATE $col\_sum \gets \sum_{i=0}^{num\_states - 1} transition\_counts[i, j]$
             \IF{$col\_sum > 0$}
                 \FOR{$i = 0$ to $num\_states - 1$}
-                    \STATE $transition\_counts[i, j] \gets transition\_counts[i, j] / col\_sum$ \COMMENT{Normalize the column}
+                    \STATE $transition\_counts[i, j] \gets transition\_counts[i, j] / col\_sum$
                 \ENDFOR
             \ENDIF
         \ENDFOR
@@ -143,7 +143,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
 \begin{algorithm}
     \caption{cosine\_similarity}
     \begin{algorithmic}[1]
-        \REQUIRE $vec1$: a vector, $vec2$: a vector
+        \REQUIRE $vec1$, $vec2$
         \ENSURE The cosine similarity between $vec1$ and $vec2$
     
         \STATE Convert $vec1$ and $vec2$ to SageMath vectors
@@ -154,7 +154,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
     
         \STATE Divide the dot product by the product of the norms to compute cosine similarity
     
-        \RETURN cosine similarity value
+        \RETURN $cosine_sim_diff$
     
     \end{algorithmic}
 \end{algorithm}
@@ -162,7 +162,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
 \begin{algorithm}
     \caption{euclidean\_distance}
     \begin{algorithmic}[1]
-        \REQUIRE $vec1$: a vector, $vec2$: a vector
+        \REQUIRE $vec1$, $vec2$
         \ENSURE The Euclidean distance between $vec1$ and $vec2$
     
         \STATE Convert $vec1$ and $vec2$ to SageMath vectors
@@ -171,7 +171,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
     
         \STATE Compute the norm of the difference
     
-        \RETURN Euclidean distance value
+        \RETURN $norm\_diff$
     
     \end{algorithmic}
 \end{algorithm}
@@ -179,14 +179,14 @@ I think log-likelihood Strategy might provide robust result, while the other two
 \begin{algorithm}
     \caption{infinity\_norm}
     \begin{algorithmic}[1]
-        \REQUIRE $test\_vector$: a vector, $input\_vec$: a vector
+        \REQUIRE $test\_vector$, $input\_vec$
         \ENSURE The infinity norm difference between $test\_vector$ and $input\_vec$
     
         \STATE Compute the element-wise absolute difference between $test\_vector$ and $input\_vec$
     
         \STATE Find the maximum value of the absolute differences
     
-        \RETURN $norm\_diff$: the infinity norm (maximum absolute difference)
+        \RETURN $norm\_diff$
     
     \end{algorithmic}
 \end{algorithm}

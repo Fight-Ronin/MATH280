@@ -147,9 +147,6 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
-INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
-INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 INPUT final_report.aux
 INPUT final_report.run.xml
 OUTPUT final_report.run.xml
