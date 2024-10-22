@@ -1,5 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage[margin=1in]{geometry}
 \usepackage[backend=biber]{biblatex}
 \bibliography{app_log.bib}
@@ -85,7 +87,113 @@ Given the strict tonal constraints in classical poetry and known stylistic diffe
 I think log-likelihood Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies (Especially for euclidean distance and cosine similarity calculations).
 
 \section{Implementation and Data}
-\noindent For my implementation, I used two different strategy to address the author prediction task.
+\noindent For my implementation, I used three different strategies to address the author prediction task.
+
+\subsection{Algorithm}
+\begin{algorithm}
+    \caption{construct\_markov\_matrix}
+    \begin{algorithmic}[1]
+        \REQUIRE tones\_list: list of tone sequences, num\_states: number of possible states (default = 4)
+        \ENSURE A normalized Markov transition matrix with columns summing to 1
+    
+        \STATE Initialize a matrix $transition\_counts$ of size $(num\_states, num\_states)$
+    
+        \FOR{each $tones$ in $tones\_list$}
+            \FOR{$i = 0$ to $length(tones) - 2$}
+                \STATE $current\_tone \gets tones[i] - 1$ \COMMENT{Convert tone to zero-based index}
+                \STATE $next\_tone \gets tones[i+1] - 1$
+                \STATE $transition\_counts[current\_tone, next\_tone] \gets$ 
+                \STATE $ \ \ transition\_counts[current\_tone, next\_tone] + 1$
+            \ENDFOR
+        \ENDFOR
+    
+        \FOR{$j = 0$ to $num\_states - 1$}
+            \STATE $col\_sum \gets \sum_{i=0}^{num\_states - 1} transition\_counts[i, j]$
+            \IF{$col\_sum > 0$}
+                \FOR{$i = 0$ to $num\_states - 1$}
+                    \STATE $transition\_counts[i, j] \gets transition\_counts[i, j] / col\_sum$ \COMMENT{Normalize the column}
+                \ENDFOR
+            \ENDIF
+        \ENDFOR
+    
+        \RETURN $transition\_counts$
+    
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{equilibrium\_vector}
+    \begin{algorithmic}[1]
+        \REQUIRE matrix: a Markov transition matrix
+        \ENSURE The equilibrium vector of the matrix
+    
+        \STATE Find the index $idx$ of the eigenvalue closest to 1
+    
+        \STATE Set $equilibrium\_vec \gets$ the eigenvector corresponding to $idx$
+    
+        \STATE Convert $equilibrium\_vec$ to real values by taking the real part of the vector
+    
+        \STATE Normalize $equilibrium\_vec$ by dividing each element by the sum of all elements in $equilibrium\_vec$
+    
+        \RETURN $equilibrium\_vec$
+    
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{cosine\_similarity}
+    \begin{algorithmic}[1]
+        \REQUIRE $vec1$: a vector, $vec2$: a vector
+        \ENSURE The cosine similarity between $vec1$ and $vec2$
+    
+        \STATE Convert $vec1$ and $vec2$ to SageMath vectors
+    
+        \STATE Compute the dot product of $vec1$ and $vec2$
+    
+        \STATE Compute the norms of $vec1$ and $vec2$
+    
+        \STATE Divide the dot product by the product of the norms to compute cosine similarity
+    
+        \RETURN cosine similarity value
+    
+    \end{algorithmic}
+\end{algorithm}
+    
+\begin{algorithm}
+    \caption{euclidean\_distance}
+    \begin{algorithmic}[1]
+        \REQUIRE $vec1$: a vector, $vec2$: a vector
+        \ENSURE The Euclidean distance between $vec1$ and $vec2$
+    
+        \STATE Convert $vec1$ and $vec2$ to SageMath vectors
+    
+        \STATE Compute the difference between $vec1$ and $vec2$
+    
+        \STATE Compute the norm of the difference
+    
+        \RETURN Euclidean distance value
+    
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{infinity\_norm}
+    \begin{algorithmic}[1]
+        \REQUIRE $test\_vector$: a vector, $input\_vec$: a vector
+        \ENSURE The infinity norm difference between $test\_vector$ and $input\_vec$
+    
+        \STATE Compute the element-wise absolute difference between $test\_vector$ and $input\_vec$
+    
+        \STATE Find the maximum value of the absolute differences
+    
+        \RETURN $norm\_diff$: the infinity norm (maximum absolute difference)
+    
+    \end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\subsection{Data Results: }
 
 \section*{Log-likelihood Calculation: }
 
@@ -189,6 +297,7 @@ Du Fu
 Du Fu
 
 \section*{Euclidean Distance and Consine Similarity Calculation: }
+
 
 \subsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
 

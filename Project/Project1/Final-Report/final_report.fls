@@ -27,10 +27,18 @@ INPUT c:/texlive/2024/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-INPUT c:/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
-INPUT c:/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/algorithms/algorithm.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/algorithms/algorithm.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/float/float.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/float/float.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/algorithms/algorithmic.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/algorithms/algorithmic.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT c:/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT c:/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT c:/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT c:/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
@@ -54,8 +62,6 @@ INPUT c:/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
 INPUT c:/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
 INPUT c:/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
-INPUT c:/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
-INPUT c:/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/url/url.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/url/url.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/biblatex/blx-dm.def
@@ -141,6 +147,9 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 INPUT final_report.aux
 INPUT final_report.run.xml
 OUTPUT final_report.run.xml
@@ -148,6 +157,7 @@ INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
