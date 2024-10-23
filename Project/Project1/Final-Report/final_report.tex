@@ -154,7 +154,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
     
         \STATE Divide the dot product by the product of the norms to compute cosine similarity
     
-        \RETURN $cosine_sim_diff$
+        \RETURN $cosine\_sim\_diff$
     
     \end{algorithmic}
 \end{algorithm}
@@ -195,7 +195,7 @@ I think log-likelihood Strategy might provide robust result, while the other two
 
 \subsection{Data Results: }
 
-\section*{Log-likelihood Calculation: }
+\section*{Log-likelihood [1][2] Calculation: }
 
 \subsection*{Zhu Shuzhen's Markov Matrix:}
 
@@ -296,7 +296,7 @@ Du Fu
 \subsubsection*{Predicted Author for Mystery Test Tones: }
 Du Fu
 
-\section*{Euclidean Distance and Consine Similarity Calculation: }
+\section*{Euclidean Distance and Consine Similarity [3][4] Calculation: }
 
 
 \subsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
@@ -363,7 +363,7 @@ Du Fu
 \section{Analysis}
 This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the \textbf{log-likelihood method}, equilibrium vector comparison via \textbf{Cosine Similarity} and \textbf{Euclidean Distance}, as well as a baseline approach using the \textbf{infinity norm}.
 
-\subsection*{Log-Likelihood Method}
+\subsection*{Log-Likelihood Method [1][2]}
 
 The log-likelihood method correctly predicted the corresponding authors refer to two given test cases.
 \\
@@ -372,7 +372,7 @@ This approach is particularly robust when dealing with small datasets, as it inh
 \\
 Thus, for the additional Mystery Test Case, I will use its result as baseline to come up with potential reasoning.
 
-\subsection*{Cosine Similarity and Euclidean Distance Methods}
+\subsection*{Cosine Similarity [3][4] and Euclidean Distance Methods}
 The equilibrium vector comparison using cosine similarity and Euclidean distance also predicted the correct authorship for both test cases. 
 The cosine similarity values for Zhu Shuzhen's test tones were higher when compared to her own matrix (0.9789) versus Du Fu’s (0.9729), and the Euclidean distance was lower for Zhu Shuzhen (0.1049) than Du Fu (0.1187), leading to the correct prediction for Zhu Shuzhen. 
 Similarly, Du Fu's test tones showed higher cosine similarity with his own matrix (0.9756) than Zhu Shuzhen's (0.9598), and a lower Euclidean distance (0.1159) compared to Zhu Shuzhen (0.1483), resulting in the correct prediction for Du Fu.
@@ -398,5 +398,18 @@ However, probably due to the simplicity within the caluclation, the baseline met
 The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
 \\
 Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood method stands out for its robustness. The vector-based methods, including cosine similarity, Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
+
+\begin{thebibliography}{99}
+
+    \bibitem{1} Casella, George; Berger, Roger L. (2002). Statistical Inference (2nd ed.). Duxbury. p. 290. ISBN 0-534-24312-6.
+
+    \bibitem{2} Wikipedia for Log-likelihood: \url{https://en.wikipedia.org/wiki/Likelihood_function}
+
+    \bibitem{3} Singhal, Amit (2001). "Modern Information Retrieval: A Brief Overview". Bulletin of the IEEE Computer Society Technical Committee on Data Engineering 24 (4): 35-43
+
+    \bibitem{4} Wikipedia for Cosine-similarity: \url{https://en.wikipedia.org/wiki/Cosine_similarity}
+
+    
+\end{thebibliography}
 
 \end{document} 
