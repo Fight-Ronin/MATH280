@@ -22,7 +22,7 @@
 }
 
 \title{\vspace{-5em}Homework 5 (root finding)}
-\author{name}
+\author{Hanzhang Yin}
 \begin{document}
 
 \maketitle
@@ -340,6 +340,61 @@ The root found of fraction form is in terms of:
     (what is \(*\)?). Simplify and rearrange, then combine with the application of the MVT to the numerator from the error analysis in class, further simplify, and conclude.
 \end{problem}
 
+\begin{proof}
+    To start with, Newton Method's updates are given by:
+    \[ x_n = x_{n - 1} - \frac{f(x_{n - 1})}{f'(x_n - 1)} \]
+    Define error at iteration $n$ as:
+    \[ e_n = x_n - x \]
+    Then, 
+    \[ e_n = e_{n - 1} - \frac{f(x_{n - 1})}{f'(x_n - 1)} \]
+    Our goal is to express $e_n$ in terms of $e_{n - 1}$.
+    \\
+    Since $f$ is twice continuously differentiable, we can expand $f$ and $f'$ around $x$.
+    \\
+    By Taylor's theorem:
+    \[ f(x_{n - 1}) = f(x + e_{n-1}) = f(x) + f'(x)e_{n - 1} + \frac{1}{2}f''(x)e^2_{n-1} + R_1 \]
+    where the remainder $R_1$ satisties: 
+    \[ R_1 = \frac{1}{6}f'''(\xi)e^3_{n - 1} \]
+    for some $\xi$ between $x$ and $x_{n - 1}$. Since $f(x) = f'(x) = 0$:
+    \[ f(x_{n - 1}) = \frac{1}{2} f''(x)e^2_{n-1} + \frac{1}{6}f'''(\xi)e^3_{n - 1} \]
+    Similarly,
+    \[ f'(x_{n - 1}) = f'(x + e_{n - 1}) = f'(x) + f''(x)e_{n - 1} + R_2 \]
+    Where the remainder $R_2$ satisfies:
+    \[ R_2 = \frac{1}{2}f'''(\eta)e^2_{n - 1} \]
+    for some $\eta$ between $x$ and $x_{n-1}$. Since $f'(x) = 0$:
+    \[ f'(x_{n - 1}) = f''(x)e_{n - 1} + \frac{1}{2}f'''(\eta)e^2_{n - 1} \]
+    Using $MVT$ on $f'$ over $[x_{n-1}, x]$:
+    \[ \frac{f'(x_{n - 1}) - f'(x)}{x_{n-1} - x} = f''(\zeta)e_{n-1} \]
+    for some $\zeta$ between $x_{n - 1}$ and $x$.
+    \\
+    Since $f'(x) = 0$ and $e_{n-1} = x_{n-1} - x$
+    \[ f'(x_{n-1}) = f''(\zeta)e_{n-1} \]
+    Because $f''(t) \geq C > 0$ for all $t$ in the interval, we have:
+    \[ f''(\zeta) \geq C > 0 \]
+    Then, subsituting the previous result into Newton's Method Error Expression, we have:
+    \[ e_n = e_{n-1} - \frac{f(x_{n-1})}{f'(x_{n-1})} \]
+    Subsitute the expressions for $f(x_{n-1})$ and $f'(x_{n-1})$:
+    \[ e_n = e_{n-1} - \frac{f''(x)e^2_{n - 1} + \frac{1}{2}f'''(\xi)e^3_{n - 1}}{f''(\zeta) e_{n-1}} \]
+    \[ \Rightarrow e_n = e_{n-1} - \frac{f''(x)e_{n - 1} + \frac{1}{2}f'''(\xi)e^2_{n - 1}}{f''(\zeta)} \]
+    For simplication, let's denote:
+    \[ \alpha = \frac{f''(x)}{2f''(\zeta)}, \ \beta = \frac{f'''(\xi)}{2f''(\zeta)} \]
+    Then,
+    \[ e_n = e_{n-1} - \alpha e_{n - 1} - \beta e_{n - 1} = (1 - \alpha)e_{n - 1} - \beta e_{n - 1} \]
+    Since $\beta e_{n - 1} = O(e^2_{n-1})$, it becomes negligible compared to $e_{n - 1}$ as $n$ increases.
+    \\
+    Then we can bound this expression on $\alpha$ only, since $f''(x) \geq C > 0$ and $f''(\zeta) \leq f''_{max}$ due to continuity, we have:
+    \[ \alpha = \frac{f''(x)}{2f''(\zeta)} \leq \frac{f''(x)}{2C} = k_0 < \frac{1}{2} \]
+    Similarly, since $f''(\zeta) \rightarrow f''(x)$ as $e_{n-1} \rightarrow 0$, we can make $\alpha$ arbitrary close to $\frac{1}{2}$ for large $n$.
+    \\
+    Lastly, for large $n$, we can write:
+    \[ |e_n| \leq |1 - \alpha||e_{n-1}| + |\beta|e_{n-1} \]
+    Since $\alpha \approx \frac{1}{2}$, we have $|1 - \alpha| \approx \frac{1}{2}$
+    Let $k = |1 - \alpha| + |\beta|$, For large $n$, $|\beta|$ is small, so $k$ can be made less than $1$.
+    Therefore,
+    \[ |e_n| \leq k|e_{n-1} \]
+    The convergence is linear in this case, and errors decrease by at least a constant factor less than $1$ for sufficiently large $n$.
+\end{proof}
+
 \begin{problem}
     Suppose you're in a Question 6 situation:
     \begin{enumerate}
@@ -348,7 +403,24 @@ The root found of fraction form is in terms of:
         \item If the Q6 constant is \(0.0001\), would you rather use Newton's method or bisection? Justify your answer.
         \item Explain why the choice of Newton vs bisection might not be clear-cut if the Q6 constant is something like \(0.45\). What factors might you consider to make your decision?
     \end{enumerate}
-
 \end{problem}
+
+\begin{enumerate}
+    \item \textbf{Reasoning: } If the constant (denote $k$) $k = 0.8$, this represents that the error at each iteration reduces by a factor of $0.8$ for Newton's method (i.e., $|e_n| \leq 0.8 |e_{n-1}$).
+    The \textit{bisection method} reduces the error by a factor of $0.5$ at each iteration, as it halves the interval containing the root.
+    \\
+    In comparison, Newton's Method reduce the error by $20\%$ per iteration, while Bisection Method reduce the error by $50\%$ per iteration. Therefore, I will prefer the bisection method in this case for faster convergence.
+    \item \textbf{Reasoning: } If the constant (denote $k$) $k = 0.5$, this represents that the error at each iteration reduces by a factor of $0.5$ for Newton's method (i.e., $|e_n| \leq 0.5 |e_{n-1}$).
+    The \textit{bisection method} reduces the error by a factor of $0.5$ at each iteration, as it halves the interval containing the root.
+    \\
+    In comparison, Newton's Method reduce the error by $50\%$ per iteration, which is the same comparing to Bisection Metho. Theoretically, we can pick both methods in the case, but due to the simplicity and lower
+    computation cost (No derivative calculations needed) that Bisection Metho possess per iteration, I prefer picking Bisection Method.
+    \item \textbf{Reasoning: } If the constant (denote $k$) $k = 0.0001$, this represents that the error at each iteration reduces by a factor of $0.0001$ for Newton's method (i.e., $|e_n| \leq 0.0001 |e_{n-1}$).
+    The \textit{bisection method} reduces the error by a factor of $0.5$ at each iteration, as it halves the interval containing the root.
+    \\
+    In comparison, Newton's Method reduce the error by $99.99\%$ per iteration, while Bisection Method reduce the error by $50\%$ per iteration. Therefore, I will prefer the Newton's Method in this case for faster convergence.
+    \item \textbf{Reasoning: } When the Q6 constant is around \(0.45\), indicating that Newton's method reduces the error by approximately 55\% per iteration compared to bisection's 50\%, the choice between the two methods isn't clear-cut. The marginal gain in convergence speed with Newton's method may not justify its higher computational cost per iteration due to derivative evaluations and potential instability near multiple roots.
+    Consider factors like the ease of computing derivatives, the function's behavior near the root, robustness and guaranteed convergence (offered by bisection), implementation complexity, and available resources to decide if Newton's slight efficiency outweighs bisection's simplicity and reliability
+\end{enumerate}
 
 \end{document}
