@@ -62,7 +62,7 @@ where $p_{ij}$ and $q_{ij}$ are the probabilities of transitioning from tone $i$
 \\
 \textbf{Strategy 1: }
 \\
-Given a test poem's tonal sequence $x = (x_1, x_2, \ldots, x_n)$, we compute the \textit{log-likelihood} under each author's matrix:
+Given a test poem's tonal sequence $x = (x_1, x_2, \ldots, x_n)$, we compute the \textit{log-likelihood} [1][2] under each author's matrix:
 
 \[
     \mathcal{L}_{\text{Zhu}} = \sum_{i=1}^{n-1} \log M_{\text{Zhu}}[x_i, x_{i+1}], \quad \mathcal{L}_{\text{Du}} = \sum_{i=1}^{n-1} \log M_{\text{Du}}[x_i, x_{i+1}]
@@ -71,7 +71,7 @@ If $\mathcal{L}_{\text{Zhu}} > \mathcal{L}_{\text{Du}}$, we classify the poem as
 \\
 \textbf{Strategy 2: }
 \\
-Alternatively, we can compare the test poem’s equilibrium vector $\mathbf{v}_{\text{test}}$ with $\mathbf{v}_{\text{Zhu}}$ and $\mathbf{v}_{\text{Du}}$ using similarity measures such as \textit{cosine similarity} or \textit{Euclidean distance}.
+Alternatively, we can compare the test poem’s equilibrium vector $\mathbf{v}_{\text{test}}$ with $\mathbf{v}_{\text{Zhu}}$ and $\mathbf{v}_{\text{Du}}$ using similarity measures such as \textit{cosine similarity} [3][4] or \textit{Euclidean distance}.
 \[
     d_{\text{Zhu}} = \|\mathbf{v}_{\text{test}} - \mathbf{v}_{\text{Zhu}}\|, \quad d_{\text{Du}} = \|\mathbf{v}_{\text{test}} - \mathbf{v}_{\text{Du}}\|
 \]
@@ -84,7 +84,7 @@ The author is identified as the one corresponding to the minimum differences.
 \textbf{Expectations: }
 \\
 Given the strict tonal constraints in classical poetry and known stylistic differences, we expect to distinguish Du Fu and Zhu Shuzhen with reasonable accuracy. 
-I think log-likelihood Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies (Especially for euclidean distance and cosine similarity calculations).
+I think log-likelihood [1][2] Strategy might provide robust result, while the other two might show turbulences among small test-case's discrepancies (Especially for euclidean distance and cosine similarity [3][4] calculations).
 
 \section{Implementation and Data}
 \noindent For my implementation, I used three different strategies to address the author prediction task.
@@ -296,7 +296,7 @@ Du Fu
 \subsubsection*{Predicted Author for Mystery Test Tones: }
 Du Fu
 
-\section*{Euclidean Distance and Consine Similarity [3][4] Calculation: }
+\section*{Euclidean Distance and Cosine Similarity Calculation: }
 
 
 \subsection*{Predicted Author for Zhu Shuzhen's Test Tones:}
@@ -361,19 +361,19 @@ Du Fu
 \end{itemize}
 
 \section{Analysis}
-This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the \textbf{log-likelihood method}, equilibrium vector comparison via \textbf{Cosine Similarity} and \textbf{Euclidean Distance}, as well as a baseline approach using the \textbf{infinity norm}.
+This project distinguish the tonal styles of Zhu Shuzhen and Du Fu using Markov matrices by using various computational methods. The test sequence was analyzed using the \textbf{log-likelihood method}, equilibrium vector comparison via \textbf{Cosine Similarity} [3][4] and \textbf{Euclidean Distance}, as well as a baseline approach using the \textbf{infinity norm}.
 
-\subsection*{Log-Likelihood Method [1][2]}
+\subsection*{Log-Likelihood Method}
 
-The log-likelihood method correctly predicted the corresponding authors refer to two given test cases.
+The log-likelihood [1][2] method correctly predicted the corresponding authors refer to two given test cases.
 \\
-Supposingly, the reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. 
+Supposingly, the reason this method worked well is that it directly uses the transition probabilities from the Markov matrix, which are based on observed tonal patterns in each poet's work. Even with a small test case, the log-likelihood [1][2] method effectively quantifies how likely the transitions are for each poet, resulting in an accurate prediction. 
 This approach is particularly robust when dealing with small datasets, as it inherently accounts for the probabilities of each transition in a cumulative manner.
 \\
 Thus, for the additional Mystery Test Case, I will use its result as baseline to come up with potential reasoning.
 
 \subsection*{Cosine Similarity [3][4] and Euclidean Distance Methods}
-The equilibrium vector comparison using cosine similarity and Euclidean distance also predicted the correct authorship for both test cases. 
+The equilibrium vector comparison using cosine similarity [3][4] and Euclidean distance also predicted the correct authorship for both test cases. 
 The cosine similarity values for Zhu Shuzhen's test tones were higher when compared to her own matrix (0.9789) versus Du Fu’s (0.9729), and the Euclidean distance was lower for Zhu Shuzhen (0.1049) than Du Fu (0.1187), leading to the correct prediction for Zhu Shuzhen. 
 Similarly, Du Fu's test tones showed higher cosine similarity with his own matrix (0.9756) than Zhu Shuzhen's (0.9598), and a lower Euclidean distance (0.1159) compared to Zhu Shuzhen (0.1483), resulting in the correct prediction for Du Fu.
 \\
@@ -392,12 +392,12 @@ The baseline infinity norm method also correctly predicted Zhu Shuzhen and Du Fu
 \\
 Similar to second strategy, while these ``distance'' methods performed well, slight discrepancies in the similarity scores and distances suggest they are sensitive to small test case.
 \\
-However, probably due to the simplicity within the caluclation, the baseline method ``captured'' somewhat partly of the generic tonal behavior of the Mystery Test Tone, giving out a correct prediction consistent with the log-likelihood method. (This is surprising!) 
+However, probably due to the simplicity within the caluclation, the baseline method ``captured'' somewhat partly of the generic tonal behavior of the Mystery Test Tone, giving out a correct prediction consistent with the log-likelihood [1][2] method. (This is surprising!) 
 
 \section{Conclusion}
-The log-likelihood method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
+The log-likelihood [1][2] method provided highly accurate results, leveraging the probabilistic nature of the transition matrices and proving particularly reliable with limited data. The cosine similarity, Euclidean distance, and infinity norm methods also correctly predicted the authorship in both cases, though minor discrepancies in their values suggest that these methods may be more sensitive to small datasets.
 \\
-Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood method stands out for its robustness. The vector-based methods, including cosine similarity, Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
+Overall, the results demonstrate that while all methods performed well in this case, the log-likelihood [1][2] method stands out for its robustness. The vector-based methods, including cosine similarity [3][4], Euclidean distance, and the infinity norm, provide correct predictions but may benefit from larger datasets or further refinement to more accurately capture subtle tonal transitions and stylistic nuances in general.
 
 \begin{thebibliography}{99}
 
@@ -409,7 +409,6 @@ Overall, the results demonstrate that while all methods performed well in this c
 
     \bibitem{4} Wikipedia for Cosine-similarity: \url{https://en.wikipedia.org/wiki/Cosine_similarity}
 
-    
 \end{thebibliography}
 
 \end{document} 
