@@ -87,19 +87,18 @@
 \end{proof} 
 
 \subsubsection*{(e)}
-The calculation in (c) provides a worst-case error bound based on the maximum possible value of $| P'(F) |$ 
-over the entire interval $[0, M]$. In the bisection method, as $k$ (i.e. iteration) increase, interval $[a_k, b_k]$ shrinks, 
-and so does the maximum value of $F$ within interval. Hence, we can sharpen the error bound by updating $M_k = b_k$ at each step.
-\\
-Additionally we can improve the init. interval with better pick of left end point. 
-Noticing that $Q(0) > 0$ and $Q(1.5) > 0$, wth $Q(2) < 0$, starting with the sharpened interval $[1.5, 2]$ shall reduce the error bound.
+In (c), we calculated how errors in \( F \) affect \( P(F) \), establishing a bound necessary in (d) to determine the number of bisection steps required to achieve the desired precision in \( P(F) \); without this calculation, we couldn't link the error in \( F \) to the error in \( P(F) \). To sharpen the bound from (c) at each bisection step, we can update \( M \) to be the current upper bound of \( F \), reducing the maximum possible error in \( P(F) \) as the interval narrows. Furthermore, we can improve the bound by starting with a higher left endpoint—changing it from \( 0 \) to a larger value where \( Q(F) > 0 \) (like \( L = 2 \))—which decreases the interval length and the maximum value of \( F \), resulting in a smaller \( M \) and a tighter error bound, ultimately reducing the number of steps needed in the bisection method.
 
 \subsubsection*{(f)}
 \begin{proof}
-    From (e), we pick interval $[1.5, 2]$, (NOTE: $M$ here refer to the initial interval's width):
-    \[ \delta_P = |P'(F_k)| \cdot \frac{M}{2^k} = |10F_k + 2| \cdot \frac{M}{2^k} \]
-    \[ \leq 22 \cdot \frac{2 - 1.5}{2^k} = \frac{1}{2^k} \]
-    This provide a tighter estimate of the error in $P(F)$ comparing to (d)
+    From (e), at step $k$:
+    \begin{itemize}
+        \item Current interval: $[a_k, b_k]$
+        \item Error in F: \[ \delta_F = \frac{b_k - a_k}{2} = \frac{M}{2} \]
+        \item Current approx: $F_k = \frac{b_k + a_k}{2}$
+    \end{itemize}
+    Hence, the improved Error Bound will be:
+    \[ \delta_P = |10F_k + 2|\delta_F = |10F_k + 2| \left( \frac{M}{2^{k + 1}} \right) \]
 \end{proof}
 
 \subsubsection*{(g)}
@@ -118,7 +117,7 @@ While the improved error estimate from part (f) offers a more precise bound on t
 \end{verbatim}
 
 \subsubsection*{Running Result: }
-Number of steps: $20$
+Number of steps: $21$
 \\
 Root as a fraction: $2694241/2^{20}$
 \\
