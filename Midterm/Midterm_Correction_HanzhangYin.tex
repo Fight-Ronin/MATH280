@@ -1,0 +1,243 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[backend=biber]{biblatex}
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage{tikz}
+
+\bibliography{app_log.bib}
+
+\newcounter{entry}
+\newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
+
+\title{\vspace{-2cm}Midterm Correction}
+\author{Hanzhang Yin}
+
+
+\begin{document}
+\maketitle
+
+\section*{Question Correction: }
+
+\section{Part A}
+
+\subsection*{Question 1}
+
+\subsubsection{(a)}
+For this question, I made a misconception on the inequality relationship between absolute error and relative error. Although I have correctly identitfied it out,
+I sub the incorrect values in it during calculations
+\\
+\textbf{Corrections: }
+\\
+NOTE: \(\kappa(A) = ||L|| \cdot ||L^{-1}|| \)
+\[ 
+    \frac{|x - \tilde{x}|}{|x|} \leq \kappa(L) \frac{|b - \tilde{b}|}{|b|} \leq 4 \times \left(\frac{1}{2}\right) \times 0.1 = 0.2.
+\]
+ 
+\subsubsection{(b)}
+For this question, I have confused and forget the relationship between absolute and relative error. (Which should not happened...)
+\\
+\textbf{Corrections: }
+\\
+The system of equations given is $Lx = b$. where $L$ is a matrix, $x$ is the solution vector, and $b$ is the right-hand side vector.
+However, we only have an estimate $\tilde{b}$ for $b$, so we ended up solving $L\tilde{x} = \tilde{b}$, where $\tilde{x}$ is the approx. solution corresponding to $\tilde{b}$.
+\\
+To analyze the effect of the error $b$ on $x$, we subtract the two equations $Lx = b, L\tilde{x} = \tilde{b}$, giving that:
+\[ L(x - \tilde{x}) = b - \tilde{b} \Rightarrow x - \tilde{x} = L^{-1}(b - \tilde{b}) \]
+To bound the error, we take the norm of both sides here:
+\[ \Rightarrow |x - \tilde{x}| = |L^{-1}(b - \tilde{b})| \]
+By triangle inequality and definition of matrix norm, we can further have:
+\begin{align*}
+\Rightarrow |x - \tilde{x}| &\leq ||L^{-1}|| |b - \tilde{b}| \\
+    &= \frac{1}{2} \times 4, \\
+    &= 2.
+\end{align*}
+
+\subsubsection{(c)}
+Similarly to (b), I have failed recognize using the given system of linear equation is sufficient during examination.
+\\
+\textbf{Corrections: }
+\\
+Since \( Lx = b \), we can express \( x \) as:
+\[
+    x = L^{-1} b
+\]
+To bound \( |x| \), we take the norm:
+\[
+    |x| = |L^{-1} b|
+\]
+Using the traingle inequality and definition of matrix norm \( |L^{-1} b| \leq ||L^{-1}|| |b| \), we get:
+\[
+    |x| \leq ||L^{-1}|| |b|
+\]
+Substitute \( \|L^{-1}\| = \frac{1}{2} \) and \( |b| = 40 \):
+\[
+    |x| \leq \frac{1}{2} \times 40 = 20
+\]
+
+\subsection*{Question 2}
+
+\subsubsection{(a)}
+Forgot to specify that degree $k$ spline must be polynomial. Here I will provide a more formal definition as a correction:
+\\
+\textbf{Corrections: }
+\\
+A degree \( k \) spline on an interval \([a, b]\) is a function \( S(x) \) composed of polynomial segments \( S_i(x) \) of degree \( k \), defined on subintervals \([x_i, x_{i+1}]\), where \( a = x_0 < x_1 < \dots < x_n = b \).
+\\
+The spline satisfies the following properties:
+\begin{itemize}
+    \item Piecewise Polynomial: On each subinterval \([x_i, x_{i+1}]\), \( S(x) \) is a polynomial of degree \( k \):
+        \[
+            S(x) = S_i(x) \quad \text{for } x \in [x_i, x_{i+1}]
+        \]
+    \item Continuity of Function and Derivatives: The function \( S(x) \) is continuous on \([a, b]\), and its derivatives up to order \( k-1 \) are also continuous across the subinterval boundaries (knots):
+        \[
+            S(x_i^-) = S(x_i^+), \quad S'(x_i^-) = S'(x_i^+), \quad \dots, \quad S^{(k-1)}(x_i^-) = S^{(k-1)}(x_i^+)
+        \]
+        for each knot \( x_i \), where \( S(x_i^-) \) and \( S(x_i^+) \) denote the left-hand and right-hand limits at \( x_i \), respectively.
+\end{itemize}
+
+\subsection*{Question 3}
+
+\subsubsection{(b)}
+For this question, I have no time to perform further steps as the time runs up, so that in this case I could only make a somehow plausible guess after all.
+\\
+\textbf{Corrections: }
+\\
+
+\section{Part B}
+
+\subsection*{Question 4}
+
+\subsubsection{(b)}
+I have made a misconception between the graph of $L_2$ norm and $\infty$ norm. During exam I don't have sufficient time to think carefully, but after revisit this question I found out the graph is straight-forward.
+\\
+\textbf{Corrections: }
+\\
+For the \( L^\infty \) norm on \( \mathbb{R}^2 \), the unit disk forms a square with vertices at \( (1, 1) \), \( (1, -1) \), \( (-1, 1) \), and \( (-1, -1) \), as it includes all points where \( \max(|x|, |y|) \leq 1 \). 
+\\
+\begin{tikzpicture}[scale=2] % Scale up the entire picture
+    % Draw the axes
+    \draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+    \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+
+    % Draw the unit disk for the infinity norm (a square)
+    \draw[thick] (1,1) -- (1,-1) -- (-1,-1) -- (-1,1) -- cycle;
+
+    % Mark the points at each vertex
+    \filldraw (1,1) circle (1pt) node[anchor=west] {$(1,1)$};
+    \filldraw (1,-1) circle (1pt) node[anchor=west] {$(1,-1)$};
+    \filldraw (-1,-1) circle (1pt) node[anchor=east] {$(-1,-1)$};
+    \filldraw (-1,1) circle (1pt) node[anchor=east] {$(-1,1)$};
+
+\end{tikzpicture}
+
+\subsection*{Question 5}
+
+\subsubsection{(b)}
+For this question, I misuse the characteristics of Markov matrix and matrix norm, and forgot the continuity of matrix-vector multiplication w.r.t. the limits.
+\\
+\textbf{Corrections: }
+\\
+We use the continuity of matrix-vector multiplication with respect to limits in here for further analysis
+\\
+ are given that \( \lim_{k \to \infty} M^k v = x \) for some nonzero vector \( x \), meaning repeated applications of \( M \) to \( v \) converge to \( x \).
+\\
+Continuity of Matrix-Vector Multiplication: Since matrix-vector multiplication is continuous, we have:
+\[
+   M x = M \lim_{k \to \infty} M^k v = \lim_{k \to \infty} M^{k+1} v = x
+\]
+Thus, \( M x = x \), showing that \( x \) is an eigenvector of \( M \) with eigenvalue \( 1 \).
+
+\subsubsection{(c)}
+For this question, since the question does not specify whether the markov matrix have the column or the row sum to $1$, so that I assumed the former and showed that there is a right eigenvector with eigenvalue 1.
+I think both will work but since it diverged with what the answer key said, here is the modified answer.
+\\
+\textbf{Corrections: }
+\\
+Let \( u = [1, 1, \dots, 1] \), a row vector with each entry equal to $1$.
+\\
+When we multiply \( y \) on the left by \( M \), we get \( y M \). This operation sums each column of \( M \), resulting in \( y \) again:
+\[
+    u M = u
+\]
+Since \( u M = u \), \( u \) is a left eigenvector of \( M \) with eigenvalue \( 1 \). Therefore, \( 1 \) is an eigenvalue of \( M \).
+
+\subsection*{Question 6}
+
+\subsubsection{(c)}
+For this question, I think it is sufficient to use sequence $a_k$ and $b_k$ is increasing and decreasing resp. without stating out as given they are given monotonic. 
+Hence ended with my a circular reasoning within my proof.
+\\
+\textbf{Corrections: }
+\\
+In each step of the bisection method, we start with an interval \( [a_k, b_k] \) where \( f(a_k) \) and \( f(b_k) \) have opposite signs. We compute the midpoint \( x_k = \frac{a_k + b_k}{2} \). If \( f(x_k) = 0 \), then \( x_k \) is the root, and we stop. Otherwise, depending on the sign of \( f(x_k) \), we replace either \( a_k \) or \( b_k \) with \( x_k \) to ensure the new interval \( [a_{k+1}, b_{k+1}] \) still contains the root.
+\\
+By construction, \( a_k \) is updated only when \( f(x_k) \) has the same sign as \( f(a_k) \). In this case, we set \( a_{k+1} = x_k \), meaning \( a_k \) is non-decreasing.
+Similarly, \( b_k \) is updated only when \( f(x_k) \) has the same sign as \( f(b_k) \). In this case, we set \( b_{k+1} = x_k \), making \( b_k \) non-increasing.
+Therefore, \( a_k \) forms a non-decreasing sequence and \( b_k \) forms a non-increasing sequence, with both sequences bounded within \( [a_0, b_0] \).
+\\
+Each iteration halves the interval size, so \( |a_k - b_k| = \frac{|a_0 - b_0|}{2^k} \), which approaches zero as \( k \to \infty \).
+Given the fact that if two monotonic sequences \( a_k \) and \( b_k \) are contained in a closed interval and \( \lim_{k \to \infty} (a_k - b_k) = 0 \), then \( \lim_{k \to \infty} a_k = \lim_{k \to \infty} b_k \) and these limits are equal.
+\\
+Since \( a_k \leq x_k \leq b_k \) at each step, the Squeeze Theorem implies that \( x_k \) also converges to the same limit as \( a_k \) and \( b_k \).
+Therefore, \( \lim_{k \to \infty} x_k \) exists, lies in \( [a, b] \), and is equal to the root of \( f \).
+
+\subsection*{Question 7 - Long Proof Part (b)}
+For this question, I did not state clear with a little vagueness about how to use Taylor's theorem in this proof, and made a small typo in exponent listed in the expanded polynomial. 
+This probably due to that I missed some details that need to remembered in the proof detial.
+\\
+\textbf{Corrections: }
+\\
+To show that \( |e_{n+1}| \leq \frac{C}{2B} e_n^2 \), we start by expanding the error \( e_{n+1} \) in terms of \( e_n \), using Newton’s method.
+\\
+Using Newton's update formula, we have:
+\[
+   x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}.
+\]
+Since \( e_{n+1} = x - x_{n+1} \), we can rewrite \( e_{n+1} \) as:
+\[
+   e_{n+1} = x - \left( x_n - \frac{f(x_n)}{f'(x_n)} \right) = (x - x_n) + \frac{f(x_n)}{f'(x_n)}.
+\]
+Substituting \( e_n = x - x_n \), we get:
+\[
+   e_{n+1} = e_n + \frac{f(x_n)}{f'(x_n)}.
+\]
+To approximate \( f(x_n) \) in terms of \( e_n \), we use Taylor’s theorem to expand \( f(x_n) \) around \( x \) (the root we are converging to), where \( f(x) = 0 \). Taylor’s theorem gives:
+\[
+   f(x_n) = f(x) + (x_n - x) f'(x) + \frac{f''(\zeta_n)}{2} (x_n - x)^2,
+\]
+for some \( \zeta_n \) between \( x \) and \( x_n \). Since \( f(x) = 0 \), this simplifies to:
+\[
+   f(x_n) = (x_n - x) f'(x) + \frac{f''(\zeta_n)}{2} (x_n - x)^2.
+\]
+Substituting \( e_n = x - x_n \), we get:
+\[
+   f(x_n) = -f'(x_n) e_n + \frac{f''(\zeta_n)}{2} e_n^2.
+\]
+Now, we substitute this expression for \( f(x_n) \) into the formula for \( e_{n+1} \):
+\[
+   e_{n+1} = e_n + \frac{-f'(x_n) e_n + \frac{f''(\zeta_n)}{2} e_n^2}{f'(x_n)}.
+\]
+Simplifying, we find:
+\[
+   e_{n+1} = e_n - \frac{f'(x_n)}{f'(x_n)} e_n + \frac{f''(\zeta_n)}{2 f'(x_n)} e_n^2.
+\]
+The terms involving \( e_n \) cancel out, leaving:
+\[
+   e_{n+1} = \frac{f''(\zeta_n)}{2 f'(x_n)} e_n^2.
+\]
+Taking the absolute value of both sides, we obtain:
+\[
+   |e_{n+1}| = \left| \frac{f''(\zeta_n)}{2 f'(x_n)} \right| e_n^2.
+\]
+By the assumptions of the theorem, \( |f'| > B \) on \( [a, b] \), so \( |f'(x_n)| > B \). Also, since \( f'' \) is bounded by \( C \) on \( [a, b] \), we have \( |f''(\zeta_n)| < C \) for all \( \zeta_n \) in \( [a, b] \). Therefore:
+\[
+   |e_{n+1}| \leq \frac{C}{2B} e_n^2.
+\]
+
+\section*{Write Your Own: }
+
+
+
+\end{document} 
