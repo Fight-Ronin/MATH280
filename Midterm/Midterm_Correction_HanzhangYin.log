@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  6 NOV 2024 00:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  6 NOV 2024 01:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -686,8 +686,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--107
 [3]
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
 
-[5] (./Midterm_Correction_HanzhangYin.aux)
+ []
+
+
+
+[5]
+Overfull \hbox (1.8745pt too wide) in paragraph at lines 254--254
+[]\OT1/cmr/bx/n/14.4 Part (a): Dif-fer-ences Be-tween Se-cant Method and Newton-Raphson
+ []
+
+
+
+[6]
+Overfull \hbox (1.8745pt too wide) in paragraph at lines 288--288
+[]\OT1/cmr/bx/n/14.4 Part (a): Dif-fer-ences Be-tween Se-cant Method and Newton-Raphson
+ []
+
+
+
+[7]
+
+[8]
+
+[9] (./Midterm_Correction_HanzhangYin.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
@@ -697,18 +720,18 @@ Package logreq Info: Writing requests to 'Midterm_Correction_HanzhangYin.run.xml
 
  ) 
 Here is how much of TeX's memory you used:
- 21025 strings out of 473579
- 421309 string characters out of 5732263
+ 21027 strings out of 473579
+ 421371 string characters out of 5732263
  1222138 words of memory out of 5000000
- 43620 multiletter control sequences out of 15000+600000
+ 43622 multiletter control sequences out of 15000+600000
  567516 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,9n,107p,771b,803s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on Midterm_Correction_HanzhangYin.pdf (5 pages, 162465 bytes).
+Output written on Midterm_Correction_HanzhangYin.pdf (9 pages, 177865 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

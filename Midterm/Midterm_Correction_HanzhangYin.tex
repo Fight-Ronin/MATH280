@@ -237,8 +237,169 @@ By the assumptions of the theorem, \( |f'| > B \) on \( [a, b] \), so \( |f'(x_n
 \]
 
 \section*{Write Your Own: }
-I am willing to design a problem related to \textit{Secant Method} that we have discussed previously.
+I am willing to design a problem related to \textit{Secant Method} that we have discussed currently.
+\\
+\section*{Problem}
 
+Consider the function \( f(x) = x^3 - 2x^2 + x - 3 \).
+
+\begin{enumerate}
+    \item[(a)] Explain how the secant method differs from the Newton method in finding roots of nonlinear equations.
+    
+    \item[(b)] Prove that the order of convergence of the secant method is approximately \( \phi \), where \( \phi = \frac{1 + \sqrt{5}}{2} \) (the golden ratio). Provide the derivation for this order of convergence.
+\end{enumerate}
+
+\section*{Solution}
+
+\subsection*{Part (a): Differences Between Secant Method and Newton-Raphson Method}
+
+\begin{itemize}
+    \item \textbf{Derivative Requirement:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Requires the calculation of the derivative \( f'(x) \) at each iteration.
+        \[
+        x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+        \]
+        \item \textbf{Secant Method:} Does not require the derivative. Instead, it approximates the derivative using two previous function values.
+        \[
+        x_{n+1} = x_n - f(x_n) \left( \frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})} \right)
+        \]
+    \end{itemize}
+    
+    \item \textbf{Initial Guesses:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Requires a single initial guess \( x_0 \).
+        \item \textbf{Secant Method:} Requires two initial guesses \( x_0 \) and \( x_1 \) to start the iteration.
+    \end{itemize}
+
+    \item \textbf{Convergence Rate:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Has quadratic convergence (\( p = 2 \)) near the root if the function is sufficiently smooth.
+        \item \textbf{Secant Method:} Has a convergence rate of approximately \( p \approx 1.618 \) (superlinear but less than quadratic).
+    \end{itemize}
+
+    \item \textbf{Computational Costs:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Requires evaluation of both \( f(x) \) and \( f'(x) \) at each step, which can be computationally expensive if \( f'(x) \) is complex.
+        \item \textbf{Secant Method:} Only requires evaluation of \( f(x) \), saving computational resources when \( f'(x) \) is difficult to compute.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Part (a): Differences Between Secant Method and Newton-Raphson Method}
+
+\begin{itemize}
+    \item \textbf{Derivative Requirement:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Requires the calculation of the derivative \( f'(x) \) at each iteration.
+        \[
+        x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+        \]
+        \item \textbf{Secant Method:} Does not require the derivative. Instead, it approximates the derivative using two previous function values.
+        \[
+        x_{n+1} = x_n - f(x_n) \left( \frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})} \right)
+        \]
+    \end{itemize}
+    
+    \item \textbf{Initial Guesses:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Requires a single initial guess \( x_0 \).
+        \item \textbf{Secant Method:} Requires two initial guesses \( x_0 \) and \( x_1 \) to start the iteration.
+    \end{itemize}
+
+    \item \textbf{Convergence Rate:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Has quadratic convergence (\( p = 2 \)) near the root if the function is sufficiently smooth.
+        \item \textbf{Secant Method:} Has a convergence rate of approximately \( p \approx 1.618 \) (superlinear but less than quadratic).
+    \end{itemize}
+
+    \item \textbf{Computational Effort:}
+    \begin{itemize}
+        \item \textbf{Newton-Raphson Method:} Requires evaluation of both \( f(x) \) and \( f'(x) \) at each step, which can be computationally expensive if \( f'(x) \) is complex.
+        \item \textbf{Secant Method:} Only requires evaluation of \( f(x) \), saving computational resources when \( f'(x) \) is difficult to compute.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Part (b): Order of Convergence of the Secant Method}
+
+\textbf{Objective:} Prove that the secant method has an order of convergence \( p \) equal to the golden ratio \( \phi = \frac{1 + \sqrt{5}}{2} \).
+\\
+\textbf{Proof:}
+
+\begin{itemize}
+    \item \textbf{Definitions:}
+    \begin{itemize}
+        \item Let \( \alpha \) be a simple root of \( f(x) \), so \( f(\alpha) = 0 \) and \( f'(\alpha) \neq 0 \).
+        \item Define the error at step \( n \) as \( e_n = x_n - \alpha \).
+    \end{itemize}
+
+    \item \textbf{Assumptions:}
+    \begin{itemize}
+        \item The function \( f(x) \) is sufficiently smooth near \( \alpha \).
+        \item The errors \( e_n \) are small, so higher-order terms can be neglected.
+    \end{itemize}
+
+    \item \textbf{Derivation:}
+    
+    1. \textbf{Taylor Expansion:} Expand \( f(x_n) \) and \( f(x_{n-1}) \) around \( x = \alpha \):
+    
+    \[
+    f(x_n) = f'(\alpha)e_n + \frac{1}{2}f''(\alpha)e_n^2 + \ldots
+    \]
+    
+    Similarly,
+    
+    \[
+    f(x_{n-1}) = f'(\alpha)e_{n-1} + \frac{1}{2}f''(\alpha)e_{n-1}^2 + \ldots
+    \]
+    
+    2. \textbf{Secant Method Formula:} The secant method update is:
+    
+    \[
+    x_{n+1} = x_n - f(x_n) \left( \frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})} \right)
+    \]
+    
+    3. \textbf{Approximate the Denominator:} The denominator \( f(x_n) - f(x_{n-1}) \) can be approximated as:
+    
+    \[
+    f(x_n) - f(x_{n-1}) \approx f'(\alpha)(e_n - e_{n-1}) + \text{higher-order terms}
+    \]
+    
+    The difference \( x_n - x_{n-1} \) is:
+    
+    \[
+    x_n - x_{n-1} = (e_n - e_{n-1})
+    \]
+    
+    4. \textbf{Simplify the Update Formula:} Substitute the approximations into the secant method formula:
+    
+    \[
+    x_{n+1} = x_n - \frac{f'(\alpha)e_n}{f'(\alpha)(e_n - e_{n-1})} (e_n - e_{n-1})
+    \]
+    
+    Simplifying, we get:
+    
+    \[
+    e_{n+1} = - \frac{1}{2} \frac{f''(\alpha)}{(f'(\alpha))^2} e_n e_{n-1}
+    \]
+    
+    5. **Fibonacci Sequence Analogy:** This recurrence relation \( e_{n+1} \approx \lambda e_n e_{n-1} \), where \( \lambda \) is a constant, resembles the Fibonacci sequence. By analyzing this recurrence relation, we can conclude that the error \( e_n \) converges with a rate approximately equal to the golden ratio.
+    
+    6. **Solving for Convergence Rate \( p \):** The convergence order \( p \) satisfies the characteristic equation:
+    
+    \[
+    p^2 = p + 1
+    \]
+    
+    Solving this equation gives:
+    
+    \[
+    p = \frac{1 + \sqrt{5}}{2} \approx 1.618
+    \]
+    
+    Thus, the secant method has an order of convergence approximately equal to the golden ratio \( \phi = \frac{1 + \sqrt{5}}{2} \).
+\end{itemize}
+
+This completes the proof.
 
 
 \end{document} 
