@@ -308,7 +308,7 @@ Consider the function \( f(x) = x^3 - 2x^2 + x - 3 \).
 
     \item \textbf{Convergence Rate:}
     \begin{itemize}
-        \item \textbf{Newton’s Method}:} Has quadratic convergence (\( p = 2 \)) near the root if the function is sufficiently smooth.
+        \item \textbf{Newton’s Method}: Has quadratic convergence (\( p = 2 \)) near the root if the function is sufficiently smooth.
         \item \textbf{Secant Method:} Has a convergence rate of approximately \( p \approx 1.618 \) (superlinear but less than quadratic).
     \end{itemize}
 
@@ -339,7 +339,7 @@ Let \( x_n = \alpha + \epsilon_n \). Since \( x_n \to \alpha \), the sequence of
 \[
     \epsilon_{n+1} = \epsilon_n - \frac{f(\alpha + \epsilon_n)(\epsilon_n - \epsilon_{n-1})}{f(\alpha + \epsilon_n) - f(\alpha + \epsilon_{n-1})} \ (2)
 \]
-Assume that \( f(x) \) is a twice differentiable function and \( f'(\alpha) \), \( f''(\alpha) \neq 0 \). The Taylor Expansion of the formula will be:
+Assume that \( f(x) \) is a three times differentiable function and \( f'(\alpha) \), \( f''(\alpha) \neq 0 \). The Taylor Expansion of the formula will be:
 \[
     f(\alpha + \epsilon) = f(\alpha) + f'(\alpha) \epsilon + \frac{f''(\alpha)}{2} \epsilon^2 + R_2(\epsilon).
 \]
@@ -399,10 +399,10 @@ Referring back to the relationship we have on \( C \), we can conclude that:
 \[
 C^p = |N| \quad \text{or} \quad C = |N|^{1/p} = \left| \frac{f''(\alpha)}{2 f'(\alpha)} \right|^{p-1}.
 \]
-We conclude that for the secant method (NOTE: $\phi = p$ as shown)
+Lastly, we can conclude that for the secant method (NOTE: $\phi = p$ as shown)
 \[
     |x_{n+1} - \alpha| \approx \left| \frac{f''(\alpha)}{2 f'(\alpha)} \right|^{\frac{\sqrt{5}-1}{2}} |x_n - \alpha|^{\phi}.
 \]
-We finish the proof at this stage.
+Q.E.D.
 
 \end{document} 

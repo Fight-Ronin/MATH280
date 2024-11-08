@@ -14,5 +14,93 @@
 \begin{document}
 \maketitle
 
+\section*{1. Proposal/Examples}
+
+In this project, we will test our numerical methods software on a variety of equations derived from real-world scientific problems. The selected examples include univariate polynomial equations, a system of polynomial equations from physics and engineering, and a non-polynomial equation to test the implementation of Newton’s method and the secant method. We will also explore degenerations of the univariate polynomials and analyze how these affect the performance of numerical methods.
+
+\subsection*{Univariate Polynomial Equations}
+
+\textbf{Example 1: Lagrange Points in Orbital Mechanics}
+
+In celestial mechanics, Lagrange points are positions where a small object affected only by gravity can maintain a stable position relative to two larger objects (e.g., the Earth and the Moon). The position of the \( L_1 \) Lagrange point along the line connecting the two masses is found by solving the quintic polynomial:
+
+\[
+x^5 - (3 + \mu)x^4 + (3 + 2\mu)x^3 - \mu x^2 + 2\mu x - \mu = 0,
+\]
+
+where \( x \) is the normalized distance from the smaller mass and \( \mu \) is the mass ratio of the two bodies. We will study how varying \( \mu \) affects the roots of this polynomial.
+
+\textbf{Degeneration:}
+
+As \( \mu \) approaches zero (one mass is much smaller than the other), the polynomial simplifies, potentially leading to multiple roots or singular behavior. We will connect the degenerate case to the original by gradually varying \( \mu \).
+
+\textbf{Example 2: Van der Waals Equation for Real Gases}
+
+The Van der Waals equation modifies the Ideal Gas Law to account for molecular size and intermolecular forces:
+
+\[
+\left( P + \frac{a}{V^2} \right)(V - b) = RT,
+\]
+
+which can be rearranged into a cubic polynomial in volume \( V \):
+
+\[
+P V^3 - (P b + R T)V^2 + a V - a b = 0,
+\]
+
+where \( P \) is pressure, \( T \) is temperature, \( R \) is the gas constant, and \( a \), \( b \) are substance-specific constants. We will solve this cubic polynomial for \( V \) under various conditions.
+
+\textbf{Degeneration:}
+
+At the critical point, the gas undergoes phase transitions, leading to multiple real roots converging. By adjusting \( T \) and \( P \) towards critical values, we can induce degeneracy and study its impact on numerical methods.
+
+\subsection*{System of Polynomial Equations}
+
+\textbf{Example: Kinematics of a Two-Link Robotic Arm}
+
+In robotics, inverse kinematics involves finding joint angles that position the end effector at a desired point. For a planar two-link arm with link lengths \( L_1 \) and \( L_2 \), the equations are:
+
+\[
+\begin{cases}
+x = L_1 \cos(\theta_1) + L_2 \cos(\theta_1 + \theta_2), \\
+y = L_1 \sin(\theta_1) + L_2 \sin(\theta_1 + \theta_2).
+\end{cases}
+\]
+
+Using trigonometric identities, these can be transformed into a system of polynomial equations in \( \cos \theta_1, \sin \theta_1, \cos \theta_2, \) and \( \sin \theta_2 \). We will solve this system to find the joint angles \( \theta_1 \) and \( \theta_2 \) for given end effector positions \( x \) and \( y \).
+
+\subsection*{Non-Polynomial Equation}
+
+\textbf{Example: Transcendental Equation in Quantum Mechanics}
+
+The energy levels of a particle in a one-dimensional finite potential well are found by solving transcendental equations like:
+
+\[
+k \tan(k a) = \sqrt{k_0^2 - k^2},
+\]
+
+where \( k = \sqrt{\frac{2 m E}{\hbar^2}} \), \( k_0 = \sqrt{\frac{2 m V_0}{\hbar^2}} \), \( E \) is the particle's energy, \( V_0 \) is the well depth, \( a \) is the well width, \( m \) is the mass, and \( \hbar \) is the reduced Planck constant. This non-polynomial equation involves trigonometric and square root functions. We will apply Newton’s method and the secant method to find the energy levels \( E \).
+
+\subsection*{Degeneration and Numerical Challenges}
+
+\textbf{Degeneration in Univariate Polynomials:}
+
+For the Lagrange points, as \( \mu \rightarrow 0 \), the polynomial equation simplifies and may exhibit multiple roots, creating challenges for numerical solvers due to ill-conditioning.
+
+In the Van der Waals equation, approaching the critical point causes the cubic polynomial to have closely spaced or multiple real roots. This can lead to numerical instability and convergence issues in root-finding algorithms.
+
+\textbf{Anticipated Numerical Challenges:}
+
+By selecting examples with potential singularities and degeneracies, we expect to encounter difficulties such as:
+
+- Slow convergence or divergence of iterative methods.
+- Sensitivity to initial guesses due to multiple or closely spaced roots.
+- Increased computational errors from ill-conditioned equations.
+
+These challenges will allow us to evaluate the robustness and reliability of our numerical methods software under demanding conditions.
+
+---
+
+By exploring these examples, we aim to thoroughly test our software's capability to handle a variety of mathematical problems, including those that are particularly challenging for numerical methods.
 
 \end{document} 
