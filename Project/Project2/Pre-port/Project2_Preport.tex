@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage[backend=biber]{biblatex}
+\bibliography{app_log.bib}
+
+\newcounter{entry}
+\newcommand\ALEntry[1]{\stepcounter{entry}\textbf{[\theentry]} \fullcite{#1}.\\[-0.2em]}
+
+\title{\vspace{-2cm}Project 2 Pre-port}
+\author{Hanzhang Yin}
+
+\begin{document}
+\maketitle
+
+This project will evaluates the effectiveness and challenges of applying the bisection method, Newton's method, and the secant method to selected polynomial and non-polynomial equations. By analyzing the strengths and weaknesses of each method, we predict their performance and potential issues, analyzing potential limitations and areas where they may struggle.
+
+\subsection*{Univariate Polynomial Equations}
+
+\noindent \textbf{Polynomial 1: Lagrange Points in Orbital Mechanics}
+\\
+\noindent The quintic polynomial equation used to find the \( L_1 \) Lagrange point is expected to be challenging due to the potential for closely spaced roots when \( \mu \) approaches zero.
+
+\noindent \textbf{Expectations:}
+\begin{itemize}
+    \item \textbf{Bisection Method}: This method is reliable for finding roots within an interval, provided the function changes sign. However, it may converge slowly due to the nature of the equation's complexity and root distribution.
+    \item \textbf{Newton’s Method}: We expect this method to work efficiently for well-separated roots, but it may have difficulty if the initial guess is not close to a root or if the derivative is near zero. The polynomial's complexity and potential multiple roots can lead to divergence or slow convergence.
+    \item \textbf{Secant Method}: Similar to Newton’s method, the secant method could work well with good initial estimates. However, without a guarantee of quadratic convergence, it may face challenges with multiple or closely spaced roots.
+\end{itemize}
+\\
+\textbf{Predictions:}
+\noindent Newton’s and the secant methods may struggle with convergence near degenerate cases (e.g., when \( \mu \rightarrow 0 \)). The bisection method, while slower, should still manage to find a root if the interval is appropriately chosen.
+\\
+\textbf{Polynomial 2: Ideal Gas Law for Real Gases}
+\\
+\noindent The cubic polynomial derived from the modified ideal gas law for real gases can show varying root behavior, especially near the critical point where multiple real roots converge.
+\\
+\noindent \textbf{Expectations:}
+\begin{itemize}
+    \item \textbf{Bisection Method}: This method will be effective for simple cases but may slow down when handling closely spaced or nearly coinciding roots near the critical point.
+    \item \textbf{Newton’s Method}: Expected to perform well with a good initial guess, but it may face issues if the polynomial's derivative becomes small or near zero at points of interest (e.g., at the critical point).
+    \item \textbf{Secant Method}: This method will likely show performance similar to Newton’s but with potentially slower convergence. It may also be sensitive to the choice of starting points, especially near critical conditions.
+\end{itemize}
+\\
+\textbf{Predictions:}
+Both Newton’s and the secant methods might face convergence issues or require careful handling when the equation approaches critical conditions. The bisection method, although slower, should reliably find a root if a sign change can be identified in the interval.
+
+\subsection*{System of Polynomial Equations: Coupled Spring-Mass System}
+
+\noindent The system of equations for a coupled spring-mass system can pose numerical challenges, particularly when parameters such as \( k_2 \) are small or approach zero, potentially leading to singular or nearly singular matrices.
+\\
+\noindent \textbf{Expectations:}
+\begin{itemize}
+    \item \textbf{Multivariable Newton’s Method}: This method should be effective for solving systems of polynomial equations, but it might struggle with singular or nearly singular Jacobians when parameters such as \( k_2 \) are very small.
+\end{itemize}
+\\
+\textbf{Predictions:}
+Convergence issues may arise if the system is close to singular, leading to difficulties in inverting the Jacobian matrix. Careful handling of the initial guess and analysis of the Jacobian’s conditioning will be important.
+
+\subsection*{Non-Polynomial Equation: Sinusoidal Motion in Spring Displacement}
+
+\noindent The trigonometric equation for the sinusoidal displacement \( 5 \sin(2t) - 3 = 0 \) presents an oscillatory behavior that can be tricky for iterative methods.
+\\
+\textbf{Expectations:}
+\begin{itemize}
+    \item \textbf{Newton’s Method}: This method could converge quickly if the initial guess is close to the solution. However, due to the oscillatory nature of the function, poor initial guesses may lead to divergence or convergence to a local extremum instead of a root.
+    \item \textbf{Secant Method}: This method is more robust than Newton’s in terms of not requiring a derivative, but it could also face challenges with oscillatory functions, potentially leading to slow or erratic convergence if the starting points are poorly chosen.
+\end{itemize}
+\\
+\noindent \textbf{Predictions:}
+Both methods may perform inconsistently depending on the initial guesses due to the trigonometric function’s periodic nature. Proper choice of initial guesses and interval analysis will be critical for successful root-finding.
+
+\subsection*{Overall Analysis}
+
+While all methods have their strengths, the examples chosen illustrate cases that could expose their weaknesses. The Lagrange polynomial and the ideal gas law equation may pose challenges due to closely spaced or degenerate roots, while the non-polynomial sinusoidal equation might exhibit periodic behavior that makes convergence difficult without careful initial guesses. These examples will allow us to test the limits of the methods and understand their behavior under different conditions.
+
+
+\end{document} 
