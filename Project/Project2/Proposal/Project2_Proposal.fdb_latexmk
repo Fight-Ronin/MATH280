@@ -1,17 +1,17 @@
 # Fdb version 4
-["biber Project2_Proposal"] 0 "Project2_Proposal.bcf" "Project2_Proposal.bbl" "Project2_Proposal" 1730956091.96765 0
+["biber Project2_Proposal"] 0 "Project2_Proposal.bcf" "Project2_Proposal.bbl" "Project2_Proposal" 1731116703.62421 0
   "Project2_Proposal.bcf" 0 -1 0 "pdflatex"
   "app_log.bib" 0 -1 0 ""
   (generated)
   "Project2_Proposal.bbl"
   "Project2_Proposal.blg"
   (rewritten before read)
-["pdflatex"] 1730956090.75173 "c:/Users/yinha/OneDrive/Documents/MATH280-1/Project/Project2/Proposal/Project2_Proposal.tex" "Project2_Proposal.pdf" "Project2_Proposal" 1730956091.96822 0
-  "Project2_Proposal.aux" 1730956091 125 895f40dac7c30abf7d8f2f18f97273ed "pdflatex"
+["pdflatex"] 1731116702.3664 "c:/Users/yinha/OneDrive/Documents/MATH280-1/Project/Project2/Proposal/Project2_Proposal.tex" "Project2_Proposal.pdf" "Project2_Proposal" 1731116703.62484 0
+  "Project2_Proposal.aux" 1731116703 125 af5db7b9795f7e92a5d73508844c1005 "pdflatex"
   "Project2_Proposal.bbl" 0 -1 0 "biber Project2_Proposal"
-  "Project2_Proposal.run.xml" 1730956091 2393 8a240c879605d323d5350986b5337e98 "pdflatex"
-  "Project2_Proposal.tex" 1730956088 5460 873af6fea9e582491a147936cfa5a493 ""
-  "c:/Users/yinha/OneDrive/Documents/MATH280-1/Project/Project2/Proposal/Project2_Proposal.tex" 1730956088 5460 873af6fea9e582491a147936cfa5a493 ""
+  "Project2_Proposal.run.xml" 1731116703 2393 8a240c879605d323d5350986b5337e98 "pdflatex"
+  "Project2_Proposal.tex" 1731116701 4040 99d2d643a26dd5f320babfa2c4c62ed3 ""
+  "c:/Users/yinha/OneDrive/Documents/MATH280-1/Project/Project2/Proposal/Project2_Proposal.tex" 1731116701 4040 99d2d643a26dd5f320babfa2c4c62ed3 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1726718816 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1726714687 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1726714687 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -32,15 +32,11 @@
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1726716576 1116 933a60c408fc0a863a92debe84b2d294 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1726716576 1120 8b7d695260f3cff42e636090a8002094 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1726714687 32080 340ef9bf63678554ee606688e7b5339d ""
-  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1726714687 30251 6afa5cb1d0204815a708a080681d4674 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1726714687 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
-  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1726714687 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1726714687 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1726714687 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
-  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1726714687 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1726714687 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1726714687 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1726714687 34694 870c211f62cb72718a00e353f14f254d ""
   "c:/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty" 1726720078 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
   "c:/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty" 1726720078 1057 525c2192b5febbd8c1f662c9468335bb ""
   "c:/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty" 1726720144 8356 7bbb2c2373aa810be568c29e333da8ed ""

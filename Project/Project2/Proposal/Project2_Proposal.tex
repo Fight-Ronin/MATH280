@@ -10,97 +10,71 @@
 \title{\vspace{-2cm}Project 2 Proposal}
 \author{Hanzhang Yin}
 
-
 \begin{document}
 \maketitle
 
-\section*{1. Proposal/Examples}
-
-In this project, we will test our numerical methods software on a variety of equations derived from real-world scientific problems. The selected examples include univariate polynomial equations, a system of polynomial equations from physics and engineering, and a non-polynomial equation to test the implementation of Newton’s method and the secant method. We will also explore degenerations of the univariate polynomials and analyze how these affect the performance of numerical methods.
+\noindent In this project, we will test our algorithms using examples from physics and mathematics, including univariate polynomial equations, a system of polynomial equations, and a non-polynomial equation for testing Newton's, Bisection and the secant methods for root apprximations. Each example includes a brief explanation of its scientific background and the potential challenges it presents for numerical methods.
 
 \subsection*{Univariate Polynomial Equations}
 
-\textbf{Example 1: Lagrange Points in Orbital Mechanics}
+\textbf{Polynomial 1: Lagrange Points in Orbital Mechanics}
 
-In celestial mechanics, Lagrange points are positions where a small object affected only by gravity can maintain a stable position relative to two larger objects (e.g., the Earth and the Moon). The position of the \( L_1 \) Lagrange point along the line connecting the two masses is found by solving the quintic polynomial:
-
-\[
-x^5 - (3 + \mu)x^4 + (3 + 2\mu)x^3 - \mu x^2 + 2\mu x - \mu = 0,
-\]
-
-where \( x \) is the normalized distance from the smaller mass and \( \mu \) is the mass ratio of the two bodies. We will study how varying \( \mu \) affects the roots of this polynomial.
-
-\textbf{Degeneration:}
-
-As \( \mu \) approaches zero (one mass is much smaller than the other), the polynomial simplifies, potentially leading to multiple roots or singular behavior. We will connect the degenerate case to the original by gradually varying \( \mu \).
-
-\textbf{Example 2: Van der Waals Equation for Real Gases}
-
-The Van der Waals equation modifies the Ideal Gas Law to account for molecular size and intermolecular forces:
+\noindent In celestial mechanics, Lagrange points are positions where a small body can maintain its position relative to two larger bodies due to gravitational forces. The \( L_1 \) Lagrange point is found by solving a quintic polynomial:
 
 \[
-\left( P + \frac{a}{V^2} \right)(V - b) = RT,
+    x^5 - (3 + \mu)x^4 + (3 + 2\mu)x^3 - \mu x^2 + 2\mu x - \mu = 0,
 \]
 
-which can be rearranged into a cubic polynomial in volume \( V \):
+\noindent where \( x \) is the normalized distance and \( \mu \) is the mass ratio of the two bodies. This example is chosen for its complexity and the potential for numerical issues when \( \mu \) approaches zero, leading to multiple or closely spaced roots.
+\\
+\textbf{Degeneration:} As \( \mu \rightarrow 0 \), the polynomial simplifies, which we will connect to the original equation by analyzing numerical stability and how root multiplicity affects convergence.
+\\
+\textbf{Polynomial 2: Ideal Gas Law For Real Gas}
+
+\noindent The modified ideal gas law for real gases can be expressed as:
 
 \[
-P V^3 - (P b + R T)V^2 + a V - a b = 0,
+    P V^3 - (P b + R T)V^2 + a V - a b = 0,
 \]
 
-where \( P \) is pressure, \( T \) is temperature, \( R \) is the gas constant, and \( a \), \( b \) are substance-specific constants. We will solve this cubic polynomial for \( V \) under various conditions.
-
-\textbf{Degeneration:}
-
-At the critical point, the gas undergoes phase transitions, leading to multiple real roots converging. By adjusting \( T \) and \( P \) towards critical values, we can induce degeneracy and study its impact on numerical methods.
+\noindent where \( P \) is pressure, \( T \) is temperature, \( R \) is the gas constant, and \( a \), \( b \) are gas-specific constants. This cubic polynomial can exhibit different root structures under varying conditions, such as near the critical point where multiple real roots merge.
+\\
+\textbf{Degeneration:} Approaching the \textbf{critical point} might render multiple real roots converging, challenging numerical solvers with potential ill-conditioned equations.
 
 \subsection*{System of Polynomial Equations}
 
-\textbf{Example: Kinematics of a Two-Link Robotic Arm}
+\textbf{Example: Coupled Spring-Mass System}
 
-In robotics, inverse kinematics involves finding joint angles that position the end effector at a desired point. For a planar two-link arm with link lengths \( L_1 \) and \( L_2 \), the equations are:
+\noindent In a physics-based spring-mass system with two masses connected by springs, the equations of motion can be represented as:
 
 \[
-\begin{cases}
-x = L_1 \cos(\theta_1) + L_2 \cos(\theta_1 + \theta_2), \\
-y = L_1 \sin(\theta_1) + L_2 \sin(\theta_1 + \theta_2).
-\end{cases}
+    k_1 x_1 - k_2 (x_2 - x_1) = m_1 a_1,
+\]
+\[
+    k_2 (x_2 - x_1) + k_3 x_2 = m_2 a_2,
 \]
 
-Using trigonometric identities, these can be transformed into a system of polynomial equations in \( \cos \theta_1, \sin \theta_1, \cos \theta_2, \) and \( \sin \theta_2 \). We will solve this system to find the joint angles \( \theta_1 \) and \( \theta_2 \) for given end effector positions \( x \) and \( y \).
+\noindent where \( k_1, k_2, \) and \( k_3 \) are spring constants, \( x_1 \) and \( x_2 \) are displacements, and \( a_1 \) and \( a_2 \) are accelerations. This example is straightforward and allow testing for potential singular behaviors when \( k_2 \) is small or approaches zero.
 
 \subsection*{Non-Polynomial Equation}
 
-\textbf{Example: Transcendental Equation in Quantum Mechanics}
+\textbf{Example: Sinusoidal Motion in Spring Displacement}
 
-The energy levels of a particle in a one-dimensional finite potential well are found by solving transcendental equations like:
+\noindent The motion of a mass-spring system can be described by:
 
 \[
-k \tan(k a) = \sqrt{k_0^2 - k^2},
+    x(t) = 5 \sin(2t),
 \]
 
-where \( k = \sqrt{\frac{2 m E}{\hbar^2}} \), \( k_0 = \sqrt{\frac{2 m V_0}{\hbar^2}} \), \( E \) is the particle's energy, \( V_0 \) is the well depth, \( a \) is the well width, \( m \) is the mass, and \( \hbar \) is the reduced Planck constant. This non-polynomial equation involves trigonometric and square root functions. We will apply Newton’s method and the secant method to find the energy levels \( E \).
+\noindent or for finding specific points ($x = 3$ in this case):
 
-\subsection*{Degeneration and Numerical Challenges}
+\[
+    5 \sin(2t) - 3 = 0.
+\]
 
-\textbf{Degeneration in Univariate Polynomials:}
+\noindent This non-polynomial equation will be used to test Newton’s method and the secant method. Solving for \( t \) involves periodic behavior, which can pose challenges for convergence due to the trigonometric nature of the function and the need for good initial guesses.
 
-For the Lagrange points, as \( \mu \rightarrow 0 \), the polynomial equation simplifies and may exhibit multiple roots, creating challenges for numerical solvers due to ill-conditioning.
-
-In the Van der Waals equation, approaching the critical point causes the cubic polynomial to have closely spaced or multiple real roots. This can lead to numerical instability and convergence issues in root-finding algorithms.
-
-\textbf{Anticipated Numerical Challenges:}
-
-By selecting examples with potential singularities and degeneracies, we expect to encounter difficulties such as:
-
-- Slow convergence or divergence of iterative methods.
-- Sensitivity to initial guesses due to multiple or closely spaced roots.
-- Increased computational errors from ill-conditioned equations.
-
-These challenges will allow us to evaluate the robustness and reliability of our numerical methods software under demanding conditions.
-
----
-
-By exploring these examples, we aim to thoroughly test our software's capability to handle a variety of mathematical problems, including those that are particularly challenging for numerical methods.
+\subsection*{Anticipated Challenges and Degeneracies}
+The Lagrange polynomial and the modified ideal gas law equation present cases with potential singularities and closely spaced roots, which can slow down the convergence. The non-polynomial trigonometric equation may experience convergence issues if the initial guesses are far from the actual roots due to the oscillatory behavior (For Newton's Method Especially).
 
 \end{document} 
