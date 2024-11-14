@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{environ}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\NewEnviron{problem}{
+    \stepcounter{pnum}
+    \begin{center}
+        \fbox{
+        \begin{minipage}{0.95\linewidth}
+            \textbf{\thepnum.} \BODY
+        \end{minipage}}
+    \end{center}
+
+    \textbf{Solution. }
+}
+
+\title{\vspace{-4em}Homework 6 (root finding)}
+\author{Hanzhang Yin}
+\begin{document}
+
+\maketitle
+
+
+\begin{problem}
+    One view of the secant method: it is a coarser Newton's method. We've seen that it has some of the speed of Newton's method. One might also hope that it enjoys similar convergence properties.\\[-0.5em]
+    
+    Adapt the convergence proof for Newton's method to show that the secant method also always converges under the following assumptions about the function \(f\) on the interval \([a,b]\):
+    \begin{enumerate}[\hspace{2em} i)]
+        \item \(f\) is twice continuously differentiable
+        \item \(f' > 0\)
+        \item \(f''> 0\)
+        \item \(f\) has a root \(x\) in the interval
+        \item the two initial guesses \(x_0,x_1\) are both to the right of the root.
+    \end{enumerate}
+
+    Hint: you will have to use convexity in a slightly more interesting way than in NM -- the graph of \(f\) does not lie above the secant line, but you can argue that the right (well, left!) piece still does.
+\end{problem}
+
+\begin{problem}
+    Another view of the secant method, discussed in class, is as a weighted bisection method. Here too, one might hope for a convergence guarantee, because BM is much more robust than NM in that regard.\\[-0.5em]
+
+    Consider a modified secant method which at step \(k\) takes in endpoints \(a_k,b_k\), calculates their weighted midpoint \(c_k\) and then returns two new endpoints \(a_{k+1},b_{k+1}\), one of which is \(c_k\), to which IVT applies. These new endpoints are input to the next step.\\[-0.5em]
+
+    Prove that if \(f\) is continuous on \([a,b] = [a_0,b_0]\) and the IVT applies to \(f\) on the interval, then the sequence \(c_k\) from the modified secant method converges to a root of \(f\).\\[-0.5em]
+
+    Hint: the reason for convergence is \emph{not} the same as for bisection. This would require the stronger assumption that \(f\) is continuously differentiable. In fact:
+
+    [Bonus] Give an example where the sequences \(x_k\) and \(y_k\) converge to different points, so squeeze does not apply.
+\end{problem}
+
+
+\begin{problem}
+    Suppose \(f(x)\) and \(g(x)\) are functions with a common root \(x=a\).
+    \begin{enumerate}[\hspace{2em}a)]
+        \item Prove that a solution to the homotopy continuation initial value problem
+    \[x'(t) = -\frac{H_t}{H_x}\ \ \ \ x(0) = a\]
+    is the constant function \(x=a\).
+        \item Give an example where the solution above is \emph{not} unique.
+    \end{enumerate}
+
+    Hint: see handout for a picture of (a). Think about how it could be adapted (b); you can even use the tool to help you construct an example.
+\end{problem}
+
+\end{document}

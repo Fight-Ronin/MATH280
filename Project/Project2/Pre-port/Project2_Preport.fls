@@ -87,6 +87,9 @@ INPUT c:/texlive/2024/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+INPUT ./Project2_Preport.aux
+INPUT ./Project2_Preport.aux
+INPUT Project2_Preport.aux
 OUTPUT Project2_Preport.aux
 INPUT c:/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT c:/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -134,6 +137,7 @@ OUTPUT Project2_Preport.pdf
 INPUT c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT Project2_Preport.aux
+INPUT Project2_Preport.run.xml
 OUTPUT Project2_Preport.run.xml
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb

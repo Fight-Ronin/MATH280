@@ -27,7 +27,12 @@
 
 \noindent where \( x \) is the normalized distance and \( \mu \) is the mass ratio of the two bodies. This example is chosen for its complexity and the potential for numerical issues when \( \mu \) approaches zero, leading to multiple or closely spaced roots.
 \\
-\textbf{Degeneration:} As \( \mu \rightarrow 0 \), the polynomial simplifies, which we will connect to the original equation by analyzing numerical stability and how root multiplicity affects convergence.
+\textbf{Degeneration and Homotopy:}
+As \( \mu \rightarrow 0 \), the polynomial simplifies, creating closely spaced or multiple roots, which can be challenging for numerical solvers. We can define a homotopy \( H(x, t) \) to connect the degenerate case back to the original polynomial:
+\[
+H(x, t) = x^5 - (3 + t\mu)x^4 + (3 + 2t\mu)x^3 - t\mu x^2 + 2t\mu x - t\mu = 0,
+\]
+where \( t \in [0,1] \). When \( t = 0 \), we have the degenerate form, and when \( t = 1 \), we recover the original polynomial.
 \\
 \textbf{Polynomial 2: Ideal Gas Law For Real Gas}
 
@@ -39,7 +44,12 @@
 
 \noindent where \( P \) is pressure, \( T \) is temperature, \( R \) is the gas constant, and \( a \), \( b \) are gas-specific constants. This cubic polynomial can exhibit different root structures under varying conditions, such as near the critical point where multiple real roots merge.
 \\
-\textbf{Degeneration:} Approaching the \textbf{critical point} might render multiple real roots converging, challenging numerical solvers with potential ill-conditioned equations.
+\textbf{Degeneration and Homotopy:}
+At the critical point, the cubic polynomial degenerates as multiple real roots converge. To connect the degenerate form to the original, we define a homotopy:
+\[
+H(V, t) = P V^3 - (P b + tR T)V^2 + a V - a b = 0,
+\]
+where \( t \in [0,1] \). When \( t = 0 \), we approach the critical condition, and when \( t = 1 \), we revert to the general polynomial form under typical conditions.
 
 \subsection*{System of Polynomial Equations}
 
