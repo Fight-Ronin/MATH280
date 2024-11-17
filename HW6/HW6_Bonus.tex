@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{environ}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\NewEnviron{problem}{
+    \stepcounter{pnum}
+    \begin{center}
+        \fbox{
+        \begin{minipage}{0.95\linewidth}
+            \textbf{\thepnum.} \BODY
+        \end{minipage}}
+    \end{center}
+
+    \textbf{Solution. }
+}
+
+\title{\vspace{-4em}Homework 6 Bonus}
+\author{Hanzhang Yin}
+\begin{document}
+
+\maketitle
+
+\subsubsection*{Q2 Bonus}
+
+\textbf{Bonus: Example Where \( \{ a_k \} \) and \( \{ b_k \} \) Converge to Different Points}
+    \\
+    We provide an example of a continuous function \( f \) and initial interval \( [a_0, b_0] \) where the sequences \( \{ a_k \} \) and \( \{ b_k \} \) converge to different points.
+    \\
+    \textbf{Bonus Example:}
+    \\
+    Let \( f: [0, 2] \to \mathbb{R} \) be defined by
+    \[
+        f(x) = (x - 1)(x - 1.5).
+    \]
+    Note that \( f \) is continuous on \( [0, 2] \) and has roots at \( x = 1 \) and \( x = 1.5 \).
+    \\
+    Choose initial endpoints \( a_0 = 0 \) and \( b_0 = 2 \). Then \( f(a_0) = (0 - 1)(0 - 1.5) = ( -1)( -1.5) = 1.5 > 0 \), and \( f(b_0) = (2 - 1)(2 - 1.5) = (1)(0.5) = 0.5 > 0 \). Since \( f(a_0) \cdot f(b_0) > 0 \), we need to adjust the initial interval to ensure that \( f(a_0) \cdot f(b_0) < 0 \).
+    \\
+    Let's instead choose \( a_0 = 0.5 \) and \( b_0 = 2 \). Then \( f(a_0) = (0.5 - 1)(0.5 - 1.5) = ( -0.5)( -1) = 0.5 > 0 \), and \( f(b_0) = 0.5 > 0 \), so again the signs are the same.
+    \\
+    Adjust again by choosing \( a_0 = 1 \) and \( b_0 = 1.75 \). Then
+    \[
+        f(a_0) = (1 - 1)(1 - 1.5) = 0 \cdot ( -0.5) = 0,
+    \]
+    \[
+        f(b_0) = (1.75 - 1)(1.75 - 1.5) = (0.75)(0.25) = 0.1875 > 0.
+    \]
+    Still, \( f(a_0) \cdot f(b_0) = 0 \), so we need to find an interval where \( f \) changes sign.
+    \\
+    Consider \( a_0 = 0.75 \) and \( b_0 = 1.25 \). Then
+    \[
+        f(a_0) = (0.75 - 1)(0.75 - 1.5) = ( -0.25)( -0.75) = 0.1875 > 0,
+    \]
+    \[
+        f(b_0) = (1.25 - 1)(1.25 - 1.5) = (0.25)( -0.25) = -0.0625 < 0.
+    \]
+    Thus, \( f(a_0) \cdot f(b_0) < 0 \).
+    \\
+    Now, apply the modified secant method:
+    \\
+    At each step, compute
+    \[
+      c_k = b_k - f(b_k) \cdot \frac{b_k - a_k}{f(b_k) - f(a_k)}.
+    \]
+    Select \( a_{k+1} \) and \( b_{k+1} \) based on the sign of \( f(c_k) \).
+    \\
+    Since \( f \) has roots at \( x = 1 \) and \( x = 1.5 \), and \( f(a_0) > 0 \) while \( f(b_0) < 0 \), the method will converge to the root at \( x = 1 \).
+    \\
+    However, due to the shape of \( f \), the sequences \( \{ a_k \} \) and \( \{ b_k \} \) may converge to different points. Specifically, \( \{ a_k \} \) may converge to \( x = 1 \), while \( \{ b_k \} \) may converge to \( x = 1.25 \), depending on the behavior of \( f \) and the secant method updates.
+    \\
+    This example illustrates that \( \{ a_k \} \) and \( \{ b_k \} \) need not converge to the same point, so the squeeze theorem cannot be directly applied to \( \{ c_k \} \) via \( \{ a_k \} \) and \( \{ b_k \} \).
+
+\end{document}
