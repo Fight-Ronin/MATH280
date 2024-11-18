@@ -49,7 +49,7 @@
     \]
     We proceed in steps to show the convergence.
     \\
-    \textbf{Step 1: Monotonicity and Boundedness}
+    \textbf{Monotonicity and Boundedness}
     \\
     \textit{Claim: } The sequence \( \{x_n\} \) is strictly decreasing and bounded below by \( x^\ast \).
     \\
@@ -75,7 +75,7 @@
     \end{itemize}
     By induction, \( \{x_n\} \) is strictly decreasing and bounded below by \( x^\ast \).
     \\
-    \textbf{Step 2: Convergence of the Sequence}
+    \textbf{Convergence of the Sequence}
     \\
     \textit{Claim: } The sequence \( \{x_n\} \) converges to \( x^\ast \).
     \\
@@ -99,8 +99,6 @@
     \end{itemize}
     Thus, \( l = x^\ast \), and the sequence converges to \( x^\ast \).
     \\
-    \textbf{Using Convexity}
-    \\
     The convexity of \( f \) ensures that the secant line between any two points lies below the graph of \( f \), preventing the iterates \( x_n \) from overshooting the root \( x^\ast \). Thus, \( x_n > x^\ast \) for all \( n \).
     Under the given assumptions:
     \begin{enumerate}
@@ -109,7 +107,7 @@
         \item Assuming \( l > x^\ast \) leads to a contradiction, hence \( l = x^\ast \),
         \item Convexity ensures no overshooting, maintaining \( x_n > x^\ast \).
     \end{enumerate}
-    
+    \\
     Therefore, the secant method converges to the root \( x^\ast \).
 \end{proof}
 
