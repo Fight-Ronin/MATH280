@@ -127,11 +127,7 @@
 \end{problem}
 
 \begin{proof}
-We will establish the convergence of \( \{ c_k \} \) to a root of \( f \) by leveraging the continuity of \( f \) and the properties of the secant method, without assuming that the interval lengths \( \ell_k \) converge to zero.
-\\
-\textbf{Step 1: Properties of the Intervals \( [a_k, b_k] \) and the Sequence \( \{ c_k \} \)}
-\\
-At each iteration \( k \), we have:
+From Bisection Method, at each iteration \( k \), we have: 
 \\
 \begin{enumerate}
     \item \( f(a_k) \cdot f(b_k) < 0 \), so \( f \) changes sign on \( [a_k, b_k] \).
@@ -140,30 +136,25 @@ At each iteration \( k \), we have:
         c_k = b_k - f(b_k) \cdot \frac{b_k - a_k}{f(b_k) - f(a_k)}.
     \]
     \item One of the endpoints \( a_{k+1} \) or \( b_{k+1} \) is set to \( c_k \), and the other remains \( a_k \) or \( b_k \), such that \( f(a_{k+1}) \cdot f(b_{k+1}) < 0 \).
-    \item The intervals \( [a_k, b_k] \) may not necessarily shrink, but they always contain a root of \( f \) due to the IVT.
+    \item *The intervals \( [a_k, b_k] \) may not necessarily shrink, but they always contain a root of \( f \) due to the IVT.
 \end{enumerate}
 \\
-\textbf{Step 2: The Sequence \( \{ c_k \} \) Has a Convergent Subsequence}
-\\
 Since \( \{ c_k \} \) is bounded in \( [a_0, b_0] \), by the Bolzano-Weierstrass Theorem, there exists a subsequence \( \{ c_{k_j} \} \) that converges to some limit \( c^\ast \in [a_0, b_0] \).
-\\
 Our goal is to show that \( f(c^\ast) = 0 \).
-\\
-\textbf{Step 3: Showing that \( f(c^\ast) = 0 \)}
 \\
 Suppose, for contradiction, that \( f(c^\ast) \neq 0 \).
 \\
-\textit{Case 1:} \( f(c^\ast) > 0 \).
+\textit{Case 1:} \( f(c^\ast) > 0 \):
 \\
 Since \( f \) is continuous, there exists \( \delta > 0 \) such that \( f(x) > 0 \) for all \( x \in (c^\ast - \delta, c^\ast + \delta) \).
 \\
 Because \( c_{k_j} \to c^\ast \), for sufficiently large \( j \), \( c_{k_j} \in (c^\ast - \delta, c^\ast + \delta) \), and \( f(c_{k_j}) > 0 \).
 \\
 Similarly, since \( f(a_{k_j}) \cdot f(b_{k_j}) < 0 \), and \( c_{k_j} \) replaces either \( a_{k_j} \) or \( b_{k_j} \), we have:
-\\
-If \( f(c_{k_j}) \cdot f(a_{k_j}) < 0 \), then \( f(a_{k_j}) < 0 \).
-\\
-If \( f(c_{k_j}) \cdot f(b_{k_j}) < 0 \), then \( f(b_{k_j}) < 0 \).
+\begin{itemize}
+    \item If \( f(c_{k_j}) \cdot f(a_{k_j}) < 0 \), then \( f(a_{k_j}) < 0 \).
+    \item If \( f(c_{k_j}) \cdot f(b_{k_j}) < 0 \), then \( f(b_{k_j}) < 0 \).
+\end{itemize}
 \\
 Thus, there is a sequence of points \( \{ d_{k_j} \} \subset [a_0, b_0] \) (either \( a_{k_j} \) or \( b_{k_j} \)) such that \( f(d_{k_j}) < 0 \).
 \\
@@ -173,16 +164,13 @@ Because \( f \) is continuous, \( f(d^\ast) = \lim_{m \to \infty} f(d_{k_{j_m}})
 \\
 But since \( c_{k_{j_m}} \to c^\ast \) and \( d_{k_{j_m}} \to d^\ast \), and \( f(c^\ast) > 0 \) and \( f(d^\ast) < 0 \), we have \( f(c^\ast) \cdot f(d^\ast) < 0 \).
 \\
-Therefore, by the Intermediate Value Theorem, there exists a point \( x^\ast \) between \( c^\ast \) and \( d^\ast \) such that \( f(x^\ast) = 0 \), contradicting the assumption.
+Therefore, by the Intermediate Value Theorem, there exists a ``new'' point \( x^\ast \) (i.e. a root) between \( c^\ast \) and \( d^\ast \) such that \( f(x^\ast) = 0 \), contradicting the assumption.
 \\
-\textit{Case 2:} \( f(c^\ast) < 0 \).
+\textit{Case 2:} \( f(c^\ast) < 0 \):
 \\
-A similar argument leads to a contradiction, showing that \( f(c^\ast) = 0 \).
-\\
-\textbf{Step 4: The Entire Sequence \( \{ c_k \} \) Converges to \( c^\ast \)}
+A similar argument leads to a contradiction as well in this case, showing that must \( f(c^\ast) = 0 \).
 \\
 We have shown that any convergent subsequence of \( \{ c_k \} \) converges to a root \( c^\ast \) of \( f \). To show that \( \{ c_k \} \) itself converges to \( c^\ast \), suppose, for contradiction, that \( \{ c_k \} \) has another subsequence \( \{ c_{k_i} \} \) converging to a different limit \( c^\dagger \neq c^\ast \).
-\\
 Using the same argument as in Step 3, we can show that \( f(c^\dagger) = 0 \).
 \\
 Since \( f \) is continuous and the initial interval \( [a_0, b_0] \) contains only one root (due to the IVT and the sign change), it must be that \( c^\dagger = c^\ast \). Therefore, all convergent subsequences of \( \{ c_k \} \) converge to \( c^\ast \). Thus, the sequence \( \{ c_k \} \) converges to \( c^\ast \).
@@ -300,8 +288,8 @@ Since \( f \) is continuous and the initial interval \( [a_0, b_0] \) contains o
     \end{tikzpicture}
     \\
     When $t$ shifts from $0 \to 1$, at a certain point for $t$ the homotopy will coincide with the x-axis completely. 
-    This leads a shift from the solution $x=a$ when $t=0$ to the solution $x$ equals to every possible points on the x-axis.
-    This clearly leads the solution \textbf{NOT Unique} solutions.
+    This leads a shift from the solution $x=a$ when $t=0$ to the solution $x$ equals to every possible points on the x-axis between $x = \frac{1}{2}$ to $x = 1$.
+    This clearly leads the solution \textbf{NOT Unique} during the approximation.
 
 \end{proof}
 
