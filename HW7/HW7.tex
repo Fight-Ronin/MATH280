@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{environ}
+
+\newcommand{\inv}{^{-1}}
+
+\newcounter{pnum}
+\NewEnviron{problem}{
+    \stepcounter{pnum}
+    \begin{center}
+        \fbox{
+        \begin{minipage}{0.95\linewidth}
+            \textbf{\thepnum.} \BODY
+        \end{minipage}}
+    \end{center}
+
+    \textbf{Solution. }
+}
+
+\title{\vspace{-4em}Homework 7 (differential equations)}
+\author{name}
+\begin{document}
+
+\maketitle
+
+Unless otherwise specified, you may assume that any differential equations defined below are sufficiently nice that the existence and uniqueness theorems apply.
+
+
+
+\begin{problem}
+    In this problem, we'll use homotopy continuation to give a proof of the quadratic formula. It may be helpful to use the homotopy continuation notebook to plot the problem.
+
+    \hspace{2em} Let \(f(x) = x^2 + ax + b\) a quadratic function where \(a,b\) are real numbers such that \(a^2>4b\) and \(a\neq 0\). Let \(g(x) = f(x) -f(0) = x^2 + ax\).
+    \begin{enumerate}[a)]
+        \item Find the two real roots of \(g\).
+        \item Determine the standard homotopy \(H(x,t)\).
+        \item Use the homotopy to write down the standard homotopy differential equation
+        \[x'(t) = - \frac{H_t}{H_x}.\]
+        \item Make the change of variable \(y=2x+a\) and solve the resulting differential equation.
+        Don't forget the initial condition \(y(0)=2x(0) + a\), where \(x(0)\) is one of the two roots from (a).
+        \item Determine the paths \(x(t)\) and the values \(x(1)\), which should match the usual quadratic formula.
+        \item Explain the paths in terms of the quadratic formula. Point out what this proof and the standard proof of the quadratic formula have in common.
+    \end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}
+    Suppose \(f\) is differentiable on \((a,b)\). Show that the mean value theorem implies the fundamental theorem of the derivative:\\
+    
+    MVT: given \(x,y\) in \((a,b)\) there is some \(z\) in \((a,b)\) such that
+    \[\frac{f(x) - f(y)}{x-y} = f'(z).\]
+
+    FTD: if \(f' = 0\) on \((a,b)\) then \(f\) is constant.\\
+
+    Observe that the FTD is a simple example of the uniqueness theorem for differential equations.
+\end{problem}
+
+
+\begin{problem}
+    Define a mystery function \(f\) by the initial value problem:
+    \[f'' = f\hspace{4em}f(0) = 0\ ,\ f'(0) = 1,\]
+    and \(g=f'\). From this definition, verify the following identity:
+    \[f(x+y) = f(x)g(y) + f(y)g(x)\]
+    without explicitly determining \(f\) and \(g\).
+    
+    \hspace{2em}This is the pythagorean identity for the hyperbolic trig functions. The solution should have \emph{no} geometry (unless you want to develop it from first principles).
+\end{problem}
+
+
+\begin{problem}
+    Derivatives aren't very different for complex numbers. In particular, it's still true that
+    \[\frac{d}{dx} e^{rx} = re^{rx}\]
+    when \(r\) is a complex number. The usual differential equation \(f'=f, f(0)=1\) still defines \(e^x\) and the existence and uniqueness theorems apply in the complex setting. 
+    
+    \hspace{2em}Other exponent identities like \((e^x)^r = e^{rx}\) and \(e^{x+a} = e^xe^a\) also work (can be established with the same proofs, using existence and uniqueness, if you want).
+    \begin{enumerate}[a)]
+        \item Verify the following identities
+            \[\sin(x) = \frac{e^{ix} - e^{-ix}}{2i},\]
+            \[\cos(x) = \frac{e^{ix} + e^{-ix}}{2}.\]
+        \item Combine those identities into
+            \[e^{ix} = \cos(x) + i\sin(x).\]
+        \item Use that to establish De Moivre's formula,
+            \[(\cos(x) + i\sin(x))^n = \cos(nx) + i\sin(nx).\]
+        \item Take \(n=2\) in De Moivre's formula and observe that it furnishes a quick simultaneous proof of the double-angle identities for \(\sin\) and \(\cos\)  (and an easy way to remember them). Remark: in spite of what you may have heard in other courses, calculators don't use power series to evaluate trig functions, but rather (more or less) from a version of this identity.
+    \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+    Consider the differential equation
+    \[x' = 6x^2 - 5\arctan(x),\ \ \ \ x(0) = 1.\]
+    
+    \begin{enumerate}[a)]
+        \item Write down the first three terms of its taylor series around \(t=0\).
+        \item Estimate \(x(1)\).
+        \item Estimate \(x(0.5)\).
+        \item Use your estimate for \(x(0.5)\) to estimate the first three terms of a taylor series for \(x(t)\) centered at \(t=0.5\).
+        \item Estimate \(x(1)\) again, but using this second series. Compare to (b). What do you think is happening?
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    Consider the system of differential equations:
+    \begin{align*}
+        X' = -5X + 9Y\\
+        Y' = -4X + 7Y
+    \end{align*}
+    with initial condition \(X(0) = 1\) and \(Y(0) = 1\).
+    
+    Here's a Jordan decomposition
+    \[\begin{bmatrix}
+        -5&9\\
+        -4&7
+    \end{bmatrix}=
+    \begin{bmatrix}
+        3&1\\2&1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1&1\\0&1
+    \end{bmatrix}
+    \begin{bmatrix}
+        3&1\\2&1
+    \end{bmatrix}\inv\]
+    where
+    \[
+    \begin{bmatrix}
+        3&1\\2&1
+    \end{bmatrix}\inv=
+    \begin{bmatrix}
+        1&-1\\-2&3
+    \end{bmatrix}\inv\]
+
+    \begin{enumerate}[a)]
+        \item Solve this differential equation exactly.
+        \item Use (a) to determine \(X(2)\) and \(Y(2)\).
+        \item Estimate \(X(2)\) and \(Y(2)\) using Euler's method two ways: one step and two steps.
+    \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+[Bonus]
+    Let \(A\) and \(B\) be \(n\times n\) matrices.
+    \begin{enumerate}[a)]
+        \item Prove that
+        \[e^{A+B} = e^Ae^B\]
+        when \(AB=BA\).
+        \item Give an example where
+        \[e^{A+B} \neq e^Ae^B.\]
+    \end{enumerate}
+\end{problem}
+
+\end{document}
