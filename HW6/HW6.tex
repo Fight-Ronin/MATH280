@@ -114,69 +114,93 @@
 
 \newpage
 
-\begin{problem}
-    Another view of the secant method, discussed in class, is as a weighted bisection method. Here too, one might hope for a convergence guarantee, because BM is much more robust than NM in that regard.\\[-0.5em]
-
-    Consider a modified secant method which at step \(k\) takes in endpoints \(a_k,b_k\), calculates their weighted midpoint \(c_k\) and then returns two new endpoints \(a_{k+1},b_{k+1}\), one of which is \(c_k\), to which IVT applies. These new endpoints are input to the next step.\\[-0.5em]
-
-    Prove that if \(f\) is continuous on \([a,b] = [a_0,b_0]\) and the IVT applies to \(f\) on the interval, then the sequence \(c_k\) from the modified secant method converges to a root of \(f\).\\[-0.5em]
-
-    Hint: the reason for convergence is \emph{not} the same as for bisection. This would require the stronger assumption that \(f\) is continuously differentiable. In fact:
-
-    [Bonus] Give an example where the sequences \(x_k\) and \(y_k\) converge to different points, so squeeze does not apply.
-\end{problem}
 
 \begin{proof}
-From Bisection Method, at each iteration \( k \), we have: 
-\\
-\begin{enumerate}
-    \item \( f(a_k) \cdot f(b_k) < 0 \), so \( f \) changes sign on \( [a_k, b_k] \).
-    \item The point \( c_k \) is computed using the secant method formula:
+    Let \( f \) be a continuous function on the interval \( [a_0, b_0] \) such that \( f(a_0) \cdot f(b_0) < 0 \). By the Intermediate Value Theorem (IVT), there exists at least one root \( x \) in \( (a_0, b_0) \) where \( f(x) = 0 \).
+    \\
+    \textbf{Modified Secant Method Algorithm:}
+    \\
+    At each iteration \( k \):
+    \\
+    \begin{enumerate}
+        \item \textbf{Compute the Weighted Midpoint by Secant Method:}
+        \[
+            c_k = \frac{b_k f(a_k) }{f(a_k) - f(b_k)} - \frac{a_k f(b_k)}{f(a_k) - f(b_k)}
+        \]
+        This point \( c_k \) is the root of the secant line connecting \( (a_k, f(a_k)) \) and \( (b_k, f(b_k)) \) since IVT applies on each intervals within $[a_0, b_0]$.
+
+        \item \textbf{Update the Interval:}
+        \begin{itemize}
+            \item Determine which subinterval \( [a_k, c_k] \) or \( [c_k, b_k] \) contains a sign change, i.e., where \( f \) changes sign.
+            \item Set \( (a_{k+1}, b_{k+1}) \) to be the endpoints of this subinterval.
+        \end{itemize}
+    \end{enumerate}
+    \\
+    \textbf{Properties of the Sequences \( \{a_k\} \) and \( \{b_k\} \):}
+    \\
+    Without loss of generality, assume that \( c_k \) has the same sign as \( a_k \). Then, set \( a_{k+1} = c_k \) and \( b_{k+1} = b_k \) following the bisection method update rule. 
+    Consequently, the sequences \( \{a_k\} \) and \( \{b_k\} \) are monotonic, as each endpoint is either updated to a new point within the interval or remains unchanged at each iteration.
+    Formally speaking: 
+    \begin{itemize}
+        \item \textbf{Monotonicity:}
+        \begin{itemize}
+            \item \( \{a_k\} \) is non-decreasing.
+            \item \( \{b_k\} \) is non-increasing.
+        \end{itemize}
+        \item \textbf{Boundedness:}
+        \begin{itemize}
+            \item \( \{a_k\} \subseteq [a_0, b_0] \).
+            \item \( \{b_k\} \subseteq [a_0, b_0] \).
+        \end{itemize}
+        \item \textbf{Convergence:}
+        \begin{itemize}
+            \item Both sequences converge due to monotonicity and boundedness by \textbf{MCT}:
+            \[
+                \lim_{k \to \infty} a_k = a, \quad \lim_{k \to \infty} b_k = b, \quad \text{with} \quad a \leq b.
+            \]
+        \end{itemize}
+    \end{itemize}
+    \\
+    The next step that we want to do is to argue that at least one of the element $a$ or $b$ converges to zero.
+    \\
+    \textbf{Case 1:} \( a = b \)
+    \\
+    The interval \( [a_k, b_k] \) shrinks to the point \( a = b = x \).
+    Since \( f(a_k) \cdot f(b_k) < 0 \) for all \( k \), and \( f \) is continuous, we have:
     \[
-        c_k = b_k - f(b_k) \cdot \frac{b_k - a_k}{f(b_k) - f(a_k)}.
+        \lim_{k \to \infty} f(a_k) = f(a), \quad \lim_{k \to \infty} f(b_k) = f(b).
     \]
-    \item One of the endpoints \( a_{k+1} \) or \( b_{k+1} \) is set to \( c_k \), and the other remains \( a_k \) or \( b_k \), such that \( f(a_{k+1}) \cdot f(b_{k+1}) < 0 \).
-    \item *The intervals \( [a_k, b_k] \) may not necessarily shrink, but they always contain a root of \( f \) due to the IVT.
-\end{enumerate}
-\\
-Since \( \{ c_k \} \) is bounded in \( [a_0, b_0] \), by the Bolzano-Weierstrass Theorem, there exists a subsequence \( \{ c_{k_j} \} \) that converges to some limit \( c^\ast \in [a_0, b_0] \).
-Our goal is to show that \( f(c^\ast) = 0 \).
-\\
-Suppose, for contradiction, that \( f(c^\ast) \neq 0 \).
-\\
-\textit{Case 1:} \( f(c^\ast) > 0 \):
-\\
-Since \( f \) is continuous, there exists \( \delta > 0 \) such that \( f(x) > 0 \) for all \( x \in (c^\ast - \delta, c^\ast + \delta) \).
-\\
-Because \( c_{k_j} \to c^\ast \), for sufficiently large \( j \), \( c_{k_j} \in (c^\ast - \delta, c^\ast + \delta) \), and \( f(c_{k_j}) > 0 \).
-\\
-Similarly, since \( f(a_{k_j}) \cdot f(b_{k_j}) < 0 \), and \( c_{k_j} \) replaces either \( a_{k_j} \) or \( b_{k_j} \), we have:
-\begin{itemize}
-    \item If \( f(c_{k_j}) \cdot f(a_{k_j}) < 0 \), then \( f(a_{k_j}) < 0 \).
-    \item If \( f(c_{k_j}) \cdot f(b_{k_j}) < 0 \), then \( f(b_{k_j}) < 0 \).
-\end{itemize}
-\\
-Thus, there is a sequence of points \( \{ d_{k_j} \} \subset [a_0, b_0] \) (either \( a_{k_j} \) or \( b_{k_j} \)) such that \( f(d_{k_j}) < 0 \).
-\\
-Since \( \{ d_{k_j} \} \) is bounded in \( [a_0, b_0] \), it has a convergent subsequence \( \{ d_{k_{j_m}} \} \) converging to some \( d^\ast \in [a_0, b_0] \).
-\\
-Because \( f \) is continuous, \( f(d^\ast) = \lim_{m \to \infty} f(d_{k_{j_m}}) \leq 0 \). In fact, \( f(d^\ast) < 0 \), since \( f(d_{k_{j_m}}) < 0 \) for all \( m \).
-\\
-But since \( c_{k_{j_m}} \to c^\ast \) and \( d_{k_{j_m}} \to d^\ast \), and \( f(c^\ast) > 0 \) and \( f(d^\ast) < 0 \), we have \( f(c^\ast) \cdot f(d^\ast) < 0 \).
-\\
-Therefore, by the Intermediate Value Theorem, there exists a ``new'' point \( x^\ast \) (i.e. a root) between \( c^\ast \) and \( d^\ast \) such that \( f(x^\ast) = 0 \), contradicting the assumption.
-\\
-\textit{Case 2:} \( f(c^\ast) < 0 \):
-\\
-A similar argument leads to a contradiction as well in this case, showing that must \( f(c^\ast) = 0 \).
-\\
-We have shown that any convergent subsequence of \( \{ c_k \} \) converges to a root \( c^\ast \) of \( f \). To show that \( \{ c_k \} \) itself converges to \( c^\ast \), suppose, for contradiction, that \( \{ c_k \} \) has another subsequence \( \{ c_{k_i} \} \) converging to a different limit \( c^\dagger \neq c^\ast \).
-Using the same argument as in Step 3, we can show that \( f(c^\dagger) = 0 \).
-\\
-Since \( f \) is continuous and the initial interval \( [a_0, b_0] \) contains only one root (due to the IVT and the sign change), it must be that \( c^\dagger = c^\ast \). Therefore, all convergent subsequences of \( \{ c_k \} \) converge to \( c^\ast \). Thus, the sequence \( \{ c_k \} \) converges to \( c^\ast \).
-
+    It must be that \( f(a) = 0 \), because otherwise \( f(a) \) and \( f(b) \) would have the same sign, contradicting \( f(a_k) \cdot f(b_k) < 0 \).
+    Therefore, \( c_k \in [a_k, b_k] \) converges to \( x = a = b \), which is a root of \( f \).
+    \\
+    \textbf{Case 2:} \( a < b \)
+    \\
+    The interval \( [a_k, b_k] \) in this case does not shrink to a point.
+    \\
+    Suppose for contradiction that neither $a$ and $b$ is a root of the function $f$. Then pick an arbitrary number $k$ s.t. it is big enough that $a_k$ and $b_k$ 
+    are close to the $a_{\infty}$ and $b_{\infty}$. 
+    Since $a$ and $b$ are not roots, $f(a_k), f(b_k) \neq 0$ so that IVT can be applied.
+    From IVT, we can find a point $c_k$ s.t. $c_k \in [a_k, b_k]$ (i.e. $a_k < c_k < b_k$). 
+    From our assumption above, noting that $(a_k)$ and $(b_k)$ are monotonic sequence s.t. for every $k$, $a_k \leq b_k$. Also noticing that in this case, we assume $a < b$.
+    Hence, we can draw a conclusion that:
+    \[ a_k \approx a < b = b_k, \text{when k} \to \infty \]
+    Since $c_k$ as the new midpoint is within $[a_n, b_n]$, apprximately $a \leq c_n \leq b$. Also, base on our bisection method update rule $c_n$ is the next term of the sequence $\{a_{k}\}$ or $\{b_{k+1}\}$.
+    \\
+    At this stage, WLOG, we can assume that $c_k$ to be the next further term of sequence $\{a_{k}\}$, then $a_{k + 1} > \lim_{k \to \infty} a_k = a$, we derived a contradiction.
+    \\
+    \textbf{*Case 3:} 
+    \\
+    Since \textit{case 2} is not sound, suppose \textit{case 1} is not the case, then surely one of $a$ and $b$ converges to the root (denote it as $x$).
+    Lets assume $a = x$, WLOG, then, for $k \to \infty$, $f(a_k) \approx 0$. Then then next point of $c_k$, which is $c_{k + 1}$ can be represented as:
+    \[ c_{k} = \frac{b_k f(a_k) }{f(a_k) - f(b_k)} - \frac{a_k f(b_k)}{f(a_k) - f(b_k)} = \frac{0}{0 - f(b_k)} - \frac{f(b_k)}{0 - f(b_k)} a_k \approx a_k \]
+    Then the ``next term'' is approximately $a_k$. By knowing that,
+    \[ c_k = a_{k + 1} \ or \ c_k = b_{k+1} \]
+    But we know from our assumption that,
+    \[ c_k \approx a_{k + 1} < a < b < b_{k + 1} \]
+    so $c_k \neq b_{k+1}$. Then applying limit on both side for equation $c_k = a_{k + 1}$, then:
+    \[ \lim_{k \to \infty} c_k = \lim_{k \to \infty} a_{k + 1} \Rightarrow c = a \]
+    By continuously updating the midpoint, root $x = a$ ultimately.
 \end{proof}
-
 
 \begin{problem}
     Suppose \(f(x)\) and \(g(x)\) are functions with a common root \(x=a\).
@@ -290,7 +314,6 @@ Since \( f \) is continuous and the initial interval \( [a_0, b_0] \) contains o
     When $t$ shifts from $0 \to 1$, at a certain point for $t$ the homotopy will coincide with the x-axis completely. 
     This leads a shift from the solution $x=a$ when $t=0$ to the solution $x$ equals to every possible points on the x-axis between $x = \frac{1}{2}$ to $x = 1$.
     This clearly makes the solution \textbf{NOT Unique} during the approximation.
-
 \end{proof}
 
 \end{document}
