@@ -47,6 +47,73 @@ Unless otherwise specified, you may assume that any differential equations defin
     \end{enumerate}
 \end{problem}
 
+\subsubsection*{(a)}
+\begin{proof}
+    Given $g(x) = x^2 + ax$, set $g(x) = 0$.
+    \[ \Rightarrow x^2 + ax = 0 \Rightarrow x(x + a) = 0 \]
+    Therefore, the two real roots are $x = 0, -a$. 
+\end{proof}
+
+\subsubsection*{(b)}
+\begin{proof}
+    The standard homotopy transition from $g(x)$ to $f(x)$ as $t$ goes from 0 to 1. Since $f(x) = g(x) + b$, the homotopy is:
+    \[ H(x,t) = x^2 + ax + tb \]
+    at $t = 0$:
+    \[ H(x,0) = x^2 + ax = g(x) \] 
+    at $t = 1$:
+    \[ H(x,1) = x^2 + ax + b = f(x) \] 
+\end{proof}
+
+\subsubsection*{(c)}
+\begin{proof}
+    First, compute the partial derivatives:
+    \[
+        H_x = \frac{\partial H}{\partial x} = 2x + a, \quad H_t = \frac{\partial H}{\partial t} = b.
+    \]
+    The standard homotopy differential equation is:
+    \[
+        x'(t) = -\frac{H_t}{H_x} = -\frac{b}{2x + a}.
+    \]
+\end{proof}
+
+\subsubsection*{(d)}
+\begin{proof}
+    With $y = 2x + a$, we have:
+    \[
+        \frac{dy}{dt} = 2x'(t)
+    \]
+    Subsitute $x'(t)$ from part $(c)$:
+    \[ 
+        \frac{dy}{dt} = 2\left( -\frac{b}{2x + b} \right) = -\frac{2b}{y} 
+        \Rightarrow y dy = -2b dt 
+        \Rightarrow \int y dy = \int -2b dt \Longrightarrow \frac{1}{2}y^2 = 2bt + C
+        \Rightarrow y^2 = -4bt + C
+    \]
+    Apply the initial condition, If we choose $x(0) = 0$, then:
+    \[ y(0) = 2x(0) + a = a \]
+    Sub $t = 0$ and $y(0) = a$ into the equation:
+    \[ a^2 = -4b \cdot 0 + C \Longrightarrow a^2 \]
+    Hence, 
+    \[ y^2 = a^2 + 4bt \]
+\end{proof}
+
+\subsubsection*{(e)}
+\begin{proof}
+    From the expression $y^2 = a^2 - 4bt$, we solve for $y$:
+    \[ \Rightarrow y = \pm \sqrt{a^2 - 4bt} \]
+    Recall $y = 2x + a$, so:
+    \[ 2x + a = \pm \sqrt{a^2 - 4bt} \Rightarrow x(t) = \frac{-a \pm \sqrt{a^2 - 4bt}}{2} \]
+    At $t = 1$:
+    \[ x(1) = \frac{-a \pm \sqrt{a^2 - 4b}}{2} \]
+    This is exactly the quadratic formula for the roots for $f(x) = x^2 + ax + b$
+\end{proof}
+
+\subsubsection*{(f)}
+The path $x(t)$ represent the continuous transformation of the roots from the simpler quadratic $g(x)$ to the original quadratic $f(x)$ as $t$ increases from $0$ to $1$.
+Each path follows the equation:
+\[ x(t) = \frac{-a \pm \sqrt{a^2 - 4bt}}{2} \]
+At $t = 0$, the roots are those of $g(x)$, and at $t=1$, they are roots of $f(x)$ given quadrat5ic formula,. This homoptopy-based proof indicates the standard proof in that both derive the quadratic formula by manipulating the equation to isolate $x$.
+The homotopy method provides a dynamic point of view, showing hot the roots evolve compare to standard ``static'' proof.
 
 
 \begin{problem}
@@ -61,6 +128,16 @@ Unless otherwise specified, you may assume that any differential equations defin
 \end{problem}
 
 
+\begin{proof}
+    Let $f$ be a differentiable function on $(a,b)$ such that $f'(x) = 0$, $\forall x \in (a,b)$.
+    \\
+    For any two point $x,y \in (a,b)$, where $x \neq y$, the MVT states that there exists some $z$ between $x$ and $y$ (i.e. $z \in (a,b)$). Also noting that $f'(z) = 0$ for all $z \in (a, b)$, we have:
+    \[ f'(z) = \frac{f(x) - f(y)}{x - y} = 0 \]
+    \[ \Rightarrow f(x) - f(y) = 0 \Rightarrow f(x) = f(y) \]
+    In this case, since the value of $f$ does not depend of choice of $x \in (a, b)$, $f$ must be a constant function on $(a,b)$.
+\end{proof}
+
+
 \begin{problem}
     Define a mystery function \(f\) by the initial value problem:
     \[f'' = f\hspace{4em}f(0) = 0\ ,\ f'(0) = 1,\]
@@ -70,6 +147,75 @@ Unless otherwise specified, you may assume that any differential equations defin
     
     \hspace{2em}This is the pythagorean identity for the hyperbolic trig functions. The solution should have \emph{no} geometry (unless you want to develop it from first principles).
 \end{problem}
+
+\begin{proof}
+    Let 
+    \[ H(x,y) = f(x + y) - [f(x)g(y) + f(y)g(x)] \]
+    We aim to show that $H(x,y) = 0$ for all $x,y$.
+    First, lets differentiate $H$ w.r.t. $x$:
+    \[
+        \frac{\partial H}{\partial x} = f'(x + y) - \left[f'(x)g(y) + f(y)g'(x)\right] = g(x + y) - \left[g(x)g(y) + f(y)f(x)\right].
+    \]
+    Differentiate again with respect to \( x \):
+    \[
+        \frac{\partial^2 H}{\partial x^2} = g'(x + y) - \left[g'(x)g(y) + g(x)g'(y) + f(y)f''(x) + f'(y)f'(x)\right].
+    \]
+    Using \( g' = f \) and \( f'' = g \), this simplifies to:
+    \[
+        \frac{\partial^2 H}{\partial x^2} = f(x + y) - 2\left[f(x)g(y) + f(y)g(x)\right].
+    \]
+    Substituting the definition of \( H(x, y) \):
+    \[
+        \frac{\partial^2 H}{\partial x^2} = H(x, y) - [f(x)g(y) + f(y)g(x)].
+    \]
+    Thus:
+    \[
+        \frac{\partial^2 H}{\partial x^2} - H(x, y) = -[f(x)g(y) + f(y)g(x)].
+    \]
+    Given that $H(x,y) = f(x + y) - [f(x)g(y) + f(y)g(x)]$, subsitute it back leads to:
+    \[ 
+        \frac{\partial^2 H}{\partial x^2} - H(x, y) = -H(x,y)
+        \Rightarrow
+        \frac{\partial^2 H}{\partial x^2} = 0.
+    \]
+    The general solution to \( \frac{\partial^2 H}{\partial x^2} = 0 \) is:
+    \[
+        H(x, y) = A(y) x + B(y),
+    \]
+    where \( A(y) \) and \( B(y) \) are functions of \( y \) only.
+    \\
+    Now, we need to evaluate \( H(x, y) \) and its first derivative at \( x = 0 \):
+    \begin{enumerate}
+        \item At \( x = 0 \):
+        \[
+            H(0, y) = f(y) - [f(0)g(y) + f(y)g(0)] = f(y) - [0 \cdot g(y) + f(y) \cdot 1] = f(y) - f(y) = 0.
+        \]
+        Thus:
+        \[
+            B(y) = 0.
+        \]
+        \item First Derivative at \( x = 0 \):
+        \[
+            \left.\frac{\partial H}{\partial x}\right|_{x=0} = g(y) - [g(0)g(y) + f(y)f(0)] = g(y) - [1 \cdot g(y) + f(y) \cdot 0] = g(y) - g(y) = 0.
+        \]
+        From the general solution:
+        \[
+            \left.\frac{\partial H}{\partial x}\right|_{x=0} = A(y).
+        \]
+        Thus:
+        \[
+            A(y) = 0.
+        \]
+    \end{enumerate}
+    With \( A(y) = 0 \) and \( B(y) = 0 \), the general solution simplifies to:
+    \[
+        H(x, y) = 0 \quad \text{for all } x, y.
+    \]
+    Therefore:
+    \[
+        f(x + y) = f(x)g(y) + f(y)g(x).
+    \]
+\end{proof}
 
 
 \begin{problem}
