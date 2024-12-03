@@ -236,6 +236,74 @@ The homotopy method provides a dynamic point of view, showing hot the roots evol
     \end{enumerate}
 \end{problem}
 
+\subsubsection*{(a)}
+\begin{proof}
+   
+\end{proof}
+
+\subsubsection*{(b)}
+\begin{proof}
+    Using the result from part (a):
+    \[
+        \cos(x) = \frac{e^{ix} + e^{-ix}}{2}, \quad 
+        i \sin(x) = i \left( \frac{e^{ix} - e^{-ix}}{2i} \right) = \frac{e^{ix} - e^{-ix}}{2}.
+    \]
+    Add \( \cos(x) \) and \( i \sin(x) \):
+    \[
+        \cos(x) + i \sin(x) = \frac{e^{ix} + e^{-ix}}{2} + \frac{e^{ix} - e^{-ix}}{2} = e^{ix}.
+    \]
+    Therefore:
+    \[
+        e^{ix} = \cos(x) + i \sin(x).
+    \]
+\end{proof}
+
+\subsubsection*{(c)}
+\begin{proof}
+    Express \( \cos(x) + i \sin(x) \) using Euler's formula:
+    \[
+        \cos(x) + i \sin(x) = e^{ix}.
+    \]
+
+    Raise both sides to the \( n \)-th power:
+    \[
+        [\cos(x) + i \sin(x)]^n = (e^{ix})^n = e^{inx}.
+    \]
+    Express \( e^{inx} \) back in terms of cosine and sine:
+    \[
+        e^{inx} = \cos(nx) + i \sin(nx).
+    \]
+    Combine the results:
+    \[
+        (\cos(x) + i \sin(x))^n = \cos(nx) + i \sin(nx).
+    \]
+\end{proof}
+
+\subsubsection*{(d) Application with $n = 2$ to show double angle identity}
+\begin{proof}
+    Use De Moivre's formula with \( n = 2 \):
+    \[
+        (\cos(x) + i \sin(x))^2 = \cos(2x) + i \sin(2x).
+    \]
+    Expand the left-hand side using algebra:
+    \[
+        (\cos(x) + i \sin(x))^2 = \cos^2(x) + 2i \cos(x) \sin(x) - \sin^2(x).
+    \]
+    Note that \( i^2 = -1 \). 
+    \\
+    Separate real and imaginary parts:
+    \begin{itemize}
+        \item Real part:
+        \[
+        \cos^2(x) - \sin^2(x) = \cos(2x).
+        \]
+        \item Imaginary part:
+        \[
+        2 \cos(x) \sin(x) = \sin(2x).
+        \]
+    \end{itemize}
+\end{proof}
+
 
 \begin{problem}
     Consider the differential equation
@@ -249,6 +317,73 @@ The homotopy method provides a dynamic point of view, showing hot the roots evol
         \item Estimate \(x(1)\) again, but using this second series. Compare to (b). What do you think is happening?
     \end{enumerate}
 \end{problem}
+
+\subsubsection*{(a)}
+To find the Taylor series of \( x(t) \) around \( t = 0 \), we compute \( x(0) \), \( x'(0) \), and \( x''(0) \).
+\\
+First, we compute \( x(0) \):
+\[
+    x(0) = 1 \quad \text{(given initial condition)}.
+\]
+Compute \( x'(0) \):
+\\
+From the differential equation:
+\[
+    x' = 6x^2 - 5 \arctan(x).
+\]
+At \( t = 0 \):
+\[
+    x'(0) = 6x(0)^2 - 5 \arctan(x(0)) = 6(1)^2 - 5 \arctan(1).
+\]
+Since \( \arctan(1) = \frac{\pi}{4} \):
+\[
+    x'(0) = 6 - 5 \left( \frac{\pi}{4} \right) = 6 - \frac{5\pi}{4}.
+\]
+Compute \( x''(0) \):
+\\
+Differentiate \( x' \) with respect to \( t \):
+\[
+    x'' = \frac{d}{dt} \left( 6x^2 - 5 \arctan(x) \right) = 12x x' - 5 \left( \frac{1}{1 + x^2} x' \right).
+\]
+Simplify:
+\[
+    x'' = x' \left( 12x - \frac{5}{1 + x^2} \right).
+\]
+At \( t = 0 \):
+\[
+    x(0) = 1, \quad x'(0) = 6 - \frac{5\pi}{4}, \quad x(0)^2 = 1.
+\]
+Compute \( x''(0) \):
+\[
+    x''(0) = x'(0) \left( 12 \cdot 1 - \frac{5}{1 + 1^2} \right) = x'(0) \left( 12 - \frac{5}{2} \right) = x'(0) \cdot 9.5.
+\]
+Substitute \( x'(0) \):
+\[
+    x''(0) = \left( 6 - \frac{5\pi}{4} \right) \cdot 9.5.
+\]
+\noindent Hence, first three terms of the Taylor series will be:
+\\
+The Taylor series expansion is given by:
+\[
+    x(t) = x(0) + x'(0) t + \frac{x''(0)}{2} t^2.
+\]
+Substitute the values:
+\[
+    x(t) = 1 + \left( 6 - \frac{5\pi}{4} \right) t + \frac{1}{2} \left( \left( 6 - \frac{5\pi}{4} \right) \cdot 9.5 \right) t^2.
+\]
+
+For numerical approximation (using \( \pi \approx 3.1416 \)):
+
+\begin{itemize}
+    \item \( \frac{5\pi}{4} \approx \frac{5 \times 3.1416}{4} \approx 3.927 \),
+    \item \( x'(0) \approx 6 - 3.927 = 2.073 \),
+    \item \( x''(0) \approx 2.073 \cdot 9.5 = 19.6935 \).
+\end{itemize}
+
+Thus:
+\[
+x(t) \approx 1 + 2.073 t + 9.84675 t^2.
+\]
 
 \begin{problem}
     Consider the system of differential equations:
