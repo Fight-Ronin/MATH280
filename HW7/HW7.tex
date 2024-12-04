@@ -238,7 +238,20 @@ The homotopy method provides a dynamic point of view, showing hot the roots evol
 
 \subsubsection*{(a)}
 \begin{proof}
-   
+    Noting that $f = sin(x)$ has the unique solution to $f'' = -f$, $f(0) = 0$, $f'(0) = 1$. In this case we want to check whether the 
+    performance of $g = \frac{e^{ix} - e^{-ix}}{2i}$ matches.
+    \[ g' = \frac{1}{2}e^{-ix}(1 + e^{2ix}) \Rightarrow g'(0) = \frac{1}{2} + \frac{1}{2} = 1 \]
+    \[ g'' = \frac{1}{2} ie^{-ix}(-1 + e^{2ix}) = \frac{1}{2} ie^{ix} - \frac{1}{2} ie^{-ix} = \frac{e^{-ix} - e^{ix}}{2i} = -g \]
+    \[ g(0) = \frac{e^{i \cdot 0} - e^{-i \cdot 0}}{2i} = \frac{1 - 1}{2i} = 0 \]
+    Hence, we verified that, 
+    \[ sin(x) = \frac{e^{ix} - e^{-ix}}{2i} \]
+    Similarly, for $h = cos(x)$, it has the unique solution to $h'' = -h$, $h(0) = 1$, $h'(0) = 0$. 
+    We want to check whether the performance of $l = \frac{e^{ix} + e^{-ix}}{2}$ matches
+    \[ l' = \frac{1}{2}ie^{-ix}(-1 + e^{2ix}) \Rightarrow l'(0) = -\frac{1}{2} + \frac{1}{2} = 0 \]
+    \[ l'' = -\frac{1}{2} e^{-ix}(1 + e^{2ix}) = -\frac{1}{2} e^{-ix} - \frac{1}{2} e^{ix} = -\frac{e^{ix} + e^{-ix}}{2} = -l \]
+    \[ l(0) = \frac{e^{ix} + e^{-ix}}{2} = \frac{1 + 1}{2} = 1 \]
+    Hence, we also verified that, 
+    \[ cos(x) = \frac{e^{ix} + e^{-ix}}{2} \]
 \end{proof}
 
 \subsubsection*{(b)}
@@ -304,87 +317,6 @@ The homotopy method provides a dynamic point of view, showing hot the roots evol
     \end{itemize}
 \end{proof}
 
-
-\begin{problem}
-    Consider the differential equation
-    \[x' = 6x^2 - 5\arctan(x),\ \ \ \ x(0) = 1.\]
-    
-    \begin{enumerate}[a)]
-        \item Write down the first three terms of its taylor series around \(t=0\).
-        \item Estimate \(x(1)\).
-        \item Estimate \(x(0.5)\).
-        \item Use your estimate for \(x(0.5)\) to estimate the first three terms of a taylor series for \(x(t)\) centered at \(t=0.5\).
-        \item Estimate \(x(1)\) again, but using this second series. Compare to (b). What do you think is happening?
-    \end{enumerate}
-\end{problem}
-
-\subsubsection*{(a)}
-To find the Taylor series of \( x(t) \) around \( t = 0 \), we compute \( x(0) \), \( x'(0) \), and \( x''(0) \).
-\\
-First, we compute \( x(0) \):
-\[
-    x(0) = 1 \quad \text{(given initial condition)}.
-\]
-Compute \( x'(0) \):
-\\
-From the differential equation:
-\[
-    x' = 6x^2 - 5 \arctan(x).
-\]
-At \( t = 0 \):
-\[
-    x'(0) = 6x(0)^2 - 5 \arctan(x(0)) = 6(1)^2 - 5 \arctan(1).
-\]
-Since \( \arctan(1) = \frac{\pi}{4} \):
-\[
-    x'(0) = 6 - 5 \left( \frac{\pi}{4} \right) = 6 - \frac{5\pi}{4}.
-\]
-Compute \( x''(0) \):
-\\
-Differentiate \( x' \) with respect to \( t \):
-\[
-    x'' = \frac{d}{dt} \left( 6x^2 - 5 \arctan(x) \right) = 12x x' - 5 \left( \frac{1}{1 + x^2} x' \right).
-\]
-Simplify:
-\[
-    x'' = x' \left( 12x - \frac{5}{1 + x^2} \right).
-\]
-At \( t = 0 \):
-\[
-    x(0) = 1, \quad x'(0) = 6 - \frac{5\pi}{4}, \quad x(0)^2 = 1.
-\]
-Compute \( x''(0) \):
-\[
-    x''(0) = x'(0) \left( 12 \cdot 1 - \frac{5}{1 + 1^2} \right) = x'(0) \left( 12 - \frac{5}{2} \right) = x'(0) \cdot 9.5.
-\]
-Substitute \( x'(0) \):
-\[
-    x''(0) = \left( 6 - \frac{5\pi}{4} \right) \cdot 9.5.
-\]
-\noindent Hence, first three terms of the Taylor series will be:
-\\
-The Taylor series expansion is given by:
-\[
-    x(t) = x(0) + x'(0) t + \frac{x''(0)}{2} t^2.
-\]
-Substitute the values:
-\[
-    x(t) = 1 + \left( 6 - \frac{5\pi}{4} \right) t + \frac{1}{2} \left( \left( 6 - \frac{5\pi}{4} \right) \cdot 9.5 \right) t^2.
-\]
-
-For numerical approximation (using \( \pi \approx 3.1416 \)):
-
-\begin{itemize}
-    \item \( \frac{5\pi}{4} \approx \frac{5 \times 3.1416}{4} \approx 3.927 \),
-    \item \( x'(0) \approx 6 - 3.927 = 2.073 \),
-    \item \( x''(0) \approx 2.073 \cdot 9.5 = 19.6935 \).
-\end{itemize}
-
-Thus:
-\[
-x(t) \approx 1 + 2.073 t + 9.84675 t^2.
-\]
-
 \begin{problem}
     Consider the system of differential equations:
     \begin{align*}
@@ -423,6 +355,105 @@ x(t) \approx 1 + 2.073 t + 9.84675 t^2.
     \end{enumerate}
 \end{problem}
 
+\subsubsection*{(a)}
+\begin{proof}
+    To solve the system of differential equations:
+    \[ X' = AX \]
+    Where 
+    \[ A = 
+        \begin{bmatrix}
+            -5 & 9 \\ -4 & 7
+        \end{bmatrix},
+        \quad
+        X(0) = 
+        \begin{bmatrix}
+            1 \\ 1
+        \end{bmatrix},
+        \quad
+    \]
+    The general solution to the system is:
+    \[ X(t) = Pe{Jt}P^{-1}X(0) \]
+    Given teh Jordan block is:
+    \[ J = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \] 
+    The matrix exponential $e^{Jt}$ for a Jordan block is:
+    \[ e^{Jt} = e^{\lambda t}(I + Nt) \]
+    Where $\lambda = 1$ is the eigenvalue and $N = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}$ is the nilpotent matrix. ThusL
+    \[ e^{Jt} = e^t \begin{bmatrix} 1 & t \\ 0 & 1 \end{bmatrix} \]
+    Refer back to the generao solution, first lets compute $P^{-1}X(0)$:
+    \[ P^{-1}X(0) = \begin{bmatrix} 1 & -1 \\ -2 & 3 \end{bmatrix} \begin{bmatrix} 1  \\ 1 \end{bmatrix} = \begin{bmatrix} 1 - 1 \\ -2 + 3 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \]
+    Then, we can get $e^{Jt}P^{-1}X(0)$:
+    \[ e^{Jt}P^{-1}X(0) = e^t \begin{bmatrix} 1 & t \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} = e^t \begin{bmatrix} t \\ 1 \end{bmatrix} \]
+    Lastly, we left multiply $P$ to get $X(t)$:
+    \[ X(t) = P \left( e^t \begin{bmatrix} t \\ 1 \end{bmatrix} \right) = e^t \begin{bmatrix} 3 & 1 \\ 2 & 1 \end{bmatrix} \begin{bmatrix} t \\ 1 \end{bmatrix} = e^t \begin{bmatrix} 3t + 1 \\ 2t + 1 \end{bmatrix} \]
+    Hence,
+    \[ X(t) = e^t(1 + 3t), \quad Y(t) = e^t (1 + 2t) \]
+\end{proof} 
+
+\subsubsection*{(b)}
+\begin{proof}
+    Refer to the result in (a), when $t = 2$:
+    \[ X(2) = e^2(1 + 3 \times 2) = e^2 \times 7 = 7e^2 \]
+    \[ Y(2) = e^2(1 + 2 \times 2) = e^2 \times 5 = 5e^2 \]
+\end{proof}
+
+\subsubsection*{(c)}
+Euler's method is a numerical approach to approximate the solution to a system of differential equations:
+\[
+    \mathbf{X}' = A \mathbf{X},
+\]
+with initial condition \( \mathbf{X}(t_0) = \mathbf{X}_0 \). The update formula is:
+\[
+    \mathbf{X}_{n+1} = \mathbf{X}_n + h A \mathbf{X}_n,
+\]
+
+\begin{proof}
+    Given,
+    \[ A = 
+        \begin{bmatrix}
+            -5 & 9 \\ -4 & 7
+        \end{bmatrix},
+        \quad
+        X(0) = 
+        \begin{bmatrix}
+            1 \\ 1
+        \end{bmatrix},
+        \quad
+    \]
+    1. One step strategy (From $t = 0$ to $t = 2$, with $h = 2$):
+    \\
+    \[ AX_0 = \begin{bmatrix} -5 & 9 \\ -4 & 7 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\ 3 \end{bmatrix} \]
+    By our update rule:
+    \[ X_1 = X_0 + 2 \times \begin{bmatrix} 4 \\ 3 \end{bmatrix} = \begin{bmatrix} 1 + 8 \\ 1 + 6 \end{bmatrix} = \begin{bmatrix} 9 \\ 7 \end{bmatrix} \]
+    So the estimation will be:
+    \[ X(2) \approx 9, Y(2) \approx 7 \]
+    2. Two steps strategy (From $t = 0$ to $t = 2$, with $h = 1$):
+    \\
+    From (1), we can get
+    \[ AX_0 = \begin{bmatrix} 4 \\ 3 \end{bmatrix} \]
+    By our update rulem this time, fisrt:
+    \[ X_1 = X_0 + 1 \times \begin{bmatrix} 4 \\ 3 \end{bmatrix} = \begin{bmatrix} 5 \\ 4 \end{bmatrix} \]
+    Then,
+    \[ AX_1 = \begin{bmatrix} -5 & 9 \\ -4 & 7 \end{bmatrix} \begin{bmatrix} 5 \\ 4 \end{bmatrix} = \begin{bmatrix} 11 \\ 8\end{bmatrix} \]
+    \[ X_2 = X_1 + 1 \times \begin{bmatrix} 11 \\ 8 \end{bmatrix} = \begin{bmatrix} 16 \\ 12 \end{bmatrix} \]
+    So the estimation this time will be:
+    \[ X(2) \approx 16, Y(2) \approx 12 \]
+\end{proof}
+
+\noindent \textbf{Exact Values:}
+\[
+    X(2) = 7e^2 \approx 51.7237, \quad Y(2) = 5e^2 \approx 36.9455.
+\]
+\textbf{Euler's Estimates:}
+\begin{itemize}
+    \item \textbf{One Step (\( h = 2 \)):} \( X(2) \approx 9, \quad Y(2) \approx 7 \)
+    \item \textbf{Two Steps (\( h = 1 \)):} \( X(2) \approx 16, \quad Y(2) \approx 12 \)
+\end{itemize}
+
+\noindent \textbf{Observations:}
+\\
+Both Euler's estimates are significantly lower than the exact values. The reason on having such behavior is that
+Euler's method is a first-order numerical method with local truncation errors proportional to the step size \( h \). 
+Larger step sizes exacerbate these errors, especially for systems with rapidly growing solutions like this one.
 
 \begin{problem}
 [Bonus]
@@ -436,4 +467,87 @@ x(t) \approx 1 + 2.073 t + 9.84675 t^2.
     \end{enumerate}
 \end{problem}
 
+\subsubsection*{(a)}
+\begin{proof}
+    The matrix exponential $e^M$ of a square matrix $M$ is defined by the power series:
+    \[ e^M = \sum_{k = 0}^{\infty} \frac{M^k}{k!} \]
+    Given that $A$ and $B$ commute, we can manipulate the exponential of their sum.
+    \[ e^{A + B} = \sum_{k = 0}^{\infty} \frac{(A + B)^k}{k!} \]
+    Since $A$ and $B$ commute, we can apply the binomial thm to expand $(A + B)^k$:
+    \[ (A + B)^k = \sum_{j = 0}^{k} \begin{pmatrix} k \\ j \end{pmatrix} A^j B^{k - j} \]
+    Sub it back, we can get:
+    \[ e^{A + B} = \sum_{k = 0}^{\infty} \frac{1}{k!} \sum_{j = 0}^{k} \begin{pmatrix} k \\ j \end{pmatrix} A^j B^{k - j} = \sum_{j = 0}^{\infty} \sum_{k = j}^{\infty} \frac{\begin{pmatrix} k \\ j \end{pmatrix}}{k!} A^j B^{k - j} \]
+    Noting that,
+    \[ \frac{\begin{pmatrix} k \\ j \end{pmatrix}}{k!} = \frac{1}{j!(k - j)!} \]
+    So by rearranging,
+    \[ e^{A} e^{B} = \left( \sum_{m = 0}^{\infty} \frac{A^m}{m!} \right) \left( \sum_{mn= 0}^{\infty} \frac{B^n}{n!} \right) = \sum_{j = 0}^{\infty} \sum_{k = j}^{\infty} \frac{\begin{pmatrix} k \\ j \end{pmatrix}}{k!} A^j B^{k - j} = e^{A + B} \]
+\end{proof}
+
+\subsubsection*{(b)}
+\section*{(b) Provide a simpler example where \( e^{A+B} \neq e^{A} e^{B} \)}
+
+Let \( A \) and \( B \) be the \( 2 \times 2 \) matrices:
+\[
+    A = \begin{bmatrix}
+    0 & 1 \\ 0 & 0
+    \end{bmatrix}, \quad
+    B = \begin{bmatrix}
+    0 & 0 \\ 1 & 0
+    \end{bmatrix}.
+\]
+Verify \( AB \neq BA \)
+\[
+    AB = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \quad
+    BA = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}.
+\]
+Since \( AB \neq BA \), \( A \) and \( B \) do not commute.
+\\
+Noting that both \( A \) and \( B \) are nilpotent (\( A^2 = 0 \), \( B^2 = 0 \)),
+\[
+    e^{A} = I + A = \begin{bmatrix}
+    1 & 1 \\ 0 & 1
+    \end{bmatrix}, \quad
+    e^{B} = I + B = \begin{bmatrix}
+    1 & 0 \\ 1 & 1
+    \end{bmatrix}.
+\]
+Now, we compute \( e^{A} e^{B} \)
+\[
+    e^{A} e^{B} = \begin{bmatrix}
+    1 & 1 \\ 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 0 \\ 1 & 1
+    \end{bmatrix}
+    = \begin{bmatrix}
+    2 & 1 \\ 1 & 1
+    \end{bmatrix}.
+\]
+Then, we compute \( e^{A+B} \)
+\[
+    A + B = \begin{bmatrix}
+    0 & 1 \\ 1 & 0
+    \end{bmatrix}, \quad
+    (A+B)^2 = I.
+\]
+Using the series expansion of the exponential, by definition, we can get:
+\[
+    e^{A+B} = \cosh(1) \cdot I + \sinh(1) \cdot (A+B).
+\]
+Numerical approximation (\( \cosh(1) \approx 1.5431 \), \( \sinh(1) \approx 1.1752 \)):
+\[
+    e^{A+B} \approx \begin{bmatrix}
+    1.5431 & 1.1752 \\ 1.1752 & 1.5431
+    \end{bmatrix}.
+\]
+But, by comparison
+\[
+    e^{A} e^{B} = \begin{bmatrix}
+    2 & 1 \\ 1 & 1
+    \end{bmatrix} \neq
+    e^{A+B} \approx \begin{bmatrix}
+    1.5431 & 1.1752 \\ 1.1752 & 1.5431
+    \end{bmatrix}.
+\]
+Which match our expectation.
 \end{document}
