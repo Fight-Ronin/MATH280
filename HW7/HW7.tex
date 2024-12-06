@@ -94,7 +94,7 @@ Unless otherwise specified, you may assume that any differential equations defin
     Sub $t = 0$ and $y(0) = a$ into the equation:
     \[ a^2 = -4b \cdot 0 + C \Longrightarrow a^2 \]
     Hence, 
-    \[ y^2 = a^2 + 4bt \]
+    \[ y^2 = a^2 - 4bt \]
 \end{proof}
 
 \subsubsection*{(e)}
@@ -112,8 +112,8 @@ Unless otherwise specified, you may assume that any differential equations defin
 The path $x(t)$ represent the continuous transformation of the roots from the simpler quadratic $g(x)$ to the original quadratic $f(x)$ as $t$ increases from $0$ to $1$.
 Each path follows the equation:
 \[ x(t) = \frac{-a \pm \sqrt{a^2 - 4bt}}{2} \]
-At $t = 0$, the roots are those of $g(x)$, and at $t=1$, they are roots of $f(x)$ given quadrat5ic formula,. This homoptopy-based proof indicates the standard proof in that both derive the quadratic formula by manipulating the equation to isolate $x$.
-The homotopy method provides a dynamic point of view, showing hot the roots evolve compare to standard ``static'' proof.
+At $t = 0$, the roots are those of $g(x)$, and at $t=1$, they are roots of $f(x)$ given quadratic formula. This homoptopy-based proof indicates the standard proof in that both derive the quadratic formula by manipulating the equation to isolate $x$.
+The homotopy method provides a dynamic point of view, showing how the roots evolve compare to standard ``static'' proof.
 
 
 \begin{problem}
@@ -277,7 +277,6 @@ The homotopy method provides a dynamic point of view, showing hot the roots evol
     \[
         \cos(x) + i \sin(x) = e^{ix}.
     \]
-
     Raise both sides to the \( n \)-th power:
     \[
         [\cos(x) + i \sin(x)]^n = (e^{ix})^n = e^{inx}.
@@ -358,33 +357,33 @@ The homotopy method provides a dynamic point of view, showing hot the roots evol
 \subsubsection*{(a)}
 \begin{proof}
     To solve the system of differential equations:
-    \[ X' = AX \]
+    \[ \mathbf{X}' = A\mathbf{X} \]
     Where 
     \[ A = 
         \begin{bmatrix}
             -5 & 9 \\ -4 & 7
         \end{bmatrix},
         \quad
-        X(0) = 
+        \mathbf{X}(0) = 
         \begin{bmatrix}
             1 \\ 1
         \end{bmatrix},
         \quad
     \]
     The general solution to the system is:
-    \[ X(t) = Pe{Jt}P^{-1}X(0) \]
+    \[ \mathbf{X}(t) = Pe^{Jt}P^{-1}\mathbf{X}(0) \]
     Given teh Jordan block is:
     \[ J = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \] 
     The matrix exponential $e^{Jt}$ for a Jordan block is:
     \[ e^{Jt} = e^{\lambda t}(I + Nt) \]
-    Where $\lambda = 1$ is the eigenvalue and $N = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}$ is the nilpotent matrix. ThusL
+    Where $\lambda = 1$ is the eigenvalue and $N = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$ is the nilpotent matrix. Thus,
     \[ e^{Jt} = e^t \begin{bmatrix} 1 & t \\ 0 & 1 \end{bmatrix} \]
     Refer back to the generao solution, first lets compute $P^{-1}X(0)$:
-    \[ P^{-1}X(0) = \begin{bmatrix} 1 & -1 \\ -2 & 3 \end{bmatrix} \begin{bmatrix} 1  \\ 1 \end{bmatrix} = \begin{bmatrix} 1 - 1 \\ -2 + 3 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \]
+    \[ P^{-1}\mathbf{X}(0) = \begin{bmatrix} 1 & -1 \\ -2 & 3 \end{bmatrix} \begin{bmatrix} 1  \\ 1 \end{bmatrix} = \begin{bmatrix} 1 - 1 \\ -2 + 3 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \]
     Then, we can get $e^{Jt}P^{-1}X(0)$:
-    \[ e^{Jt}P^{-1}X(0) = e^t \begin{bmatrix} 1 & t \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} = e^t \begin{bmatrix} t \\ 1 \end{bmatrix} \]
+    \[ e^{Jt}P^{-1}\mathbf{X}(0) = e^t \begin{bmatrix} 1 & t \\ 0 & 1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} = e^t \begin{bmatrix} t \\ 1 \end{bmatrix} \]
     Lastly, we left multiply $P$ to get $X(t)$:
-    \[ X(t) = P \left( e^t \begin{bmatrix} t \\ 1 \end{bmatrix} \right) = e^t \begin{bmatrix} 3 & 1 \\ 2 & 1 \end{bmatrix} \begin{bmatrix} t \\ 1 \end{bmatrix} = e^t \begin{bmatrix} 3t + 1 \\ 2t + 1 \end{bmatrix} \]
+    \[ \mathbf{X}(t) = P \left( e^t \begin{bmatrix} t \\ 1 \end{bmatrix} \right) = e^t \begin{bmatrix} 3 & 1 \\ 2 & 1 \end{bmatrix} \begin{bmatrix} t \\ 1 \end{bmatrix} = e^t \begin{bmatrix} 3t + 1 \\ 2t + 1 \end{bmatrix} \]
     Hence,
     \[ X(t) = e^t(1 + 3t), \quad Y(t) = e^t (1 + 2t) \]
 \end{proof} 
@@ -413,7 +412,7 @@ with initial condition \( \mathbf{X}(t_0) = \mathbf{X}_0 \). The update formula 
             -5 & 9 \\ -4 & 7
         \end{bmatrix},
         \quad
-        X(0) = 
+        \mathbf{X}(0) = 
         \begin{bmatrix}
             1 \\ 1
         \end{bmatrix},
@@ -421,20 +420,20 @@ with initial condition \( \mathbf{X}(t_0) = \mathbf{X}_0 \). The update formula 
     \]
     1. One step strategy (From $t = 0$ to $t = 2$, with $h = 2$):
     \\
-    \[ AX_0 = \begin{bmatrix} -5 & 9 \\ -4 & 7 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\ 3 \end{bmatrix} \]
+    \[ A\mathbf{X_0} = \begin{bmatrix} -5 & 9 \\ -4 & 7 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 4 \\ 3 \end{bmatrix} \]
     By our update rule:
-    \[ X_1 = X_0 + 2 \times \begin{bmatrix} 4 \\ 3 \end{bmatrix} = \begin{bmatrix} 1 + 8 \\ 1 + 6 \end{bmatrix} = \begin{bmatrix} 9 \\ 7 \end{bmatrix} \]
+    \[ \mathbf{X_1} = \mathbf{X_0} + 2 \times \begin{bmatrix} 4 \\ 3 \end{bmatrix} = \begin{bmatrix} 1 + 8 \\ 1 + 6 \end{bmatrix} = \begin{bmatrix} 9 \\ 7 \end{bmatrix} \]
     So the estimation will be:
     \[ X(2) \approx 9, Y(2) \approx 7 \]
     2. Two steps strategy (From $t = 0$ to $t = 2$, with $h = 1$):
     \\
     From (1), we can get
-    \[ AX_0 = \begin{bmatrix} 4 \\ 3 \end{bmatrix} \]
+    \[ A\mathbf{X_0} = \begin{bmatrix} 4 \\ 3 \end{bmatrix} \]
     By our update rulem this time, fisrt:
-    \[ X_1 = X_0 + 1 \times \begin{bmatrix} 4 \\ 3 \end{bmatrix} = \begin{bmatrix} 5 \\ 4 \end{bmatrix} \]
+    \[ \mathbf{X_1} = \mathbf{X_0} + 1 \times \begin{bmatrix} 4 \\ 3 \end{bmatrix} = \begin{bmatrix} 5 \\ 4 \end{bmatrix} \]
     Then,
-    \[ AX_1 = \begin{bmatrix} -5 & 9 \\ -4 & 7 \end{bmatrix} \begin{bmatrix} 5 \\ 4 \end{bmatrix} = \begin{bmatrix} 11 \\ 8\end{bmatrix} \]
-    \[ X_2 = X_1 + 1 \times \begin{bmatrix} 11 \\ 8 \end{bmatrix} = \begin{bmatrix} 16 \\ 12 \end{bmatrix} \]
+    \[ A\mathbf{X_1} = \begin{bmatrix} -5 & 9 \\ -4 & 7 \end{bmatrix} \begin{bmatrix} 5 \\ 4 \end{bmatrix} = \begin{bmatrix} 11 \\ 8\end{bmatrix} \]
+    \[ \mathbf{X_2} = \mathbf{X_1} + 1 \times \begin{bmatrix} 11 \\ 8 \end{bmatrix} = \begin{bmatrix} 16 \\ 12 \end{bmatrix} \]
     So the estimation this time will be:
     \[ X(2) \approx 16, Y(2) \approx 12 \]
 \end{proof}
