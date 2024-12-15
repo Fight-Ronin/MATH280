@@ -114,6 +114,18 @@
 
 \newpage
 
+\begin{problem}
+    Another view of the secant method, discussed in class, is as a weighted bisection method. Here too, one might hope for a convergence guarantee, because BM is much more robust than NM in that regard.\\[-0.5em]
+
+    Consider a modified secant method which at step \(k\) takes in endpoints \(a_k,b_k\), calculates their weighted midpoint \(c_k\) and then returns two new endpoints \(a_{k+1},b_{k+1}\), one of which is \(c_k\), to which IVT applies. These new endpoints are input to the next step.\\[-0.5em]
+
+    Prove that if \(f\) is continuous on \([a,b] = [a_0,b_0]\) and the IVT applies to \(f\) on the interval, then the sequence \(c_k\) from the modified secant method converges to a root of \(f\).\\[-0.5em]
+
+    Hint: the reason for convergence is \emph{not} the same as for bisection. This would require the stronger assumption that \(f\) is continuously differentiable. In fact:
+
+    [Bonus] Give an example where the sequences \(x_k\) and \(y_k\) converge to different points, so squeeze does not apply.
+\end{problem}
+
 
 \begin{proof}
     Let \( f \) be a continuous function on the interval \( [a_0, b_0] \) such that \( f(a_0) \cdot f(b_0) < 0 \). By the Intermediate Value Theorem (IVT), there exists at least one root \( x \) in \( (a_0, b_0) \) where \( f(x) = 0 \).
